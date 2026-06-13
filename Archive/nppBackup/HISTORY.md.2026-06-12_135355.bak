@@ -1,0 +1,2 @@
+User: What does Karpathy call the ongoing instruction set for a chat?
+Agent: Andrej Karpathy generally refers to it as the 'System Prompt' or 'Custom Instructions', and in agentic workflows, he treats it as a 'living document' or an evolving 'Persona'.

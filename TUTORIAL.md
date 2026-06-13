@@ -1,0 +1,49 @@
+# Tutorial: Configuring Gemini with Explicit System Instructions
+
+This tutorial outlines the steps taken to configure Gemini's global behavior by refining its "System Prompt" (or "System Instructions") via the `GEMINI.md` configuration file.
+
+## Conceptual Framing
+This configuration process bridges two major disciplines:
+- **Prompt Engineering (The Mechanism):** The act of structuring, formatting, and clarifying the constraints (like defining exact tool triggers and removing ambiguous variables) is prompt engineering. It ensures the LLM executes instructions reliably.
+- **Information Security (The Goal):** The *contents* of these instructions address the **Availability** and **Integrity** elements of the InfoSec CIA triad:
+  - *Chat History* ensures context availability, auditability, and process demonstration.
+  - *File Backups* ensure data availability and integrity, allowing the user to revert changes and confirm correctness. 
+
+Using prompt engineering to enforce InfoSec policies ensures a safe and resilient AI-assisted development environment.
+
+## Step 1: Understand the Terminology
+- **Ongoing Instructions:** In the AI engineering community (e.g., Andrej Karpathy), the ongoing instructions for an agent are typically referred to as the **System Prompt** or a living **Persona**.
+- **Google's Terminology:** In the Gemini API, these are officially known as **System Instructions**, which steer the model's behavior, persona, and output formatting across the entire conversation.
+
+## Step 2: Review Existing Configuration
+We located the user's global configuration file at:
+`C:\Users\admin\.gemini\GEMINI.md`
+
+The initial file contained human-readable instructions for:
+1. Maintaining a chat history.
+2. Backing up files before editing.
+
+However, LLMs benefit from strict, unambiguous instructions tied to their tool usage.
+
+## Step 3: Identify Areas for LLM Optimization
+We identified four key improvements to make the rules more "LLM-friendly":
+1. **Clarify Location Context:** Replace ambiguous variables like `[cd]` with explicit terms like *"the root directory of the currently active workspace"*.
+2. **Define Triggers Explicitly:** Anchor the rules to concrete LLM actions (e.g., *"Whenever you are about to use a tool to modify a file..."*).
+3. **Specify Naming & Rotation Logic:** Provide exact naming conventions (e.g., appending timestamps like `filename_YYYYMMDD_HHMMSS.ext`) and rotation limits (e.g., maximum of 10 backups).
+4. **Use Structured Formatting:** Format the rules with bolding, lists, and clear headers so the LLM parses the constraints easily.
+
+## Step 4: Backup the Old Configuration
+Before making any changes, we securely backed up the existing `GEMINI.md` file into the `Archive` folder.
+
+## Step 5: Apply the Optimized Instructions
+Finally, we replaced the contents of `C:\Users\admin\.gemini\GEMINI.md` with the newly structured instructions:
+
+```markdown
+## Gemini Added Memories
+- **Chat History:** Maintain a file named `HISTORY.md` inside an `Archive` folder at the root of the active workspace. Always **append** new conversation summaries to this file. Create the `Archive` folder and `HISTORY.md` if they do not exist.
+- **File Backups:** Whenever you are about to use a tool to modify a file in the project, you must first create a backup in the `Archive` folder. 
+  - Rename the copied file to include a timestamp (e.g., `filename_YYYYMMDD_HHMMSS.ext`).
+  - Maintain a maximum of 10 past versions per file. Before creating a new backup, check the folder and delete the oldest version if there are already 10 backups.
+```
+
+By completing these steps, Gemini now has a robust, unambiguous set of System Instructions governing its memory and file-editing behaviors.
