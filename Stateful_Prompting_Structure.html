@@ -152,13 +152,20 @@
             color: var(--text-muted);
             margin-top: 20px;
             border-left: 3px solid var(--accent-purple);
+        }
+
+        .file-card > *:not(h2) {
             display: none;
             opacity: 0;
         }
 
-        .citation.visible {
+        .file-card.expanded > *:not(h2) {
             display: block;
             animation: fadeIn 0.4s ease forwards;
+        }
+
+        .file-card.expanded > .badge {
+            display: inline-block;
         }
 
         @keyframes fadeIn {
@@ -348,10 +355,7 @@
     <script>
         document.querySelectorAll('.file-card').forEach(card => {
             card.addEventListener('click', () => {
-                const citation = card.querySelector('.citation');
-                if (citation) {
-                    citation.classList.toggle('visible');
-                }
+                card.classList.toggle('expanded');
             });
         });
     </script>
