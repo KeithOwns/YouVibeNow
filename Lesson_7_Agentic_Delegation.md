@@ -30,3 +30,10 @@ The greatest benefit of sub-agents is asynchronous execution. You can spin up th
 ## Exercise: The Delegation Prompt
 **Your Task:**
 Write a Thin Prompt that commands your main AI to spawn a sub-agent. The sub-agent's task should be to search the codebase for all instances of the word "TODO" and compile them into a checklist.
+
+<details>
+<summary><b>Click to see an Example Solution</b></summary>
+
+> "Please spawn a research sub-agent in the background. Instruct the sub-agent to search the entire `src/` directory for any lines containing the word 'TODO'. Have the sub-agent output the results as a checklist in a new file called `TODO_List.md`. Please let me know when it finishes so I can review it."
+
+</details>

@@ -15,8 +15,12 @@ Instead of typing that every time, we can **package** that workflow into a reusa
 A Skill is essentially a pre-packaged Task and Output Format. It is a Markdown file (usually named `SKILL.md`) placed inside a `skills/` directory in your project root.
 
 ### 2. Anatomy of a SKILL.md File
-A well-written skill file contains:
-1. **Frontmatter (YAML):** Metadata describing the skill's name and purpose. This is how the AI discovers it.
+A well-written skill file follows the **Agent Skills Open Specification** (adopted by Anthropic, OpenAI, and Microsoft). It contains two main parts:
+
+1. **Frontmatter (YAML):** Metadata describing the skill. The AI reads this *first* to decide if the skill matches your prompt (a process called "progressive disclosure").
+   *   `name`: The unique identifier (e.g., `lint-code`).
+   *   `description`: What the skill does and what triggers it.
+   *   `when_to_use`: (Optional) Specific scenarios when the agent should activate this skill.
 2. **Instructions:** The actual steps the AI needs to follow when the skill is invoked.
 
 *Example `skills/lint-code/SKILL.md`:*
@@ -44,3 +48,23 @@ The AI will locate the skill file, read its instructions, and execute the exact 
 ## Exercise: Write Your First Skill
 **Your Task:**
 Create a `skills/` folder in your project. Inside, create a folder named `summarize-logs`, and inside that, create a `SKILL.md` file. Write the YAML frontmatter and a 3-step instruction set for reading a log file and summarizing the errors in a table.
+
+<details>
+<summary><b>Click to see an Example Solution</b></summary>
+
+**File:** `skills/summarize-logs/SKILL.md`
+
+```markdown
+---
+name: summarize-logs
+description: Reads a local .log file and outputs a summary of errors.
+when_to_use: Run this when the user asks to "check the logs" or "summarize errors".
+---
+
+## Instructions
+1. Read the provided log file.
+2. Identify any lines containing the words "ERROR" or "FATAL".
+3. Output the exact error messages and their timestamps into a GitHub-flavored Markdown table.
+```
+
+</details>
