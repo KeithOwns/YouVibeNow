@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evolved Agentic Engineering (EAE) Explorer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --bg-primary: #090d16;
+            --bg-secondary: #111827;
+            --accent-emerald: #10b981;
+            --accent-indigo: #6366f1;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --layer-card: #1f2937;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, .font-display {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+
+        .glass-panel {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .layer-btn {
+            border-left: 4px solid transparent;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .layer-btn.active {
+            border-left: 4px solid var(--accent-emerald);
+            background-color: var(--bg-secondary);
+            color: #ffffff;
+            box-shadow: 0 4px 20px -2px rgba(16, 185, 129, 0.15);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #10b981 0%, #6366f1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .card-glow:hover {
+            box-shadow: 0 10px 30px -10px rgba(99, 102, 241, 0.15);
+            border-color: rgba(99, 102, 241, 0.2);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-emerald-500/30 selection:text-emerald-200">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-panel border-b border-gray-800">
+        <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="font-bold text-xl tracking-tight text-white flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></span>
+                EAE<span class="text-indigo-400">.Explorer</span>
+            </div>
+            <div class="hidden md:flex space-x-8 text-sm font-medium">
+                <a href="#philosophy" class="text-gray-300 hover:text-white transition-all">Philosophy</a>
+                <a href="#hierarchy" class="text-gray-300 hover:text-white transition-all">Architecture</a>
+                <a href="#principles" class="text-gray-300 hover:text-white transition-all">Principles</a>
+                <a href="#analysis" class="text-gray-300 hover:text-white transition-all">Metrics</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-28 pb-20 px-6">
+        
+        <!-- Section: Hero & Philosophy -->
+        <section id="philosophy" class="max-w-4xl mx-auto mb-32 text-center">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-xs font-semibold text-indigo-300 mb-6">
+                Next-Gen Agentic Architecture
+            </div>
+            <h1 class="text-5xl md:text-6xl font-bold mb-6 tracking-tight text-white leading-tight">
+                Autonomous <span class="gradient-text">AI Software Factories</span>
+            </h1>
+            <p class="text-xl text-gray-400 mb-10 leading-relaxed max-w-3xl mx-auto">
+                Evolved Agentic Engineering (EAE) replaces manual, human-steered processes with continuous validation loops, multi-agent orchestration, and dynamic self-correcting workspace memory.
+            </p>
+            
+            <div class="grid md:grid-cols-2 gap-8 text-left mt-16">
+                <div class="p-8 bg-gray-900/40 rounded-2xl border border-gray-800/80 transition-all card-glow">
+                    <div class="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center mb-4">
+                        <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 00-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                    </div>
+                    <h3 class="font-bold text-lg text-white mb-2">Automated Verification</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Code is never blindly accepted. Agents run unit tests and linters in isolated sandboxes, iterating autonomously until compilation is successful.</p>
+                </div>
+                <div class="p-8 bg-gray-900/40 rounded-2xl border border-gray-800/80 transition-all card-glow">
+                    <div class="w-10 h-10 rounded-lg bg-indigo-500/10 flex items-center justify-center mb-4">
+                        <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                    </div>
+                    <h3 class="font-bold text-lg text-white mb-2">Multi-Agent Assembly Line</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Handoffs occur asynchronously via version-controlled artifacts, allowing specialized agents (Architects, Developers, QA) to operate in parallel.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: The EAE Hierarchy -->
+        <section id="hierarchy" class="max-w-6xl mx-auto mb-32">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4 text-white">The Repository Architecture</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">EAE partitions context across five distinct structural elements to maximize focus, guarantee security, and enable persistent state memory.</p>
+            </div>
+
+            <div class="grid md:grid-cols-12 gap-8 items-start">
+                <!-- Selectors -->
+                <div class="md:col-span-4 flex flex-col space-y-2">
+                    <button onclick="showLayer(1)" id="btn-1" class="layer-btn p-4 text-left rounded-lg transition-all hover:bg-gray-800/40 text-gray-400 active">
+                        <span class="block font-bold">1. Global Identity (Tier 1)</span>
+                        <span class="text-xs text-indigo-400">Global Config / AGENTS.md</span>
+                    </button>
+                    <button onclick="showLayer(2)" id="btn-2" class="layer-btn p-4 text-left rounded-lg transition-all hover:bg-gray-800/40 text-gray-400">
+                        <span class="block font-bold">2. Repository Context (Tier 2)</span>
+                        <span class="text-xs text-indigo-400">AGENTS.md / CONTEXT.md</span>
+                    </button>
+                    <button onclick="showLayer(3)" id="btn-3" class="layer-btn p-4 text-left rounded-lg transition-all hover:bg-gray-800/40 text-gray-400">
+                        <span class="block font-bold">3. Dynamic Memory</span>
+                        <span class="text-xs text-indigo-400">MEMORY.md</span>
+                    </button>
+                    <button onclick="showLayer(4)" id="btn-4" class="layer-btn p-4 text-left rounded-lg transition-all hover:bg-gray-800/40 text-gray-400">
+                        <span class="block font-bold">4. Automation Layer</span>
+                        <span class="text-xs text-indigo-400">skills/ Directory</span>
+                    </button>
+                    <button onclick="showLayer(5)" id="btn-5" class="layer-btn p-4 text-left rounded-lg transition-all hover:bg-gray-800/40 text-gray-400">
+                        <span class="block font-bold">5. Sandbox Boundaries</span>
+                        <span class="text-xs text-indigo-400">tests/ & Execution Loops</span>
+                    </button>
+                </div>
+
+                <!-- Content Panel -->
+                <div class="md:col-span-8 bg-gray-900/60 p-10 rounded-3xl border border-gray-800 min-h-[400px]">
+                    <div id="layer-content" class="transition-all duration-300">
+                        <h3 id="layer-title" class="text-2xl font-bold mb-4 text-white">Global Identity (Tier 1)</h3>
+                        <div id="layer-desc" class="text-gray-300 leading-relaxed space-y-4">
+                            <p>The foundation of agentic security and behavior. This layer sets global rules in the AI's application settings or a root configuration folder, applying strict constraints across all local workspaces.</p>
+                            <ul class="list-disc ml-5 space-y-2 text-sm text-gray-400">
+                                <li><strong>Identity Baseline:</strong> Defines the default persona, style preferences, and code styling rules.</li>
+                                <li><strong>Security Constraints:</strong> Non-negotiable safety rules, such as forcing automatic file backups to an <code>Archive/</code> folder.</li>
+                                <li><strong>Integrity:</strong> Disables destructive commands (like direct DB deletes) by default.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Core Principles -->
+        <section id="principles" class="max-w-6xl mx-auto mb-32">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="md:col-span-1">
+                    <h2 class="text-3xl font-bold mb-4 text-white">Core Principles</h2>
+                    <p class="text-gray-400 text-sm mb-6">Four operational pillars that drive deterministic results in advanced agentic workflows.</p>
+                    <div class="p-6 bg-gradient-to-br from-gray-900 to-indigo-950/45 border border-indigo-900/30 rounded-2xl">
+                        <p class="italic text-sm text-indigo-300">"Never write code without verification, and never compile without a sandbox."</p>
+                    </div>
+                </div>
+                <div class="md:col-span-2 grid sm:grid-cols-2 gap-6">
+                    <div class="p-6 bg-gray-900/30 border border-gray-800 rounded-xl hover:border-gray-700 transition-all">
+                        <div class="w-8 h-8 bg-emerald-500/10 rounded flex items-center justify-center mb-4 font-bold text-emerald-400">01</div>
+                        <h4 class="font-bold text-white mb-2">Spec-Driven Development</h4>
+                        <p class="text-xs text-gray-400">Business logic and schemas are compiled as deterministic, version-controlled markdown specifications first. The AI is strictly bound to implementation guidelines.</p>
+                    </div>
+                    <div class="p-6 bg-gray-900/30 border border-gray-800 rounded-xl hover:border-gray-700 transition-all">
+                        <div class="w-8 h-8 bg-emerald-500/10 rounded flex items-center justify-center mb-4 font-bold text-emerald-400">02</div>
+                        <h4 class="font-bold text-white mb-2">Continuous Validation (TDAI)</h4>
+                        <p class="text-xs text-gray-400">Trust but verify. Code must prove its validity by passing linters, static analyzers, and unit tests in an automated loop before human integration.</p>
+                    </div>
+                    <div class="p-6 bg-gray-900/30 border border-gray-800 rounded-xl hover:border-gray-700 transition-all">
+                        <div class="w-8 h-8 bg-emerald-500/10 rounded flex items-center justify-center mb-4 font-bold text-emerald-400">03</div>
+                        <h4 class="font-bold text-white mb-2">Dynamic Self-Correction</h4>
+                        <p class="text-xs text-gray-400">Instead of relying on chat memory, agents write compiler and runtime errors back to a repository decision log to permanently correct behavioral patterns.</p>
+                    </div>
+                    <div class="p-6 bg-gray-900/30 border border-gray-800 rounded-xl hover:border-gray-700 transition-all">
+                        <div class="w-8 h-8 bg-emerald-500/10 rounded flex items-center justify-center mb-4 font-bold text-emerald-400">04</div>
+                        <h4 class="font-bold text-white mb-2">Progressive Disclosure</h4>
+                        <p class="text-xs text-gray-400">Using modular skill frontmatter, files load dynamically. Active details enter model memory only when triggered, minimizing token rot and cognitive drift.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Quantitative Analysis -->
+        <section id="analysis" class="max-w-6xl mx-auto mb-32 bg-gray-900/30 p-8 md:p-16 rounded-[3rem] border border-gray-800/80">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4 text-white">Quantitative Performance Metrics</h2>
+                <p class="text-gray-400 max-w-xl mx-auto">Evaluating the operational differences between unstructured Vibe Coding and EAE's structured boundaries.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="flex flex-col items-center">
+                    <h4 class="text-sm font-bold text-gray-400 uppercase tracking-widest mb-6">Token Retention & Drift</h4>
+                    <div class="chart-container">
+                        <canvas id="tokenChart"></canvas>
+                    </div>
+                    <p class="mt-6 text-xs text-gray-400 text-center max-w-xs">EAE limits context windows through progressive disclosure, preventing the context rot that triggers the "Vibe Coding Doom Loop."</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <h4 class="text-sm font-bold text-gray-400 uppercase tracking-widest mb-6">Empirical Code Pass Rate</h4>
+                    <div class="chart-container">
+                        <canvas id="efficacyChart"></canvas>
+                    </div>
+                    <p class="mt-6 text-xs text-gray-400 text-center max-w-xs">By implementing local repository boundaries and continuous validation, EAE achieves near-perfect compilation consistency.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Suitability Grid -->
+        <section class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-12 text-white">Application Suitability</h2>
+            <div class="grid md:grid-cols-2 gap-8 text-left">
+                <div class="p-8 rounded-2xl bg-gray-900/20 border border-emerald-500/20 border-l-4 border-l-emerald-500 shadow-sm">
+                    <h4 class="font-bold text-emerald-400 mb-3 flex items-center gap-2">
+                        <span>✓</span> Where EAE Excels
+                    </h4>
+                    <ul class="text-sm space-y-3 text-gray-300">
+                        <li class="flex items-start"><span class="text-emerald-500 mr-2">•</span> Complex, multi-file software engineering tasks.</li>
+                        <li class="flex items-start"><span class="text-emerald-500 mr-2">•</span> Monorepos and large, version-controlled codebases.</li>
+                        <li class="flex items-start"><span class="text-emerald-500 mr-2">•</span> Continuous, autonomous pipeline automation (CI/CD).</li>
+                    </ul>
+                </div>
+                <div class="p-8 rounded-2xl bg-gray-900/20 border border-rose-500/20 border-l-4 border-l-rose-500 shadow-sm">
+                    <h4 class="font-bold text-rose-400 mb-3 flex items-center gap-2">
+                        <span>✗</span> Where to Avoid
+                    </h4>
+                    <ul class="text-sm space-y-3 text-gray-300">
+                        <li class="flex items-start"><span class="text-rose-500 mr-2">•</span> Trivial, single-file scripts or quick code snippets.</li>
+                        <li class="flex items-start"><span class="text-rose-500 mr-2">•</span> Conversational, creative brainstorming sessions.</li>
+                        <li class="flex items-start"><span class="text-rose-500 mr-2">•</span> Extreme low-budget tasks where model call costs override safety.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="border-t border-gray-800 py-12 text-center text-gray-500 text-sm">
+        <p>&copy; 2026 Evolved Agentic Engineering Explorer. Formulated on the industry standards of Stateful Prompting & Autonomy.</p>
+    </footer>
+
+    <script>
+        // Layer Data for EAE
+        const layers = {
+            1: {
+                title: "Layer 1: Global Identity (Tier 1)",
+                subtitle: "Global Configuration / AGENTS.md",
+                desc: "<p>The foundation of agentic security and behavior. This layer sets global rules in the AI's application settings or a root configuration folder, applying strict constraints across all local workspaces.</p><ul class='list-disc ml-5 mt-4 space-y-2 text-sm text-gray-400'><li><strong>Identity Baseline:</strong> Defines the default persona, style preferences, and code styling rules.</li><li><strong>Security Constraints:</strong> Non-negotiable safety rules, such as forcing automatic file backups to an <code>Archive/</code> folder.</li><li><strong>Integrity:</strong> Disables destructive commands (like direct DB deletes) by default.</li></ul>"
+            },
+            2: {
+                title: "Layer 2: Repository Context (Tier 2)",
+                subtitle: "AGENTS.md & CONTEXT.md",
+                desc: "<p>The local onboarding layer for the specific workspace. These repo-native markdown files define the project's parameters and specialized behavioral constraints.</p><ul class='list-disc ml-5 mt-4 space-y-2 text-sm text-gray-400'><li><strong>AGENTS.md:</strong> Outlines build commands, testing suites, coding guidelines, and file-access rules.</li><li><strong>CONTEXT.md:</strong> Documents the active architecture, database schemas, client requests, and the definition of 'what good looks like'.</li><li><strong>State Locking:</strong> Locks the model to local framework versions, preventing imports of deprecated methods.</li></ul>"
+            },
+            3: {
+                title: "Layer 3: Dynamic Project Memory",
+                subtitle: "MEMORY.md",
+                desc: "<p>The active learning log. Instead of the agent suffering from session amnesia, EAE agents write structural updates to a local memory file to record decisions, resolutions, and system anomalies.</p><ul class='list-disc ml-5 mt-4 space-y-2 text-sm text-gray-400'><li><strong>Decision Logging:</strong> Records past architecture choices (e.g. library replacements) to prevent design regression.</li><li><strong>Error Aggregation:</strong> Tracks persistent runtime and compilation failures, allowing the agent to check past resolutions.</li><li><strong>Auto-Update Loop:</strong> The orchestrator prompts the agent to automatically write its learnings to disk upon task completion.</li></ul>"
+            },
+            4: {
+                title: "Layer 4: Automation Layer",
+                subtitle: "skills/ Directory",
+                desc: "<p>Contains modular, task-specific workflow scripts. Using the Agent Skills specification, EAE isolates task instructions to minimize context window bloat.</p><ul class='list-disc ml-5 mt-4 space-y-2 text-sm text-gray-400'><li><strong>Progressive Disclosure:</strong> Model only reads the metadata description at startup, loading detailed instructions only when triggered.</li><li><strong>YAML Frontmatter:</strong> Contains structured keys defining active triggers, sandboxed tools, and sub-agent parameters.</li><li><strong>Reusability:</strong> Portable, folder-scoped capabilities (e.g. auto-formatting, pull request auditing) shared across systems.</li></ul>"
+            },
+            5: {
+                title: "Layer 5: Sandbox Boundaries",
+                subtitle: "tests/ Folder & Execution Loops",
+                desc: "<p>The execution-level validation layer. Code generated by the Developer agent is checked inside a secure local sandbox using a test harness before it is accepted.</p><ul class='list-disc ml-5 mt-4 space-y-2 text-sm text-gray-400'><li><strong>Sandbox Testing:</strong> The agent executes testing suites using native terminal commands.</li><li><strong>Test-Driven AI (TDAI):</strong> Tests are written prior to code; the developer agent iterates until the test runner yields a green status.</li><li><strong>Handoff Artifacts:</strong> Manager and Worker agents coordinate state transitions through written files, shielding context windows from chat history.</li></ul>"
+            }
+        };
+
+        function showLayer(id) {
+            // Update Buttons
+            document.querySelectorAll('.layer-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`btn-${id}`).classList.add('active');
+
+            // Update Content with animation
+            const content = document.getElementById('layer-content');
+            content.style.opacity = 0;
+            content.style.transform = 'translateY(5px)';
+            setTimeout(() => {
+                document.getElementById('layer-title').innerText = layers[id].title;
+                document.getElementById('layer-desc').innerHTML = layers[id].desc;
+                content.style.opacity = 1;
+                content.style.transform = 'translateY(0)';
+            }, 150);
+        }
+
+        // Initialize EAE Charts
+        function initCharts() {
+            // Token Retention Chart
+            const ctx1 = document.getElementById('tokenChart').getContext('2d');
+            new Chart(ctx1, {
+                type: 'bar',
+                data: {
+                    labels: ['Monolithic Chat Prompting', 'EAE Progressive Disclosure'],
+                    datasets: [{
+                        label: 'Tokens Consumed (Relative)',
+                        data: [100, 40],
+                        backgroundColor: ['rgba(99, 102, 241, 0.4)', '#10b981'],
+                        borderColor: ['#6366f1', '#10b981'],
+                        borderWidth: 1,
+                        borderRadius: 6,
+                        barThickness: 45
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    responsive: true,
+                    plugins: { 
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: { 
+                            beginAtZero: true, 
+                            grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                            ticks: { color: '#9ca3af' }
+                        },
+                        x: { 
+                            grid: { display: false },
+                            ticks: { color: '#9ca3af' }
+                        }
+                    }
+                }
+            });
+
+            // Efficacy Radar Chart
+            const ctx2 = document.getElementById('efficacyChart').getContext('2d');
+            new Chart(ctx2, {
+                type: 'radar',
+                data: {
+                    labels: ['Compilation Success', 'Context Window Cleanliness', 'Deterministic Output', 'Self-Correction', 'Safety & Rollbacks'],
+                    datasets: [{
+                        label: 'Evolved Agentic Engineering',
+                        data: [100, 95, 98, 90, 100],
+                        borderColor: '#10b981',
+                        backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                        pointBackgroundColor: '#10b981',
+                        pointBorderColor: '#090d16',
+                        pointHoverBackgroundColor: '#10b981'
+                    }, {
+                        label: 'Unstructured Vibe Coding',
+                        data: [53, 30, 45, 15, 20],
+                        borderColor: '#6366f1',
+                        backgroundColor: 'rgba(99, 102, 241, 0.1)',
+                        pointBackgroundColor: '#6366f1',
+                        pointBorderColor: '#090d16',
+                        pointHoverBackgroundColor: '#6366f1'
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    responsive: true,
+                    scales: {
+                        r: { 
+                            beginAtZero: true, 
+                            max: 100,
+                            ticks: { display: false },
+                            grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                            angleLines: { color: 'rgba(255, 255, 255, 0.05)' },
+                            pointLabels: { color: '#9ca3af', font: { size: 10 } }
+                        }
+                    },
+                    plugins: { 
+                        legend: { 
+                            position: 'bottom', 
+                            labels: { 
+                                boxWidth: 12, 
+                                padding: 15,
+                                color: '#f3f4f6'
+                            } 
+                        } 
+                    }
+                }
+            });
+        }
+
+        window.onload = initCharts;
+    </script>
+</body>
+</html>

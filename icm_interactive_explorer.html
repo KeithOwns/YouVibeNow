@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interpretable Context Methodology (ICM) Explorer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        
+        :root {
+            --bg-primary: #fcfaf7;
+            --bg-secondary: #f3f0eb;
+            --accent-muted: #8e9aaf;
+            --text-main: #2d3142;
+            --layer-card: #ffffff;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            scroll-behavior: smooth;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .layer-btn.active {
+            border-left: 4px solid #8e9aaf;
+            background-color: var(--bg-secondary);
+        }
+
+        .transition-all {
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Chosen Palette: Warm Sand & Muted Slate -->
+    <!-- Application Structure Plan: 
+        1. Hero/Introduction: Establish the "Why" and the core philosophy of "Folder as Architecture".
+        2. The 5-Layer Hierarchy: An interactive explorer allowing users to click through the different context layers (Identity to Artifacts) to understand their unique roles.
+        3. Core Principles Grid: Clear, concise presentation of the 5 pillars of ICM with hover effects for deeper understanding.
+        4. Efficiency Analytics: A comparison section using Chart.js to visualize the benefits of ICM (Token Efficiency & Complexity) compared to standard multi-agent coding frameworks.
+        5. Workflow Visualization: A simulated path showing how data moves through numbered folders.
+        6. Summary/Conclusion: Re-stating the primary value proposition.
+        This structure is chosen to move the user from conceptual understanding to technical specifics, then to quantitative justification, mirroring a logical learning path for a new methodology.
+    -->
+
+    <!-- Visualization & Content Choices: 
+        - Goal: Explain Philosophy -> Method: Hero Section with clean typography -> Justification: Immediate clarity on the "Systems-first" approach.
+        - Goal: Detail 5-Layer Hierarchy -> Method: Interactive Vertical Tabs -> Interaction: Click to update detail panel -> Justification: Prevents information overload.
+        - Goal: Compare Efficiency -> Method: Bar & Radar Charts (Chart.js) -> Interaction: Hover tooltips -> Justification: Quantifies the "Token Efficiency" claim visually.
+        - Goal: Map Workflow -> Method: Simulated Folder Tree (HTML/CSS) -> Interaction: Hover highlighting -> Justification: Directly connects the theory to the filesystem reality.
+        - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
+    -->
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-panel border-b border-stone-200">
+        <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="font-bold text-xl tracking-tight text-slate-800">ICM<span class="text-slate-400">.Methodology</span></div>
+            <div class="hidden md:flex space-x-8 text-sm font-medium">
+                <a href="#philosophy" class="hover:text-slate-500 transition-all">Philosophy</a>
+                <a href="#hierarchy" class="hover:text-slate-500 transition-all">Hierarchy</a>
+                <a href="#principles" class="hover:text-slate-500 transition-all">Principles</a>
+                <a href="#analysis" class="hover:text-slate-500 transition-all">Analysis</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-24 pb-20 px-6">
+        
+        <!-- Section: Hero & Philosophy -->
+        <section id="philosophy" class="max-w-4xl mx-auto mb-32 text-center">
+            <h1 class="text-5xl md:text-6xl font-bold mb-6 text-slate-900 leading-tight">Systems-First AI Orchestration</h1>
+            <p class="text-xl text-slate-600 mb-10 leading-relaxed">
+                The Interpretable Context Methodology (ICM) replaces complex coding frameworks with a standard filesystem structure. Developed by Jake Van Clief, it treats the folder structure as the architecture itself, enabling scalable, human-auditable AI workflows.
+            </p>
+            <div class="grid md:grid-cols-2 gap-8 text-left">
+                <div class="p-8 bg-white rounded-2xl shadow-sm border border-stone-100">
+                    <h3 class="font-bold text-lg mb-3">Folders as Code</h3>
+                    <p class="text-slate-500 text-sm">Traditional agents hide logic in Python/TS. ICM maps sequential workflows directly onto numbered folders and markdown files on your machine.</p>
+                </div>
+                <div class="p-8 bg-white rounded-2xl shadow-sm border border-stone-100">
+                    <h3 class="font-bold text-lg mb-3">Modular Decomposition</h3>
+                    <p class="text-slate-500 text-sm">Borrowing from Unix pipelines, ICM breaks tasks into small, specialized stages that communicate via plain text artifacts.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: The 5-Layer Hierarchy -->
+        <section id="hierarchy" class="max-w-6xl mx-auto mb-32">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">The 5-Layer Context Hierarchy</h2>
+                <p class="text-slate-500 max-w-2xl mx-auto">To ensure the AI operates within defined bounds, ICM utilizes a standardized hierarchy of files. Explore each layer below to see how context is partitioned.</p>
+            </div>
+
+            <div class="grid md:grid-cols-12 gap-8 items-start">
+                <!-- Selectors -->
+                <div class="md:col-span-4 flex flex-col space-y-2">
+                    <button onclick="showLayer(1)" id="btn-1" class="layer-btn p-4 text-left rounded-lg transition-all hover:bg-stone-100 active">
+                        <span class="block font-bold">1. Identity</span>
+                        <span class="text-xs text-slate-400">IDENTITY.md</span>
+                    </button>
+                    <button onclick="showLayer(2)" id="btn-2" class="layer-btn p-4 text-left rounded-lg transition-all hover:bg-stone-100">
+                        <span class="block font-bold">2. Routing</span>
+                        <span class="text-xs text-slate-400">ROUTING.md</span>
+                    </button>
+                    <button onclick="showLayer(3)" id="btn-3" class="layer-btn p-4 text-left rounded-lg transition-all hover:bg-stone-100">
+                        <span class="block font-bold">3. Stage Contracts</span>
+                        <span class="text-xs text-slate-400">CONTEXT.md</span>
+                    </button>
+                    <button onclick="showLayer(4)" id="btn-4" class="layer-btn p-4 text-left rounded-lg transition-all hover:bg-stone-100">
+                        <span class="block font-bold">4. Reference Material</span>
+                        <span class="text-xs text-slate-400">reference_material/</span>
+                    </button>
+                    <button onclick="showLayer(5)" id="btn-5" class="layer-btn p-4 text-left rounded-lg transition-all hover:bg-stone-100">
+                        <span class="block font-bold">5. Working Artifacts</span>
+                        <span class="text-xs text-slate-400">working_artifacts/</span>
+                    </button>
+                </div>
+
+                <!-- Content Panel -->
+                <div class="md:col-span-8 bg-white p-10 rounded-3xl shadow-xl shadow-stone-200/50 min-h-[400px] border border-stone-50">
+                    <div id="layer-content">
+                        <h3 id="layer-title" class="text-2xl font-bold mb-4 text-slate-800">Identity Layer</h3>
+                        <div id="layer-desc" class="text-slate-600 leading-relaxed space-y-4">
+                            <p>The global anchor of the project. This layer contains <strong>IDENTITY.md</strong>, which defines the overarching rules, brand voice, and constraints that apply to every single stage of the process.</p>
+                            <ul class="list-disc ml-5 space-y-2 text-sm">
+                                <li>Global stylistic guidelines.</li>
+                                <li>Tone of voice (Professional, Academic, Conversational).</li>
+                                <li>Core constraints (Word counts, restricted terminology).</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Core Principles -->
+        <section id="principles" class="max-w-6xl mx-auto mb-32">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="md:col-span-1">
+                    <h2 class="text-3xl font-bold mb-4">Core Principles</h2>
+                    <p class="text-slate-500 text-sm mb-6">Five engineering-grade principles that differentiate ICM from standard prompt engineering.</p>
+                    <div class="p-6 bg-slate-900 text-white rounded-2xl">
+                        <p class="italic text-sm">"Configure the factory, not the product."</p>
+                    </div>
+                </div>
+                <div class="md:col-span-2 grid sm:grid-cols-2 gap-6">
+                    <div class="p-6 bg-white border border-stone-100 rounded-xl">
+                        <div class="w-8 h-8 bg-stone-100 rounded flex items-center justify-center mb-4 font-bold text-slate-400">01</div>
+                        <h4 class="font-bold mb-2">One Stage, One Job</h4>
+                        <p class="text-xs text-slate-500">Stages are atomic. A researcher only researches; it never formats the final output.</p>
+                    </div>
+                    <div class="p-6 bg-white border border-stone-100 rounded-xl">
+                        <div class="w-8 h-8 bg-stone-100 rounded flex items-center justify-center mb-4 font-bold text-slate-400">02</div>
+                        <h4 class="font-bold mb-2">Plain Text Interface</h4>
+                        <p class="text-xs text-slate-500">Communication happens via Markdown/JSON. No proprietary databases or hidden binary states.</p>
+                    </div>
+                    <div class="p-6 bg-white border border-stone-100 rounded-xl">
+                        <div class="w-8 h-8 bg-stone-100 rounded flex items-center justify-center mb-4 font-bold text-slate-400">03</div>
+                        <h4 class="font-bold mb-2">Layered Loading</h4>
+                        <p class="text-xs text-slate-500">The agent only loads context relevant to its current folder, drastically reducing token bloat.</p>
+                    </div>
+                    <div class="p-6 bg-white border border-stone-100 rounded-xl">
+                        <div class="w-8 h-8 bg-stone-100 rounded flex items-center justify-center mb-4 font-bold text-slate-400">04</div>
+                        <h4 class="font-bold mb-2">Edit Surfaces</h4>
+                        <p class="text-xs text-slate-500">Every intermediate file is a human-in-the-loop checkpoint. Edit any file to steer the path.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Quantitative Analysis -->
+        <section id="analysis" class="max-w-6xl mx-auto mb-32 bg-stone-100/50 p-8 md:p-16 rounded-[3rem]">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Methodology Comparison</h2>
+                <p class="text-slate-500 max-w-xl mx-auto">Visualizing the operational efficiency of ICM against standard "Everything-in-the-Prompt" approaches.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="flex flex-col items-center">
+                    <h4 class="text-sm font-bold text-slate-400 uppercase tracking-widest mb-6">Token Utilization Efficiency</h4>
+                    <div class="chart-container">
+                        <canvas id="tokenChart"></canvas>
+                    </div>
+                    <p class="mt-6 text-xs text-slate-500 text-center max-w-xs">ICM isolates context by stage, preventing the linear growth of prompt history seen in standard chat loops.</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <h4 class="text-sm font-bold text-slate-400 uppercase tracking-widest mb-6">Framework Complexity</h4>
+                    <div class="chart-container">
+                        <canvas id="complexityChart"></canvas>
+                    </div>
+                    <p class="mt-6 text-xs text-slate-500 text-center max-w-xs">By leveraging the filesystem, ICM eliminates the need for complex abstraction layers and custom library code.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Use Cases -->
+        <section class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-12">Application Suitability</h2>
+            <div class="grid md:grid-cols-2 gap-8 text-left">
+                <div class="p-8 rounded-2xl bg-white border-l-4 border-emerald-400 shadow-sm">
+                    <h4 class="font-bold text-emerald-700 mb-3">Where ICM Excels</h4>
+                    <ul class="text-sm space-y-3 text-slate-600">
+                        <li class="flex items-start"><span class="mr-2">✓</span> Sequential, multi-step content production.</li>
+                        <li class="flex items-start"><span class="mr-2">✓</span> High-stakes research requiring audit trails.</li>
+                        <li class="flex items-start"><span class="mr-2">✓</span> Workflows with intentional human review points.</li>
+                    </ul>
+                </div>
+                <div class="p-8 rounded-2xl bg-white border-l-4 border-rose-400 shadow-sm">
+                    <h4 class="font-bold text-rose-700 mb-3">Where to Avoid</h4>
+                    <ul class="text-sm space-y-3 text-slate-600">
+                        <li class="flex items-start"><span class="mr-2">✗</span> Real-time high-concurrency user apps.</li>
+                        <li class="flex items-start"><span class="mr-2">✗</span> Massive automated branching logic.</li>
+                        <li class="flex items-start"><span class="mr-2">✗</span> Millisecond-latency requirements.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="border-t border-stone-200 py-12 text-center text-slate-400 text-sm">
+        <p>&copy; 2024 Interpretable Context Methodology Explorer. Developed based on the research of Van Clief & McDermott.</p>
+    </footer>
+
+    <script>
+        // Layer Data
+        const layers = {
+            1: {
+                title: "Layer 1: Identity",
+                subtitle: "IDENTITY.md",
+                desc: "<p>The global anchor of the project. This layer contains <strong>IDENTITY.md</strong>, which defines the overarching rules, brand voice, and constraints that apply to every single stage of the process.</p><ul class='list-disc ml-5 mt-4 space-y-2 text-sm text-slate-500'><li>Global stylistic guidelines.</li><li>Tone of voice (Professional, Academic, Conversational).</li><li>Core constraints (Word counts, restricted terminology).</li></ul>"
+            },
+            2: {
+                title: "Layer 2: Routing",
+                subtitle: "ROUTING.md",
+                desc: "<p>The <strong>ROUTING.md</strong> file acts as the project's 'Map'. It tells the primary engine (the LLM) which numbered folder it is currently in, where it just came from, and where it must go next.</p><ul class='list-disc ml-5 mt-4 space-y-2 text-sm text-slate-500'><li>Defines the sequential pipeline flow.</li><li>Specifies entry and exit conditions.</li><li>Maintains structural integrity across many folders.</li></ul>"
+            },
+            3: {
+                title: "Layer 3: Stage Contracts",
+                subtitle: "CONTEXT.md (Per Stage)",
+                desc: "<p>Located inside every numbered folder, the <strong>CONTEXT.md</strong> file defines the specific mission for that stage. It turns the general AI agent into a specialist (e.g., 'The Editor' or 'The Researcher') for that folder only.</p><ul class='list-disc ml-5 mt-4 space-y-2 text-sm text-slate-500'><li>Defines inputs needed from previous stages.</li><li>Explains the transformation logic required.</li><li>Specifies the format of the output artifact.</li></ul>"
+            },
+            4: {
+                title: "Layer 4: Reference Material",
+                subtitle: "reference_material/",
+                desc: "<p>This sub-folder stores static, non-changing data that the AI needs to complete the stage. This might include style guides, source documents, or template examples.</p><ul class='list-disc ml-5 mt-4 space-y-2 text-sm text-slate-500'><li>Static inputs that persist across multiple runs.</li><li>Domain-specific knowledge bases.</li><li>Code or text templates for formatting.</li></ul>"
+            },
+            5: {
+                title: "Layer 5: Working Artifacts",
+                subtitle: "working_artifacts/",
+                desc: "<p>The 'Work Bench'. This folder contains the actual output of the stage. Because it's a file on the user's disk, it serves as the ultimate <strong>Edit Surface</strong> for human intervention.</p><ul class='list-disc ml-5 mt-4 space-y-2 text-sm text-slate-500'><li>Stores per-run content.</li><li>Provides a clear audit trail of work done.</li><li>Allows humans to manually fix errors before the next stage begins.</li></ul>"
+            }
+        };
+
+        function showLayer(id) {
+            // Update Buttons
+            document.querySelectorAll('.layer-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`btn-${id}`).classList.add('active');
+
+            // Update Content with simple animation
+            const content = document.getElementById('layer-content');
+            content.style.opacity = 0;
+            setTimeout(() => {
+                document.getElementById('layer-title').innerText = layers[id].title;
+                document.getElementById('layer-desc').innerHTML = layers[id].desc;
+                content.style.opacity = 1;
+            }, 150);
+        }
+
+        // Initialize Charts
+        function initCharts() {
+            // Token Efficiency Chart
+            const ctx1 = document.getElementById('tokenChart').getContext('2d');
+            new Chart(ctx1, {
+                type: 'bar',
+                data: {
+                    labels: ['Standard Multi-Turn', 'ICM Pipeline'],
+                    datasets: [{
+                        label: 'Tokens Used (Relative)',
+                        data: [100, 35],
+                        backgroundColor: ['#e2e8f0', '#8e9aaf'],
+                        borderRadius: 8,
+                        barThickness: 40
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    responsive: true,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { beginAtZero: true, grid: { display: false } },
+                        x: { grid: { display: false } }
+                    }
+                }
+            });
+
+            // Complexity Radar
+            const ctx2 = document.getElementById('complexityChart').getContext('2d');
+            new Chart(ctx2, {
+                type: 'radar',
+                data: {
+                    labels: ['Auditability', 'Ease of Edit', 'Code Overhead', 'Scalability', 'Portability'],
+                    datasets: [{
+                        label: 'ICM (Filesystem)',
+                        data: [95, 100, 20, 85, 95],
+                        borderColor: '#8e9aaf',
+                        backgroundColor: 'rgba(142, 154, 175, 0.2)',
+                        pointBackgroundColor: '#8e9aaf'
+                    }, {
+                        label: 'Standard Frameworks',
+                        data: [40, 30, 90, 80, 50],
+                        borderColor: '#cbd5e1',
+                        backgroundColor: 'rgba(203, 213, 225, 0.2)',
+                        pointBackgroundColor: '#cbd5e1'
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    responsive: true,
+                    scales: {
+                        r: { 
+                            beginAtZero: true, 
+                            max: 100,
+                            ticks: { display: false }
+                        }
+                    },
+                    plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, padding: 20 } } }
+                }
+            });
+        }
+
+        window.onload = initCharts;
+    </script>
+
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+</body>
+</html>
