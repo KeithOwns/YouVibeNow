@@ -44,6 +44,19 @@ If you want a table, ask for a table. If you want a markdown file, ask for a mar
 *   *Weak:* "Give me the results."
 *   *Strong:* "Format the output as a Markdown table with three columns: Concept, Definition, and Real-World Example."
 
+### Reference Card: The Prompt Structure Framework
+![Prompt Structure Framework](assets/prompt_structure_framework.png)
+
+#### Prompt Strategy Table
+*A quick reference guide for when to use which elements:*
+
+| Task Type | Required Prompt Elements |
+| :--- | :--- |
+| **Simple task** | Task only. |
+| **Creative** | Identity + Task + Constraints + Format. |
+| **Complex** | All five. |
+| **Ongoing project** | Identity and Context in files, Task and Constraints in each prompt. |
+
 ---
 
 ## Exercise: The Rewrite
