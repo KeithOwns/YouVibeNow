@@ -66,6 +66,7 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            cursor: pointer;
         }
 
         .file-card:hover {
@@ -151,6 +152,18 @@
             color: var(--text-muted);
             margin-top: 20px;
             border-left: 3px solid var(--accent-purple);
+            display: none;
+            opacity: 0;
+        }
+
+        .citation.visible {
+            display: block;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .citation strong {
@@ -331,6 +344,17 @@
             On formatting workflows in HTML/Markdown—<em>Andrej Karpathy</em> heavily champions this, shifting from standard Markdown (for simple token efficiency) to HTML for creating structured "LLM Wikis" that allow for rich semantic rendering between multi-agent systems.
         </div>
     </div>
+
+    <script>
+        document.querySelectorAll('.file-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const citation = card.querySelector('.citation');
+                if (citation) {
+                    citation.classList.toggle('visible');
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>
