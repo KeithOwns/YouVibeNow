@@ -118,3 +118,27 @@ User: My custom system prompt contains 2 instructions (Chat History and File Bac
 
 **User:** Please explain the process by which .git would be initallized locally
 **Agent:** Outlined the 3-step process to initialize Git locally: 1) Running `git init` to create the hidden `.git` directory, 2) Creating a `.gitignore` file to protect Confidentiality (excluding secrets/environment files), and 3) Making the initial commit (`git add .` and `git commit`) to establish the first Integrity snapshot.
+
+**User:** Review Skool course and Google Sheets for the Vibe Coding Course.
+**Agent:** Used the Browser subagent and Python to read both sources, then synthesized the 5-part prompt framework (Identity, Task, Context, Constraints, Format) with the Folder Architecture (Agents.md, Context.md, Memory.md, Skills).
+
+**User:** So how do you synthesize the two methods?
+**Agent:** Detailed a practical 'stateful prompting' blueprint: Store static constraints in files (AGENTS, CONTEXT) and keep daily prompts 'thin' by focusing only on Task and Output Format.
+
+**User:** Review the rest of the files in the repository.
+**Agent:** Analyzed the files and validated that the repo successfully aligns Prompt Engineering with InfoSec (Availability, Integrity). Created an initial draft outline artifact for the 'Prompt Engineering Introduction' module.
+
+**User:** What would you suggest every project folder contain for a standard set of markdown files?
+**Agent:** Suggested AGENTS.md, CONTEXT.md, TASKS.md, MEMORY.md, a skills/ directory, and a README.md, explaining why they optimize an LLM's performance.
+
+**User:** What are the elements of a good prompt?
+**Agent:** Explained Identity, Task, Context, Constraints, and Output Format from the perspective of an LLM.
+
+**User:** Which of those core prompt elements are best contained in the standard markdown files?
+**Agent:** Mapped Identity/Constraints -> AGENTS.md, Context -> CONTEXT.md, learned Constraints -> MEMORY.md, and reusable Tasks -> skills/SKILL.md.
+
+**User:** Create a model set of standard markdown files in the folder each containing those contents.
+**Agent:** Backed up the existing files to Archive/ and generated comprehensive templates for AGENTS.md, CONTEXT.md, MEMORY.md, TASKS.md, and skills/template-skill/SKILL.md.
+
+**User:** Save our progress.
+**Agent:** Appended this session summary to Archive/HISTORY.md and committed the new scaffolding to Git.

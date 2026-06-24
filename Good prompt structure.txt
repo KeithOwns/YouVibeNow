@@ -1,0 +1,6 @@
+Good prompt structure
+1. Identity
+2. Task
+3. Context
+4. Constraints
+5. Format
