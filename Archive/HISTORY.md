@@ -234,3 +234,9 @@ User: My custom system prompt contains 2 instructions (Chat History and File Bac
 **Agent:** Created Archive/Legacy_Notes/ and moved old text and markdown notes out of the root directory to clean up the repository.
 **Agent:** Executed the Module 1 Capstone: Copied the New Project folder to Expense_Calculator, configured the mock python environment in AGENTS.md and CONTEXT.md, and used a Thin Prompt to autonomously generate a working expense_calculator.py script and dummy CSV data. Verified the script executed successfully.
 **Agent:** Committed all changes to Git and pushed to GitHub.
+
+**User:** Requested execution of open-source polish and automation script suggestions.
+**Agent:** Created chunking-architect skill inside New Project folder/skills/ to automate the breakdown of massive projects into tasks.
+**Agent:** Created init.ps1 inside the template to automatically establish the Application-Level safety baseline in the user's home directory.
+**Agent:** Added CONTRIBUTING.md and an MIT LICENSE to the root directory to open-source the repository.
+**Agent:** Committed all changes to Git and pushed to GitHub.
