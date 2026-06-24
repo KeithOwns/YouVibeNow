@@ -10,9 +10,5 @@ This project is an LLM-driven workspace designed entirely for local file storage
 - Efficient tool usage (e.g., using `grep_search` to find specific data rather than reading thousands of lines manually).
 
 ## Tech Stack & Architecture
-
-> [!WARNING]
-> **The App-Config Anti-Pattern:** Do NOT cram massive, project-specific architecture notes into global application config files (like `~/.claude/CLAUDE.md`). Store your large tech stacks, registry paths, and project topologies *here* in this local `CONTEXT.md` file, preserving your global files exclusively for absolute, non-negotiable safety baselines.
-
 - Local OS File System
 - Native Markdown for structured logs and templates

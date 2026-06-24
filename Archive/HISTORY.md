@@ -216,3 +216,9 @@ User: My custom system prompt contains 2 instructions (Chat History and File Bac
 **Agent:** Drafted an implementation plan to restructure the entire curriculum, shifting existing lessons down by one index. User approved the plan.
 **Agent:** Renamed the existing files, updated their internal headers, and updated both the Table of Contents and the Curriculum Outline.
 **Agent:** Drafted the new Lesson_1_Application_Level_Instructions.md detailing the 3-Tier Hierarchy (Application, Project, Execution) and committed all changes to Git.
+
+**User:** Requested to update the standard template files based on our analysis of the 3-Tier Hierarchy and the CLAUDE.md anti-pattern, and then push all changes to GitHub.
+**Agent:** Backed up the New Project folder templates to the Archive.
+**Agent:** Removed the redundant global file backup rule from New Project folder/AGENTS.md, adding a note that it inherits global InfoSec rules from Application settings.
+**Agent:** Added a warning to New Project folder/CONTEXT.md explicitly instructing users NOT to cram project-specific architecture into top-level app configuration files.
+**Agent:** Documented the session in HISTORY.md and executed a git commit and git push to sync the repository to GitHub.
