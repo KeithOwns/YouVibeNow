@@ -228,3 +228,9 @@ User: My custom system prompt contains 2 instructions (Chat History and File Bac
 **Agent:** Appended 'Module 2: Automation & Agentic Workflows' to the curriculum outline and Table of Contents.
 **Agent:** Backed up the old README.md to Archive/ and completely rewrote the front-facing README.md to introduce the '3-Tier Hierarchy' and 'Productionize your opinion' philosophy.
 **Agent:** Committed all changes to Git and pushed to GitHub.
+
+**User:** Requested execution of the three suggestions: draft Module 2, clean up legacy notes, and execute the Module 1 Capstone project.
+**Agent:** Drafted Lesson 6 (Packaging Workflows), Lesson 7 (Agentic Delegation), and the Module 2 Capstone (Automated File Processor). Updated the Table of Contents.
+**Agent:** Created Archive/Legacy_Notes/ and moved old text and markdown notes out of the root directory to clean up the repository.
+**Agent:** Executed the Module 1 Capstone: Copied the New Project folder to Expense_Calculator, configured the mock python environment in AGENTS.md and CONTEXT.md, and used a Thin Prompt to autonomously generate a working expense_calculator.py script and dummy CSV data. Verified the script executed successfully.
+**Agent:** Committed all changes to Git and pushed to GitHub.

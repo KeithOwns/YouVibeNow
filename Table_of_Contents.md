@@ -31,10 +31,10 @@ Welcome to the **Vibe Coding Course** repository! This index serves as your cent
 ## Module 2: Automation & Agentic Workflows
 *Moving from "chatting" to "delegating" by automating workflows with specialized scripts and sub-agents.*
 
-*   🚧 **[Lesson 6: Packaging Workflows (The `skills/` Directory)](Lesson_6_Packaging_Workflows.md)**
+*   ✅ **[Lesson 6: Packaging Workflows (The `skills/` Directory)](Lesson_6_Packaging_Workflows.md)**
     *   *How to save your best Thin Prompts as reusable, automated scripts.*
 
-*   🚧 **[Lesson 7: Agentic Delegation (Sub-Agents)](Lesson_7_Agentic_Delegation.md)**
+*   ✅ **[Lesson 7: Agentic Delegation (Sub-Agents)](Lesson_7_Agentic_Delegation.md)**
     *   *How to build a team of specialized AI workers to execute tasks in parallel.*
 
 ### 🎓 Module 2 Capstone
