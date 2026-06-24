@@ -74,6 +74,9 @@
         .citation strong {
             color: #24292e;
         }
+        .citation p {
+            margin: 5px 0 0 0;
+        }
         
         .workflow-box {
             background: #f1f8ff;
@@ -116,7 +119,9 @@
             <li><strong>Contents:</strong> Persona, primary role, and non-negotiable rules (e.g., "always write plain language," "always backup files").</li>
         </ul>
         <div class="citation">
-            📚 <strong>Authority:</strong> Supported by <em>Andrej Karpathy's "State of GPT"</em> (emphasizing "System Prompts" to lock in persona) and the <em>Anthropic Prompt Engineering Guide</em> (advocating for "Role-Playing" to drastically boost output quality).
+            📚 <strong>Authority:</strong> 
+            <p>Supported by <em>Andrej Karpathy's "State of GPT"</em> (emphasizing "System Prompts" to lock in persona) and the <em>Anthropic Prompt Engineering Guide</em> (advocating for "Role-Playing" to drastically boost output quality).</p>
+            <p>Further validated by <em>Ethan Mollick (Wharton AI Researcher)</em>, who champions treating AI as a "co-worker" rather than software, perfectly aligning with conversational "Vibe Coding" rules.</p>
         </div>
     </div>
 
@@ -128,7 +133,9 @@
             <li><strong>Contents:</strong> Project summary, target audience, tech stack, and definitions of "what good looks like."</li>
         </ul>
         <div class="citation">
-            📚 <strong>Authority:</strong> Aligns with the <em>OpenAI Prompt Engineering Guide</em> core tactic to "Provide reference text."
+            📚 <strong>Authority:</strong> 
+            <p>Aligns with the <em>OpenAI Prompt Engineering Guide</em> core tactic to "Provide reference text."</p>
+            <p>Backed by <em>Google DeepMind's Long-Context Research ("Needle in a Haystack")</em>, which proves models like Gemini can digest massive amounts of static context accurately, provided it is structured efficiently in markdown.</p>
         </div>
     </div>
 
@@ -140,7 +147,9 @@
             <li><strong>Contents:</strong> Newly learned formatting preferences (e.g., "keep tables to 4 columns") and a log of major architectural decisions.</li>
         </ul>
         <div class="citation">
-            📚 <strong>Authority:</strong> Mirrors the core philosophy behind <em>Retrieval-Augmented Generation (RAG) Architecture</em>, ensuring trusted, static context is injected into the prompt before execution to reduce hallucination.
+            📚 <strong>Authority:</strong> 
+            <p>Mirrors the core philosophy behind <em>Retrieval-Augmented Generation (RAG) Architecture</em>, ensuring trusted, static context is injected into the prompt before execution to reduce hallucination.</p>
+            <p>Validated by orchestration pioneers <em>Harrison Chase (LangChain) & Jerry Liu (LlamaIndex)</em>, whose frameworks rely entirely on the distinction between transient chat context and persistent "Long-Term Memory."</p>
         </div>
     </div>
 
@@ -152,7 +161,8 @@
             <li><strong>Contents:</strong> A living, indented checklist (<code>[ ]</code>, <code>[/]</code>, <code>[x]</code>) of the active sprint objectives.</li>
         </ul>
         <div class="citation">
-            📚 <strong>Authority:</strong> Backed by <em>Andrew Ng's</em> recent work on "Agentic Workflows" (emphasizing iterative Planning over zero-shot outputs) and landmark research on <em>Chain-of-Thought (CoT) Prompting (Wei et al., 2022)</em>.
+            📚 <strong>Authority:</strong> 
+            <p>Backed by <em>Andrew Ng's</em> recent work on "Agentic Workflows" (emphasizing iterative Planning over zero-shot outputs) and landmark research on <em>Chain-of-Thought (CoT) Prompting (Wei et al., 2022)</em>.</p>
         </div>
     </div>
 
@@ -164,7 +174,9 @@
             <li><strong>Contents:</strong> Sub-folders containing specific <code>SKILL.md</code> files (e.g., a perfect sequence of prompts to draft a blog post or deploy a server).</li>
         </ul>
         <div class="citation">
-            📚 <strong>Authority:</strong> Supported by the concept of <em>"Least-to-Most Prompting" (Zhou et al., 2022)</em>, which proves LLMs perform exponentially better when large workflows are packaged into sequential, discrete sub-problems.
+            📚 <strong>Authority:</strong> 
+            <p>Supported by the concept of <em>"Least-to-Most Prompting" (Zhou et al., 2022)</em>, which proves LLMs perform exponentially better when large workflows are packaged into sequential, discrete sub-problems.</p>
+            <p>Rooted in the groundbreaking <em>"ReAct: Synergizing Reasoning and Acting" (Yao et al., 2022)</em> framework, demonstrating that AI succeeds when it interleaves thinking with explicit tool/skill actions.</p>
         </div>
     </div>
 
@@ -175,6 +187,10 @@
             <li><strong>Purpose:</strong> Protects data integrity and ensures a recoverable workspace.</li>
             <li><strong>Contents:</strong> Time-stamped backups of files before the AI edits them, plus a <code>HISTORY.md</code> file that acts as an audit log of past chat sessions.</li>
         </ul>
+        <div class="citation">
+            📚 <strong>Authority:</strong> 
+            <p>Ensures compliance with the <em>OWASP Top 10 for LLM Applications</em>. By enforcing backups and audit logs, the framework inherently mitigates risks associated with LLM hallucinations, untracked modifications, and data loss.</p>
+        </div>
     </div>
 
     <div class="file-card" style="border-color: #28a745;">

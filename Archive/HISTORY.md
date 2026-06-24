@@ -181,3 +181,27 @@ User: My custom system prompt contains 2 instructions (Chat History and File Bac
 
 **User:** Selected Option 2 (Commit and Save).
 **Agent:** Appended this session to Archive/HISTORY.md and committed the new Lesson 1 and Capstone skill files to Git.
+
+**User:** Build the table of contents.
+**Agent:** Created Table_of_Contents.md linking to all completed lessons, the Capstone skill, and the HTML structure guide. 
+
+**User:** Created a 'New folder' and asked to put standard files inside with default instructions.
+**Agent:** Scaffolded generic boilerplate templates for AGENTS.md, CONTEXT.md, MEMORY.md, TASKS.md, and skills/ inside the 'New folder'.
+
+**User:** Why does the AGENTS.md look specialized for Python?
+**Agent:** Clarified it was just a placeholder example, backed up the file, and edited the text to be completely agnostic ('expert copywriter' or 'full-stack developer').
+
+**User:** Review the contents of 'New Project folder' (renamed from 'New folder').
+**Agent:** Listed the directory contents, confirming the starter kit was perfectly intact.
+
+**User:** How would the standard project folder set be if the purpose was general LLM use with local file storage? Place contents in 'New Project folder'.
+**Agent:** Backed up the generic templates and rewrote the Identity, Rules, Context, and Skills specifically to instruct an AI on safe, local file management (Read before write, explicit paths, output folders, and a 'process-local-file' skill).
+
+**User:** Which other expert sources should have been consulted?
+**Agent:** Listed 5 additional authorities: Shunyu Yao (ReAct), Harrison Chase/Jerry Liu (LangChain/LlamaIndex), Google DeepMind (Long-Context), Ethan Mollick (Human-AI Interaction), and OWASP Top 10 for LLMs (InfoSec Confidentiality).
+
+**User:** Please update the HTML file to include these citations.
+**Agent:** Backed up the HTML file with -Force and injected the new expert citations into the respective document sections.
+
+**User:** What do you suggest at this point?
+**Agent:** Suggested 1) Committing and logging progress, and 2) Executing the Capstone skill to draft Lesson 2. User approved.

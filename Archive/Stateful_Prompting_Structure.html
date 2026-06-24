@@ -60,6 +60,21 @@
         .file-icon { color: #24292e; }
         .chat-icon { color: #28a745; }
         
+        .citation {
+            background: #ffffff;
+            border: 1px solid #d1d5da;
+            border-radius: 6px;
+            padding: 10px 15px;
+            font-size: 0.85em;
+            color: #586069;
+            margin-top: 15px;
+            display: block;
+            border-left: 3px solid #0366d6;
+        }
+        .citation strong {
+            color: #24292e;
+        }
+        
         .workflow-box {
             background: #f1f8ff;
             border-left: 4px solid #0366d6;
@@ -100,6 +115,9 @@
             <li><strong>Purpose:</strong> Establishes <em>who</em> the AI is and sets strict, global boundaries.</li>
             <li><strong>Contents:</strong> Persona, primary role, and non-negotiable rules (e.g., "always write plain language," "always backup files").</li>
         </ul>
+        <div class="citation">
+            📚 <strong>Authority:</strong> Supported by <em>Andrej Karpathy's "State of GPT"</em> (emphasizing "System Prompts" to lock in persona) and the <em>Anthropic Prompt Engineering Guide</em> (advocating for "Role-Playing" to drastically boost output quality).
+        </div>
     </div>
 
     <div class="file-card">
@@ -109,6 +127,9 @@
             <li><strong>Purpose:</strong> Provides the deep background so you don't have to re-explain the project in every chat.</li>
             <li><strong>Contents:</strong> Project summary, target audience, tech stack, and definitions of "what good looks like."</li>
         </ul>
+        <div class="citation">
+            📚 <strong>Authority:</strong> Aligns with the <em>OpenAI Prompt Engineering Guide</em> core tactic to "Provide reference text."
+        </div>
     </div>
 
     <div class="file-card">
@@ -118,6 +139,9 @@
             <li><strong>Purpose:</strong> Acts as the AI's long-term brain across different chat sessions.</li>
             <li><strong>Contents:</strong> Newly learned formatting preferences (e.g., "keep tables to 4 columns") and a log of major architectural decisions.</li>
         </ul>
+        <div class="citation">
+            📚 <strong>Authority:</strong> Mirrors the core philosophy behind <em>Retrieval-Augmented Generation (RAG) Architecture</em>, ensuring trusted, static context is injected into the prompt before execution to reduce hallucination.
+        </div>
     </div>
 
     <div class="file-card">
@@ -127,6 +151,9 @@
             <li><strong>Purpose:</strong> Keeps the AI anchored during complex, multi-step operations.</li>
             <li><strong>Contents:</strong> A living, indented checklist (<code>[ ]</code>, <code>[/]</code>, <code>[x]</code>) of the active sprint objectives.</li>
         </ul>
+        <div class="citation">
+            📚 <strong>Authority:</strong> Backed by <em>Andrew Ng's</em> recent work on "Agentic Workflows" (emphasizing iterative Planning over zero-shot outputs) and landmark research on <em>Chain-of-Thought (CoT) Prompting (Wei et al., 2022)</em>.
+        </div>
     </div>
 
     <div class="file-card">
@@ -136,6 +163,9 @@
             <li><strong>Purpose:</strong> Turns repetitive, multi-hour jobs into single-command instructions.</li>
             <li><strong>Contents:</strong> Sub-folders containing specific <code>SKILL.md</code> files (e.g., a perfect sequence of prompts to draft a blog post or deploy a server).</li>
         </ul>
+        <div class="citation">
+            📚 <strong>Authority:</strong> Supported by the concept of <em>"Least-to-Most Prompting" (Zhou et al., 2022)</em>, which proves LLMs perform exponentially better when large workflows are packaged into sequential, discrete sub-problems.
+        </div>
     </div>
 
     <div class="file-card">
@@ -161,6 +191,9 @@
         <p>By offloading 80% of your prompt into the file structure above, your daily prompts become incredibly lightweight and powerful. Here is what a fully synthesized prompt looks like in practice:</p>
         <code>"Review the code in <b>@context/auth-module.py</b>. Find the bug causing the login timeout <i>(Task)</i>. Return the fixed code snippet as a markdown block with inline comments explaining the fix <i>(Output Format)</i>."</code>
         <p style="font-size: 0.9em; margin-top: 15px; color: #586069;">*The AI automatically combines this short instruction with your persistent Identity, Context, and Constraints to execute the task flawlessly.</p>
+        <div class="citation" style="border-color: #e1e4e8; background: transparent; margin-top: 15px; border-left: 3px solid #6f42c1;">
+            📚 <strong>Authority:</strong> On formatting workflows in HTML/Markdown—<em>Andrej Karpathy</em> heavily champions this, shifting from Markdown (for simple token efficiency) to HTML for creating structured "LLM Wikis" that allow for rich semantic rendering between multi-agent systems.
+        </div>
     </div>
 
 </body>
