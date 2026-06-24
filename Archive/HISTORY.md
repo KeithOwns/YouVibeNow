@@ -142,3 +142,24 @@ User: My custom system prompt contains 2 instructions (Chat History and File Bac
 
 **User:** Save our progress.
 **Agent:** Appended this session summary to Archive/HISTORY.md and committed the new scaffolding to Git.
+
+**User:** What did Karpathy say about which file format is most ingestible by LLMs?
+**Agent:** Explained that while Karpathy conventionally advocates for Markdown (for token efficiency and text-based 'LLM Wikis'), he and Anthropic recently noted that HTML is actually more ingestible and powerful when generating complex structural outputs or when agents communicate with other systems.
+
+**User:** Provide a concise outline, based on the work we just completed, of the best root file structure for a project using an LLM.
+**Agent:** Provided a summary mapping the 5 prompt elements to the new files (AGENTS.md, CONTEXT.md, MEMORY.md, TASKS.md, skills/, Archive/).
+
+**User:** Turn that outline into a .html
+**Agent:** Created 'Stateful_Prompting_Structure.html' in the workspace with rich styling and visual badges.
+
+**User:** Is the HTML file missing any detail?
+**Agent:** Noted 3 missing elements: the README.md, the 'Chat Prompt' itself (for one-off tasks/formats), and a 'Thin Prompt' workflow example. User approved adding them, so the HTML was backed up and updated.
+
+**User:** Are you able to find authorities to cite across the HTML file?
+**Agent:** Confirmed that the structure is heavily backed by Karpathy (System Prompts), Anthropic (Role-Playing), OpenAI (Context), Andrew Ng (Agentic Planning), and Wei/Zhou (Chain-of-Thought/Least-to-Most). 
+
+**User:** Please update the Stateful_Prompting_Structure.html file right now to include small, elegant '📚 Citation' badges beneath each section, linking the concept directly to these thought leaders and research papers.
+**Agent:** Backed up the HTML file again using -Force and injected the citations into the document.
+
+**User:** Do you have any suggestions at this point?
+**Agent:** Suggested 1) Committing to git and saving progress, 2) Drafting Lesson 1, or 3) Building the Capstone Skill. User selected option 1.

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stateful Prompting Root File Structure</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            color: #24292e;
+            background-color: #ffffff;
+        }
+        h1, h2.section-title {
+            border-bottom: 2px solid #eaecef;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+            color: #1b1f23;
+        }
+        .file-card {
+            background: #f6f8fa;
+            border: 1px solid #e1e4e8;
+            border-radius: 6px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .file-card h2 {
+            margin-top: 0;
+            color: #0366d6;
+            font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .badge {
+            display: inline-block;
+            background: #e1e4e8;
+            color: #24292e;
+            padding: 4px 8px;
+            border-radius: 2em;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        .badge-dynamic {
+            background: #dbedff;
+            color: #0366d6;
+        }
+        ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .folder-icon { color: #e36209; }
+        .file-icon { color: #24292e; }
+        .chat-icon { color: #28a745; }
+        
+        .workflow-box {
+            background: #f1f8ff;
+            border-left: 4px solid #0366d6;
+            padding: 20px;
+            margin-top: 40px;
+            border-radius: 4px;
+        }
+        .workflow-box code {
+            display: block;
+            background: #fff;
+            padding: 15px;
+            border-radius: 4px;
+            border: 1px solid #e1e4e8;
+            margin-top: 10px;
+            font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+            color: #24292e;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Stateful Prompting Root File Structure</h1>
+    <p>The optimal file architecture for an LLM-assisted project, replacing "monolithic prompts" with environmental context.</p>
+
+    <div class="file-card">
+        <h2><span class="file-icon">📄</span> README.md</h2>
+        <span class="badge">Human-AI Bridge</span>
+        <ul>
+            <li><strong>Purpose:</strong> The highest-level elevator pitch of the repository.</li>
+            <li><strong>Contents:</strong> Project summary, goals, and setup instructions. It's the first file an LLM (and a human) reads to orient itself.</li>
+        </ul>
+    </div>
+
+    <div class="file-card">
+        <h2><span class="file-icon">📄</span> AGENTS.md</h2>
+        <span class="badge">Prompt Element: Identity & Global Constraints</span>
+        <ul>
+            <li><strong>Purpose:</strong> Establishes <em>who</em> the AI is and sets strict, global boundaries.</li>
+            <li><strong>Contents:</strong> Persona, primary role, and non-negotiable rules (e.g., "always write plain language," "always backup files").</li>
+        </ul>
+    </div>
+
+    <div class="file-card">
+        <h2><span class="file-icon">📄</span> CONTEXT.md</h2>
+        <span class="badge">Prompt Element: Context</span>
+        <ul>
+            <li><strong>Purpose:</strong> Provides the deep background so you don't have to re-explain the project in every chat.</li>
+            <li><strong>Contents:</strong> Project summary, target audience, tech stack, and definitions of "what good looks like."</li>
+        </ul>
+    </div>
+
+    <div class="file-card">
+        <h2><span class="file-icon">📄</span> MEMORY.md</h2>
+        <span class="badge">Prompt Element: Dynamic Constraints</span>
+        <ul>
+            <li><strong>Purpose:</strong> Acts as the AI's long-term brain across different chat sessions.</li>
+            <li><strong>Contents:</strong> Newly learned formatting preferences (e.g., "keep tables to 4 columns") and a log of major architectural decisions.</li>
+        </ul>
+    </div>
+
+    <div class="file-card">
+        <h2><span class="file-icon">📄</span> TASKS.md</h2>
+        <span class="badge">Prompt Element: Current Task Queue</span>
+        <ul>
+            <li><strong>Purpose:</strong> Keeps the AI anchored during complex, multi-step operations.</li>
+            <li><strong>Contents:</strong> A living, indented checklist (<code>[ ]</code>, <code>[/]</code>, <code>[x]</code>) of the active sprint objectives.</li>
+        </ul>
+    </div>
+
+    <div class="file-card">
+        <h2><span class="folder-icon">📁</span> skills/</h2>
+        <span class="badge">Prompt Element: Reusable Tasks & Output Formats</span>
+        <ul>
+            <li><strong>Purpose:</strong> Turns repetitive, multi-hour jobs into single-command instructions.</li>
+            <li><strong>Contents:</strong> Sub-folders containing specific <code>SKILL.md</code> files (e.g., a perfect sequence of prompts to draft a blog post or deploy a server).</li>
+        </ul>
+    </div>
+
+    <div class="file-card">
+        <h2><span class="folder-icon">📁</span> Archive/</h2>
+        <span class="badge">InfoSec Layer: Availability & Integrity</span>
+        <ul>
+            <li><strong>Purpose:</strong> Protects data integrity and ensures a recoverable workspace.</li>
+            <li><strong>Contents:</strong> Time-stamped backups of files before the AI edits them, plus a <code>HISTORY.md</code> file that acts as an audit log of past chat sessions.</li>
+        </ul>
+    </div>
+
+    <div class="file-card" style="border-color: #28a745;">
+        <h2><span class="chat-icon">💬</span> The Active Chat Prompt</h2>
+        <span class="badge badge-dynamic">Prompt Element: One-Off Task & Output Format</span>
+        <ul>
+            <li><strong>Purpose:</strong> Your actual, typed message to the AI.</li>
+            <li><strong>Contents:</strong> Because the files above handle the Identity, Context, and Constraints, your chat prompt only needs to specify the immediate micro-task and how you want the answer formatted.</li>
+        </ul>
+    </div>
+
+    <div class="workflow-box">
+        <h2 class="section-title" style="border-bottom: none; margin-bottom: 10px;">The "Thin Prompt" Workflow</h2>
+        <p>By offloading 80% of your prompt into the file structure above, your daily prompts become incredibly lightweight and powerful. Here is what a fully synthesized prompt looks like in practice:</p>
+        <code>"Review the code in <b>@context/auth-module.py</b>. Find the bug causing the login timeout <i>(Task)</i>. Return the fixed code snippet as a markdown block with inline comments explaining the fix <i>(Output Format)</i>."</code>
+        <p style="font-size: 0.9em; margin-top: 15px; color: #586069;">*The AI automatically combines this short instruction with your persistent Identity, Context, and Constraints to execute the task flawlessly.</p>
+    </div>
+
+</body>
+</html>
