@@ -23,8 +23,23 @@ Welcome to the **Vibe Coding Course** repository! This index serves as your cent
     *   *Learn how to safely deploy autonomous agents by enforcing Confidentiality, Integrity, and Availability.*
 
 ### 🎓 Module 1 Capstone
-*   ✅ **[Skill Demonstration: Course Lesson Drafter](skills/course-lesson-drafter/SKILL.md)**
-    *   *A fully functional, reusable "Vibe Coding Skill" that demonstrates how to package a complex prompt workflow into a single file.*
+*   **[Capstone Project: The Thin Prompt Workflow](Module_1_Capstone.md)**
+    *   *Apply everything you've learned. Build a secure, stateful folder architecture and execute a multi-step coding task using only Thin Prompts.*
+
+---
+
+## Module 2: Automation & Agentic Workflows
+*Moving from "chatting" to "delegating" by automating workflows with specialized scripts and sub-agents.*
+
+*   🚧 **[Lesson 6: Packaging Workflows (The `skills/` Directory)](Lesson_6_Packaging_Workflows.md)**
+    *   *How to save your best Thin Prompts as reusable, automated scripts.*
+
+*   🚧 **[Lesson 7: Agentic Delegation (Sub-Agents)](Lesson_7_Agentic_Delegation.md)**
+    *   *How to build a team of specialized AI workers to execute tasks in parallel.*
+
+### 🎓 Module 2 Capstone
+*   **[Capstone Project: The Automated File Processor](Module_2_Capstone.md)**
+    *   *Build a custom skill that automatically lints and formats files, then instruct a sub-agent to run it across your codebase.*
 
 ---
 

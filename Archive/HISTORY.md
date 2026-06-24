@@ -222,3 +222,9 @@ User: My custom system prompt contains 2 instructions (Chat History and File Bac
 **Agent:** Removed the redundant global file backup rule from New Project folder/AGENTS.md, adding a note that it inherits global InfoSec rules from Application settings.
 **Agent:** Added a warning to New Project folder/CONTEXT.md explicitly instructing users NOT to cram project-specific architecture into top-level app configuration files.
 **Agent:** Documented the session in HISTORY.md and executed a git commit and git push to sync the repository to GitHub.
+
+**User:** Approved the implementation plan to draft the Module 1 Capstone, outline Module 2, and rewrite the README.
+**Agent:** Drafted Module_1_Capstone.md detailing the 'Thin Prompt' exam.
+**Agent:** Appended 'Module 2: Automation & Agentic Workflows' to the curriculum outline and Table of Contents.
+**Agent:** Backed up the old README.md to Archive/ and completely rewrote the front-facing README.md to introduce the '3-Tier Hierarchy' and 'Productionize your opinion' philosophy.
+**Agent:** Committed all changes to Git and pushed to GitHub.
