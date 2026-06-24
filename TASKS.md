@@ -6,9 +6,9 @@ Use this file to break down complex instructions into sequential, manageable chu
 - `[/]` in progress tasks
 - `[x]` completed tasks
 
-## Current Sprint
-- `[ ]` Draft Lesson 1 of the Prompt Engineering Intro (The 5-Part Framework).
-- `[ ]` Draft Lesson 2 of the Prompt Engineering Intro (The Art of Chunking).
-- `[ ]` Draft Lesson 3 of the Prompt Engineering Intro (Stateful Prompting).
-- `[ ]` Draft Lesson 4 of the Prompt Engineering Intro (InfoSec & Prompt Engineering).
-- `[ ]` Review and finalize the module capstone project.
+## Current Sprint: Masterclass Development
+- `[x]` Draft Module 1: Vibe Coding & Stateful Prompting (Lessons 1-5 & Capstone).
+- `[x]` Draft Module 2: Automation & Agentic Workflows (Lessons 6-7 & Capstone).
+- `[x]` Refactor `Stateful_Prompting_Structure.html` for premium UI/UX.
+- `[x]` Integrate Empirical Research (`Prompt Engineering Frameworks Research.md`).
+- `[ ]` Execute Module 1 Capstone (Expense Calculator) as a stress test.

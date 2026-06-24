@@ -249,3 +249,9 @@ User: My custom system prompt contains 2 instructions (Chat History and File Bac
 **Agent:** Integrated empirical research from 'Prompt Engineering Frameworks Research.md' into Lesson 4.
 **Agent:** Finished drafting Module 2 by adding SKILL.md YAML specifications to Lesson 6 and creating detailed 'Example Solution' blocks for the exercises in Lessons 6 and 7.
 **Agent:** Pushed all remaining changes to GitHub to secure progress.
+
+**User:** Requested to update all notes and save progress.
+**Agent:** Analyzed global configuration mapping to prompt elements.
+**Agent:** Updated MEMORY.md to log the discovery that GEMINI.md functions as a Tier 1 Application-Level Prompt.
+**Agent:** Overhauled TASKS.md, marking Module 1 and 2 drafts as fully complete and staging the Expense Calculator Capstone.
+**Agent:** Committed all notes to GitHub.
