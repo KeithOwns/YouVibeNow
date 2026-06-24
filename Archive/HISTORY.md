@@ -211,3 +211,8 @@ User: My custom system prompt contains 2 instructions (Chat History and File Bac
 
 **User:** Yes (to generating Lesson 4).
 **Agent:** Used the course-lesson-drafter skill to generate Lesson_4_InfoSec_and_Prompting.md (covering the CIA Triad for autonomous agents) and marked the final lesson as complete in the Table of Contents.
+
+**User:** Suggested adding 'Stateful Prompt' configuration as the first lesson, focusing on Application-Level settings like Antigravity Customizations.
+**Agent:** Drafted an implementation plan to restructure the entire curriculum, shifting existing lessons down by one index. User approved the plan.
+**Agent:** Renamed the existing files, updated their internal headers, and updated both the Table of Contents and the Curriculum Outline.
+**Agent:** Drafted the new Lesson_1_Application_Level_Instructions.md detailing the 3-Tier Hierarchy (Application, Project, Execution) and committed all changes to Git.

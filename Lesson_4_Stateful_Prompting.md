@@ -1,4 +1,4 @@
-# Lesson 3: Stateful Prompting (The Folder Architecture)
+# Lesson 4: Stateful Prompting (The Folder Architecture)
 
 *Stop repeating yourself and let your file system do the heavy lifting.*
 

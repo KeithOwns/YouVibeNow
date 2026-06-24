@@ -1,4 +1,4 @@
-# Lesson 1: The Anatomy of a Perfect Prompt (The 5-Part Framework)
+# Lesson 2: The Anatomy of a Perfect Prompt (The 5-Part Framework)
 
 *The core lesson on structuring instructions to get useful results on the first try.*
 

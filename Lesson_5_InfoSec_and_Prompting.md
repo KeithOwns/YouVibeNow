@@ -1,4 +1,4 @@
-# Lesson 4: InfoSec & Prompt Engineering
+# Lesson 5: InfoSec & Prompt Engineering
 
 *Because giving an autonomous AI unrestricted access to your files is a terrible idea.*
 

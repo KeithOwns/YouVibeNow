@@ -1,4 +1,4 @@
-# Lesson 2: The Art of "Chunking"
+# Lesson 3: The Art of "Chunking"
 
 *Because asking an AI to do everything at once is a guaranteed recipe for failure.*
 
