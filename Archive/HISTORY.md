@@ -244,3 +244,8 @@ User: My custom system prompt contains 2 instructions (Chat History and File Bac
 **User:** Requested an aesthetic upgrade to the Stateful_Prompting_Structure.html reference card.
 **Agent:** Completely rewrote the HTML and CSS. Shifted the design to a premium dark theme with glowing accents, glassmorphic file cards, micro-animations on hover, and modern typography (Outfit and JetBrains Mono).
 **Agent:** Committed UI/UX overhaul to GitHub.
+
+**User:** Requested to finish Module 2 and save progress.
+**Agent:** Integrated empirical research from 'Prompt Engineering Frameworks Research.md' into Lesson 4.
+**Agent:** Finished drafting Module 2 by adding SKILL.md YAML specifications to Lesson 6 and creating detailed 'Example Solution' blocks for the exercises in Lessons 6 and 7.
+**Agent:** Pushed all remaining changes to GitHub to secure progress.
