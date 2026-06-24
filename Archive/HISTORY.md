@@ -205,3 +205,9 @@ User: My custom system prompt contains 2 instructions (Chat History and File Bac
 
 **User:** What do you suggest at this point?
 **Agent:** Suggested 1) Committing and logging progress, and 2) Executing the Capstone skill to draft Lesson 2. User approved.
+
+**User:** Yes (to generating Lesson 3).
+**Agent:** Used the course-lesson-drafter skill to generate Lesson_3_Stateful_Prompting.md and updated the Table of Contents to link to it.
+
+**User:** Yes (to generating Lesson 4).
+**Agent:** Used the course-lesson-drafter skill to generate Lesson_4_InfoSec_and_Prompting.md (covering the CIA Triad for autonomous agents) and marked the final lesson as complete in the Table of Contents.
