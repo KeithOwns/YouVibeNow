@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AGY Workspace Orchestrator Dashboard</title>
+  <!-- Google Fonts: Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome for Premium Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Outfit', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              500: '#0ea5e9',
+              600: '#0284c7',
+              700: '#0369a1',
+              900: '#0c4a6e',
+            },
+            neutral: {
+              850: '#1e293b',
+              950: '#0f172a',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Premium glassmorphism scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #1e293b;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #475569;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #0ea5e9;
+    }
+    .custom-gradient {
+      background: radial-gradient(circle at top right, rgba(14, 165, 233, 0.15), transparent 60%);
+    }
+
+    /* Light Mode Overrides */
+    body.light {
+      background-color: #f8fafc !important;
+      color: #0f172a !important;
+    }
+    body.light.custom-gradient {
+      background: radial-gradient(circle at top right, rgba(14, 165, 233, 0.08), transparent 60%) !important;
+    }
+    body.light .bg-slate-950 {
+      background-color: #f8fafc !important;
+    }
+    body.light .bg-slate-900\/50, 
+    body.light .skill-card {
+      background-color: rgba(255, 255, 255, 0.85) !important;
+    }
+    body.light .bg-slate-900 {
+      background-color: #ffffff !important;
+    }
+    body.light .border-slate-800,
+    body.light .border-slate-850,
+    body.light .divide-slate-800 > * {
+      border-color: #e2e8f0 !important;
+    }
+    body.light .bg-slate-950\/40,
+    body.light .bg-slate-950\/80 {
+      background-color: rgba(241, 245, 249, 0.8) !important;
+    }
+    body.light .text-slate-100,
+    body.light .text-white {
+      color: #0f172a !important;
+    }
+    body.light .text-slate-400 {
+      color: #475569 !important;
+    }
+    body.light .text-slate-300 {
+      color: #1e293b !important;
+    }
+    body.light .bg-slate-950 p-2.5,
+    body.light .bg-slate-950 p-3 {
+      background-color: #f1f5f9 !important;
+      border-color: #cbd5e1 !important;
+    }
+    body.light .text-slate-500 {
+      color: #64748b !important;
+    }
+    body.light header {
+      background-color: rgba(255, 255, 255, 0.8) !important;
+      border-color: #e2e8f0 !important;
+    }
+    body.light footer {
+      background-color: #f1f5f9 !important;
+      border-color: #e2e8f0 !important;
+      }
+    body.light footer .text-slate-500 {
+      color: #64748b !important;
+    }
+    body.light #skillSearch,
+    body.light #cli-input {
+      background-color: #ffffff !important;
+      border-color: #cbd5e1 !important;
+      color: #0f172a !important;
+    }
+    body.light .chip-btn {
+      background-color: #ffffff !important;
+      border-color: #cbd5e1 !important;
+      color: #475569 !important;
+    }
+    body.light .chip-btn:hover {
+      color: #0f172a !important;
+    }
+    body.light .chip-btn.active {
+      background-color: #0ea5e9 !important;
+      border-color: #0ea5e9 !important;
+      color: #ffffff !important;
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen font-sans antialiased custom-gradient">
+
+  <!-- Header Section -->
+  <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <div class="flex items-center gap-3">
+        <div class="p-2.5 bg-gradient-to-tr from-sky-500 to-indigo-600 rounded-xl shadow-lg shadow-sky-500/20">
+          <i class="fa-solid fa-wand-magic-sparkles text-xl text-white"></i>
+        </div>
+        <div>
+          <h1 class="text-xl font-bold tracking-tight text-white flex items-center gap-2">
+            AGY Workspace Orchestrator
+            <span class="text-xs font-semibold px-2.5 py-0.5 bg-sky-500/10 text-sky-400 border border-sky-500/20 rounded-full">v1.2 Live</span>
+          </h1>
+          <p class="text-xs text-slate-400">Windows PowerShell Configuration & Command Registry</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <div class="flex items-center gap-3 bg-slate-950/80 p-1.5 border border-slate-800 rounded-lg text-sm">
+          <span class="flex h-2.5 w-2.5 relative">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+          </span>
+          <span class="font-mono text-xs text-slate-300">Workspace Status: 6 Plugins Armed</span>
+        </div>
+        <button id="theme-toggle" class="p-2 bg-slate-950/80 border border-slate-800 hover:text-sky-400 text-slate-300 rounded-lg transition-colors flex items-center justify-center text-sm" title="Toggle Light/Dark Theme">
+          <i id="theme-toggle-icon" class="fa-solid fa-moon"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8 space-y-12">
+
+    <!-- Active Custom Floating Notifications -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 bg-slate-900 border border-emerald-500/30 text-emerald-400 px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3 translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+      <i class="fa-solid fa-circle-check"></i>
+      <span id="toast-message" class="text-sm font-medium">Copied to clipboard!</span>
+    </div>
+
+    <!-- Intro Card -->
+    <div class="bg-gradient-to-br from-slate-900 to-slate-950 border border-slate-800 rounded-2xl p-6 sm:p-8 shadow-xl relative overflow-hidden">
+      <div class="absolute -right-16 -bottom-16 w-64 h-64 bg-sky-500/5 rounded-full blur-3xl"></div>
+      <div class="relative z-10 max-w-3xl">
+        <h2 class="text-2xl font-bold text-white mb-3">Your Localized Multi-Agent Workspace</h2>
+        <p class="text-slate-400 leading-relaxed">
+          We migrated the standard global setup straight into your local project environment folder. AGY IDE and CLI will run these rules seamlessly during active coding, giving your models comprehensive testing safeguards, memory stacks, and executive oversight.
+        </p>
+      </div>
+    </div>
+
+    <!-- Section 1: The 6 Core Plugins Status Overview -->
+    <section class="space-y-6">
+      <div class="flex justify-between items-center">
+        <div>
+          <h3 class="text-lg font-bold text-white">Installed Plugins Map</h3>
+          <p class="text-sm text-slate-400">Verifying configurations parsed by `.agents/` engine</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- 1. Superpowers -->
+        <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-5 hover:border-sky-500/30 transition-all duration-200 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-start mb-4">
+              <span class="p-2 bg-sky-500/10 text-sky-400 rounded-lg"><i class="fa-solid fa-shield-halved text-lg"></i></span>
+              <span class="text-xs font-semibold px-2 py-0.5 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full">ACTIVE RULE</span>
+            </div>
+            <h4 class="font-bold text-white text-base">1. Superpowers TDD</h4>
+            <p class="text-slate-400 text-sm mt-1 mb-4">Forces automated testing before production implementation begins.</p>
+            <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-800/80 font-mono text-xs text-sky-300">
+              Rule file: <span class="text-slate-400">superpowers-tdd.md</span>
+            </div>
+          </div>
+          <button onclick="simulateAction('tdd')" class="mt-4 text-xs font-semibold text-sky-400 hover:text-sky-300 flex items-center gap-1.5 self-start">
+            <i class="fa-solid fa-play text-[10px]"></i> Simulate TDD Block
+          </button>
+        </div>
+
+        <!-- 2. Front-End Design -->
+        <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-5 hover:border-purple-500/30 transition-all duration-200 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-start mb-4">
+              <span class="p-2 bg-purple-500/10 text-purple-400 rounded-lg"><i class="fa-solid fa-palette text-lg"></i></span>
+              <span class="text-xs font-semibold px-2 py-0.5 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full">INJECTED RULES</span>
+            </div>
+            <h4 class="font-bold text-white text-base">2. Anthropic UI System</h4>
+            <p class="text-slate-400 text-sm mt-1 mb-4">Enforces custom component design tokens and human-friendly state management.</p>
+            <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-800/80 font-mono text-xs text-purple-300">
+              Target Command: <span class="text-slate-400">/design-review</span>
+            </div>
+          </div>
+          <button onclick="simulateAction('design')" class="mt-4 text-xs font-semibold text-purple-400 hover:text-purple-300 flex items-center gap-1.5 self-start">
+            <i class="fa-solid fa-play text-[10px]"></i> Simulate Design Specs
+          </button>
+        </div>
+
+        <!-- 3. Code Review -->
+        <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-5 hover:border-pink-500/30 transition-all duration-200 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-start mb-4">
+              <span class="p-2 bg-pink-500/10 text-pink-400 rounded-lg"><i class="fa-solid fa-code-compare text-lg"></i></span>
+              <span class="text-xs font-semibold px-2 py-0.5 bg-sky-500/10 text-sky-400 border border-sky-500/20 rounded-full">5 AGENTS</span>
+            </div>
+            <h4 class="font-bold text-white text-base">3. Parallel Code Reviewer</h4>
+            <p class="text-slate-400 text-sm mt-1 mb-4">Spawns 5 concurrent subagents to scan diffs and ensure clean commits.</p>
+            <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-800/80 font-mono text-xs text-pink-300">
+              Target Command: <span class="text-slate-400">/code-review</span>
+            </div>
+          </div>
+          <button onclick="simulateAction('review')" class="mt-4 text-xs font-semibold text-pink-400 hover:text-pink-300 flex items-center gap-1.5 self-start">
+            <i class="fa-solid fa-play text-[10px]"></i> Trigger Code Audit
+          </button>
+        </div>
+
+        <!-- 4. Security Scan -->
+        <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-5 hover:border-amber-500/30 transition-all duration-200 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-start mb-4">
+              <span class="p-2 bg-amber-500/10 text-amber-400 rounded-lg"><i class="fa-solid fa-bug-slash text-lg"></i></span>
+              <span class="text-xs font-semibold px-2 py-0.5 bg-sky-500/10 text-sky-400 border border-sky-500/20 rounded-full">PRE-FLIGHT</span>
+            </div>
+            <h4 class="font-bold text-white text-base">4. Security Reviewer</h4>
+            <p class="text-slate-400 text-sm mt-1 mb-4">Watches vulnerabilities, scans api patterns, and monitors key leakage.</p>
+            <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-800/80 font-mono text-xs text-amber-300">
+              Target Command: <span class="text-slate-400">/security-scan</span>
+            </div>
+          </div>
+          <button onclick="simulateAction('security')" class="mt-4 text-xs font-semibold text-amber-400 hover:text-amber-300 flex items-center gap-1.5 self-start">
+            <i class="fa-solid fa-play text-[10px]"></i> Run Sec Check
+          </button>
+        </div>
+
+        <!-- 5. Claude Mem -->
+        <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-5 hover:border-emerald-500/30 transition-all duration-200 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-start mb-4">
+              <span class="p-2 bg-emerald-500/10 text-emerald-400 rounded-lg"><i class="fa-solid fa-brain text-lg"></i></span>
+              <span class="text-xs font-semibold px-2 py-0.5 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full">MCP SERVER</span>
+            </div>
+            <h4 class="font-bold text-white text-base">5. Claude Memory System</h4>
+            <p class="text-slate-400 text-sm mt-1 mb-4">Remembers structural project rules, setups, and task lists across sessions.</p>
+            <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-800/80 font-mono text-xs text-emerald-300">
+              Status Server: <span class="text-emerald-400">Connected</span>
+            </div>
+          </div>
+          <button onclick="simulateAction('memory')" class="mt-4 text-xs font-semibold text-emerald-400 hover:text-emerald-300 flex items-center gap-1.5 self-start">
+            <i class="fa-solid fa-play text-[10px]"></i> View Long-term Mem
+          </button>
+        </div>
+
+        <!-- 6. Garry Tan Stack -->
+        <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-5 hover:border-indigo-500/30 transition-all duration-200 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-start mb-4">
+              <span class="p-2 bg-indigo-500/10 text-indigo-400 rounded-lg"><i class="fa-solid fa-cubes text-lg"></i></span>
+              <span class="text-xs font-semibold px-2 py-0.5 bg-sky-500/10 text-sky-400 border border-sky-500/20 rounded-full">23 PERSONAS</span>
+            </div>
+            <h4 class="font-bold text-white text-base">6. Garry Tan's "gstack"</h4>
+            <p class="text-slate-400 text-sm mt-1 mb-4">Integrated multi-agent system mimicking a complete product division team. To be installed on business projects.</p>
+            <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-800/80 font-mono text-xs text-indigo-300">
+              Trigger command: <span class="text-slate-400">/plan-ceo-review</span>
+            </div>
+          </div>
+          <button onclick="simulateAction('ceo')" class="mt-4 text-xs font-semibold text-indigo-400 hover:text-indigo-300 flex items-center gap-1.5 self-start">
+            <i class="fa-solid fa-play text-[10px]"></i> Spawn CEO Planner
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Execution Sandbox (Dynamic Terminal Simulation) -->
+    <section class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl">
+      <div class="border-b border-slate-800 bg-slate-950 px-5 py-4 flex justify-between items-center">
+        <div class="flex items-center gap-2">
+          <span class="w-3 h-3 rounded-full bg-red-500"></span>
+          <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
+          <span class="w-3 h-3 rounded-full bg-green-500"></span>
+          <span class="text-xs font-mono text-slate-400 ml-2">Interactive AGY CLI Sandbox</span>
+        </div>
+        <span class="text-[11px] font-mono text-sky-400">Terminal Connected</span>
+      </div>
+      <div class="p-6 font-mono text-sm space-y-4 min-h-[360px] bg-slate-950/40 relative flex flex-col justify-between">
+        <div id="terminal-content" class="space-y-4 overflow-y-auto max-h-[280px] flex-grow pr-2">
+          <div class="text-slate-400"># Choose an action from the map, search directory, or type a slash command below (e.g., /code-review, /security-scan, /design-review, /plan-ceo-review, /refactor, /technical-review).</div>
+          <div class="text-slate-500 mt-2">PS C:\Users\admin\my-project&gt; <span class="animate-pulse">_</span></div>
+        </div>
+        <div class="border-t border-slate-800/80 pt-4 flex gap-2 items-center shrink-0">
+          <span class="text-sky-400 font-bold font-mono select-none">PS &gt;</span>
+          <input id="cli-input" type="text" placeholder="Type a slash command and press Enter..." class="bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-sky-500/50 flex-grow font-mono">
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Complete Tool & Command Explorer (Interactive Directory) -->
+    <section class="space-y-6">
+      <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-4">
+        <div>
+          <h3 class="text-lg font-bold text-white">Interactive Command Directory</h3>
+          <p class="text-sm text-slate-400">Explore each of the 23 nested agent personas, design tokens, and testing triggers</p>
+        </div>
+        <!-- Search & Filter Controls -->
+        <div class="flex flex-col sm:flex-row gap-3">
+          <div class="relative">
+            <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-xs"></i>
+            <input id="skillSearch" type="text" placeholder="Search roles / commands..." class="bg-slate-900 border border-slate-800 rounded-lg pl-9 pr-4 py-2 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-sky-500/50 w-full sm:w-64">
+          </div>
+          <div class="flex gap-2" id="filter-chips">
+            <button onclick="filterSkills('all')" class="chip-btn active px-3 py-1.5 rounded-lg text-xs font-semibold bg-sky-500 text-white border border-sky-500/20 transition-all duration-150">All</button>
+            <button onclick="filterSkills('strategic')" class="chip-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 text-slate-400 border border-slate-800 hover:text-white transition-all duration-150">Strategic</button>
+            <button onclick="filterSkills('dev')" class="chip-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 text-slate-400 border border-slate-800 hover:text-white transition-all duration-150">Dev Suite</button>
+            <button onclick="filterSkills('qa-security')" class="chip-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 text-slate-400 border border-slate-800 hover:text-white transition-all duration-150">Audit & Security</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skill Inventory Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="skillsGrid">
+        <!-- 1. CEO Planner -->
+        <div class="skill-card bg-slate-900/40 border border-slate-850 rounded-xl p-5 flex flex-col justify-between" data-category="strategic" data-search="ceo planner strategic design rules gstack">
+          <div>
+            <div class="flex justify-between items-start mb-3">
+              <span class="text-xs font-semibold px-2 py-0.5 bg-sky-500/10 text-sky-400 border border-sky-500/20 rounded-full">Garry Tan / CEO Role</span>
+              <span class="text-[11px] font-mono text-slate-500">.agents/skills/ceo.md</span>
+            </div>
+            <h4 class="font-bold text-white text-base">CEO Planner & Strategist</h4>
+            <p class="text-slate-400 text-sm mt-1.5 leading-relaxed">Assesses task boundaries, stakes, and alternative approaches. Demands explicit tradeoffs (A, B, C) and user validation before code alteration.</p>
+          </div>
+          <div class="mt-5 pt-4 border-t border-slate-800/60 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <span class="font-mono text-xs text-sky-400 bg-slate-950 px-2.5 py-1 rounded border border-slate-800/80">/plan-ceo-review [prompt]</span>
+            <button onclick="copyCommand(this, '/plan-ceo-review')" class="text-xs text-slate-500 hover:text-white flex items-center gap-1 self-start sm:self-auto"><i class="fa-regular fa-copy"></i> Copy Prompt</button>
+          </div>
+        </div>
+
+        <!-- 2. UI System & Design Token -->
+        <div class="skill-card bg-slate-900/40 border border-slate-850 rounded-xl p-5 flex flex-col justify-between" data-category="strategic" data-search="ui system design tokens anthropic frontend">
+          <div>
+            <div class="flex justify-between items-start mb-3">
+              <span class="text-xs font-semibold px-2 py-0.5 bg-purple-500/10 text-purple-400 border border-purple-500/20 rounded-full">Anthropic Style Rules</span>
+              <span class="text-[11px] font-mono text-slate-500">.agents/rules/ui-guide.md</span>
+            </div>
+            <h4 class="font-bold text-white text-base">Human-Centric UI Review</h4>
+            <p class="text-slate-400 text-sm mt-1.5 leading-relaxed">Checks component designs against top-tier Anthropic layouts (ample spacing, rich typography, clean borders, dynamic loaded elements) to bypass generic generic designs.</p>
+          </div>
+          <div class="mt-5 pt-4 border-t border-slate-800/60 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <span class="font-mono text-xs text-purple-400 bg-slate-950 px-2.5 py-1 rounded border border-slate-800/80">/design-review [view]</span>
+            <button onclick="copyCommand(this, '/design-review')" class="text-xs text-slate-500 hover:text-white flex items-center gap-1 self-start sm:self-auto"><i class="fa-regular fa-copy"></i> Copy Prompt</button>
+          </div>
+        </div>
+
+        <!-- 3. Parallel Reviewers -->
+        <div class="skill-card bg-slate-900/40 border border-slate-850 rounded-xl p-5 flex flex-col justify-between" data-category="qa-security" data-search="parallel reviewer code quality git history gstack">
+          <div>
+            <div class="flex justify-between items-start mb-3">
+              <span class="text-xs font-semibold px-2 py-0.5 bg-pink-500/10 text-pink-400 border border-pink-500/20 rounded-full">Code Quality / QA</span>
+              <span class="text-[11px] font-mono text-slate-500">.agents/skills/qa.md</span>
+            </div>
+            <h4 class="font-bold text-white text-base">5-Agent Parallel Reviewer</h4>
+            <p class="text-slate-400 text-sm mt-1.5 leading-relaxed">Initiates parallel code reviews to verify clean functional structures, check git changes, protect against legacy imports, and prevent regressions.</p>
+          </div>
+          <div class="mt-5 pt-4 border-t border-slate-800/60 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <span class="font-mono text-xs text-pink-400 bg-slate-950 px-2.5 py-1 rounded border border-slate-800/80">/code-review</span>
+            <button onclick="copyCommand(this, '/code-review')" class="text-xs text-slate-500 hover:text-white flex items-center gap-1 self-start sm:self-auto"><i class="fa-regular fa-copy"></i> Copy Prompt</button>
+          </div>
+        </div>
+
+        <!-- 4. Security Auditor -->
+        <div class="skill-card bg-slate-900/40 border border-slate-850 rounded-xl p-5 flex flex-col justify-between" data-category="qa-security" data-search="security scanner auditor dependency keys">
+          <div>
+            <div class="flex justify-between items-start mb-3">
+              <span class="text-xs font-semibold px-2 py-0.5 bg-amber-500/10 text-amber-400 border border-amber-500/20 rounded-full">Security / Audit</span>
+              <span class="text-[11px] font-mono text-slate-500">.agents/skills/security.md</span>
+            </div>
+            <h4 class="font-bold text-white text-base">Security Reviewer</h4>
+            <p class="text-slate-400 text-sm mt-1.5 leading-relaxed">Scans configurations, environment hooks, raw credential files, and dependency manifests for critical vulnerabilities before production push.</p>
+          </div>
+          <div class="mt-5 pt-4 border-t border-slate-800/60 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <span class="font-mono text-xs text-amber-400 bg-slate-950 px-2.5 py-1 rounded border border-slate-800/80">/security-scan</span>
+            <button onclick="copyCommand(this, '/security-scan')" class="text-xs text-slate-500 hover:text-white flex items-center gap-1 self-start sm:self-auto"><i class="fa-regular fa-copy"></i> Copy Prompt</button>
+          </div>
+        </div>
+
+        <!-- 5. TDD Enforcer -->
+        <div class="skill-card bg-slate-900/40 border border-slate-850 rounded-xl p-5 flex flex-col justify-between" data-category="dev" data-search="tdd enforcer superpowers testing jest vitest py">
+          <div>
+            <div class="flex justify-between items-start mb-3">
+              <span class="text-xs font-semibold px-2 py-0.5 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full">Superpowers Engine</span>
+              <span class="text-[11px] font-mono text-slate-500">.agents/rules/superpowers-tdd.md</span>
+            </div>
+            <h4 class="font-bold text-white text-base">Superpowers TDD Pipeline</h4>
+            <p class="text-slate-400 text-sm mt-1.5 leading-relaxed">Intercepts and monitors active development files. Refuses to write source modifications until a corresponding test script has failed natively first.</p>
+          </div>
+          <div class="mt-5 pt-4 border-t border-slate-800/60 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <span class="font-mono text-xs text-emerald-400 bg-slate-950 px-2.5 py-1 rounded border border-slate-800/80">/refactor [module]</span>
+            <button onclick="copyCommand(this, '/refactor')" class="text-xs text-slate-500 hover:text-white flex items-center gap-1 self-start sm:self-auto"><i class="fa-regular fa-copy"></i> Copy Prompt</button>
+          </div>
+        </div>
+
+        <!-- 6. Engineering Manager -->
+        <div class="skill-card bg-slate-900/40 border border-slate-850 rounded-xl p-5 flex flex-col justify-between" data-category="dev" data-search="engineering manager technical debt structural review gstack">
+          <div>
+            <div class="flex justify-between items-start mb-3">
+              <span class="text-xs font-semibold px-2 py-0.5 bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 rounded-full">Garry Tan / EM Role</span>
+              <span class="text-[11px] font-mono text-slate-500">.agents/skills/manager.md</span>
+            </div>
+            <h4 class="font-bold text-white text-base">Engineering Manager Role</h4>
+            <p class="text-slate-400 text-sm mt-1.5 leading-relaxed">Keeps code architecture modular and monitors overall technical debt. Forces consistent style guides and ensures imports follow standard project directory structure.</p>
+          </div>
+          <div class="mt-5 pt-4 border-t border-slate-800/60 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <span class="font-mono text-xs text-indigo-400 bg-slate-950 px-2.5 py-1 rounded border border-slate-800/80">/technical-review [directory]</span>
+            <button onclick="copyCommand(this, '/technical-review')" class="text-xs text-slate-500 hover:text-white flex items-center gap-1 self-start sm:self-auto"><i class="fa-regular fa-copy"></i> Copy Prompt</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  
+    <!-- Section 3: AGY IDE Enabled Plugins -->
+    <section class="space-y-6">
+      <div>
+        <h3 class="text-lg font-bold text-white">AGY IDE Enabled Plugins</h3>
+        <p class="text-sm text-slate-400">Global system plugins loaded and active in the developer environment</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- android-cli-plugin -->
+        <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-5 hover:border-emerald-500/30 transition-all duration-200 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-start mb-4">
+              <span class="p-2 bg-emerald-500/10 text-emerald-400 rounded-lg"><i class="fa-brands fa-android text-lg"></i></span>
+              <span class="text-[10px] font-semibold px-2 py-0.5 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full">ENABLED</span>
+            </div>
+            <h4 class="font-bold text-white text-sm">android-cli-plugin</h4>
+            <p class="text-slate-400 text-xs mt-1.5 leading-relaxed">Orchestrates Android development tasks (project creation, deployment, SDK management, etc.) using the <code>android</code> CLI.</p>
+          </div>
+        </div>
+
+        <!-- chrome-devtools-plugin -->
+        <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-5 hover:border-amber-500/30 transition-all duration-200 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-start mb-4">
+              <span class="p-2 bg-amber-500/10 text-amber-400 rounded-lg"><i class="fa-brands fa-chrome text-lg"></i></span>
+              <span class="text-[10px] font-semibold px-2 py-0.5 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full">ENABLED</span>
+            </div>
+            <h4 class="font-bold text-white text-sm">chrome-devtools-plugin</h4>
+            <p class="text-slate-400 text-xs mt-1.5 leading-relaxed">Provides Chrome Developer Tools integrations.</p>
+          </div>
+        </div>
+
+        <!-- dak -->
+        <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-5 hover:border-cyan-500/30 transition-all duration-200 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-start mb-4">
+              <span class="p-2 bg-cyan-500/10 text-cyan-400 rounded-lg"><i class="fa-solid fa-database text-lg"></i></span>
+              <span class="text-[10px] font-semibold px-2 py-0.5 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full">ENABLED</span>
+            </div>
+            <h4 class="font-bold text-white text-sm">dak</h4>
+            <p class="text-slate-400 text-xs mt-1.5 leading-relaxed">A broad set of data engineering and cloud skills including Dataform/dbt, BigQuery pipelines, Streamlit apps, and accidental data-loss prevention.</p>
+          </div>
+        </div>
+
+        <!-- firebase -->
+        <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-5 hover:border-orange-500/30 transition-all duration-200 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-start mb-4">
+              <span class="p-2 bg-orange-500/10 text-orange-400 rounded-lg"><i class="fa-solid fa-fire text-lg"></i></span>
+              <span class="text-[10px] font-semibold px-2 py-0.5 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full">ENABLED</span>
+            </div>
+            <h4 class="font-bold text-white text-sm">firebase</h4>
+            <p class="text-slate-400 text-xs mt-1.5 leading-relaxed">Integrates Firebase-related development and deployment tools.</p>
+          </div>
+        </div>
+
+        <!-- flutter -->
+        <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-5 hover:border-sky-500/30 transition-all duration-200 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-start mb-4">
+              <span class="p-2 bg-sky-500/10 text-sky-400 rounded-lg"><i class="fa-solid fa-mobile-screen-button text-lg"></i></span>
+              <span class="text-[10px] font-semibold px-2 py-0.5 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full">ENABLED</span>
+            </div>
+            <h4 class="font-bold text-white text-sm">flutter</h4>
+            <p class="text-slate-400 text-xs mt-1.5 leading-relaxed">Provides Flutter application development and testing tools.</p>
+          </div>
+        </div>
+
+        <!-- google-antigravity-sdk -->
+        <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-5 hover:border-indigo-500/30 transition-all duration-200 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-start mb-4">
+              <span class="p-2 bg-indigo-500/10 text-indigo-400 rounded-lg"><i class="fa-solid fa-rocket text-lg"></i></span>
+              <span class="text-[10px] font-semibold px-2 py-0.5 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full">ENABLED</span>
+            </div>
+            <h4 class="font-bold text-white text-sm">google-antigravity-sdk</h4>
+            <p class="text-slate-400 text-xs mt-1.5 leading-relaxed">Supports core Google SDK workflows.</p>
+          </div>
+        </div>
+
+        <!-- modern-web-guidance-plugin -->
+        <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-5 hover:border-purple-500/30 transition-all duration-200 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-start mb-4">
+              <span class="p-2 bg-purple-500/10 text-purple-400 rounded-lg"><i class="fa-solid fa-globe text-lg"></i></span>
+              <span class="text-[10px] font-semibold px-2 py-0.5 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full">ENABLED</span>
+            </div>
+            <h4 class="font-bold text-white text-sm">modern-web-guidance-plugin</h4>
+            <p class="text-slate-400 text-xs mt-1.5 leading-relaxed">Enforces web development and styling best practices.</p>
+          </div>
+        </div>
+
+        <!-- science -->
+        <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-5 hover:border-rose-500/30 transition-all duration-200 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-start mb-4">
+              <span class="p-2 bg-rose-500/10 text-rose-400 rounded-lg"><i class="fa-solid fa-flask text-lg"></i></span>
+              <span class="text-[10px] font-semibold px-2 py-0.5 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full">ENABLED</span>
+            </div>
+            <h4 class="font-bold text-white text-sm">science</h4>
+            <p class="text-slate-400 text-xs mt-1.5 leading-relaxed">Exposes biology, chemical, literature search, and structural analysis tools (including AlphaFold, UniProt, ClinicalTrials.gov, PubMed, PDB, etc.).</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: PowerShell Setup Sequence Guide -->
+    <section class="space-y-6">
+      <div>
+        <h3 class="text-lg font-bold text-white">PowerShell Execution Steps Reference</h3>
+        <p class="text-sm text-slate-400">A permanent blueprint of the PowerShell configurations used to stand up this AGY project</p>
+      </div>
+
+      <div class="border border-slate-800 bg-slate-900/40 rounded-xl overflow-hidden">
+        <div class="divide-y divide-slate-800">
+          
+          <!-- Step 1 -->
+          <div class="p-6 flex flex-col md:flex-row gap-4 items-start hover:bg-slate-900/60 transition-colors duration-150">
+            <span class="w-8 h-8 rounded-lg bg-sky-500/10 text-sky-400 flex items-center justify-center font-bold text-sm shrink-0 border border-sky-500/20">1</span>
+            <div class="space-y-2 flex-grow">
+              <h5 class="font-bold text-white text-sm">Create Local AGY Directory</h5>
+              <p class="text-xs text-slate-400">Installs subfolders to lock the active agent workspace configuration inside this target folder.</p>
+              <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 flex justify-between items-center">
+                <code class="font-mono text-xs text-slate-300">mkdir .agents/skills; mkdir .agents/rules</code>
+                <button onclick="copyCode(this, 'mkdir .agents/skills; mkdir .agents/rules')" class="text-slate-500 hover:text-white text-xs flex items-center gap-1"><i class="fa-regular fa-copy"></i> Copy</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="p-6 flex flex-col md:flex-row gap-4 items-start hover:bg-slate-900/60 transition-colors duration-150">
+            <span class="w-8 h-8 rounded-lg bg-sky-500/10 text-sky-400 flex items-center justify-center font-bold text-sm shrink-0 border border-sky-500/20">2</span>
+            <div class="space-y-2 flex-grow">
+              <h5 class="font-bold text-white text-sm">Clone and Move Garry Tan gstack Skills</h5>
+              <p class="text-xs text-slate-400">Pulls down the latest build-in agent configurations and relocates files straight into `.agents/`.</p>
+              <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 flex justify-between items-center">
+                <code class="font-mono text-xs text-slate-300">git clone https://github.com/garrytan/gstack.git C:\Users\admin\gstack_temp</code>
+                <button onclick="copyCode(this, 'git clone https://github.com/garrytan/gstack.git C:\\Users\\admin\\gstack_temp')" class="text-slate-500 hover:text-white text-xs flex items-center gap-1"><i class="fa-regular fa-copy"></i> Copy</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="p-6 flex flex-col md:flex-row gap-4 items-start hover:bg-slate-900/60 transition-colors duration-150">
+            <span class="w-8 h-8 rounded-lg bg-sky-500/10 text-sky-400 flex items-center justify-center font-bold text-sm shrink-0 border border-sky-500/20">3</span>
+            <div class="space-y-2 flex-grow">
+              <h5 class="font-bold text-white text-sm">Inject TDD Guardrails File</h5>
+              <p class="text-xs text-slate-400">Generates custom workspace rules causing any activated agent to construct automated test scripts before building code.</p>
+              <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 flex justify-between items-center">
+                <code class="font-mono text-xs text-slate-300">Set-Content -Path .agents\rules\superpowers-tdd.md -Value "..."</code>
+                <button onclick="copyCode(this, 'Set-Content -Path .agents\\\\rules\\\\superpowers-tdd.md -Value @`\\n# Superpowers TDD Core Rule\\nBefore writing ANY production code:\\n1. You must write a comprehensive failing test.\\n`@')" class="text-slate-500 hover:text-white text-xs flex items-center gap-1"><i class="fa-regular fa-copy"></i> Copy</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="p-6 flex flex-col md:flex-row gap-4 items-start hover:bg-slate-900/60 transition-colors duration-150">
+            <span class="w-8 h-8 rounded-lg bg-sky-500/10 text-sky-400 flex items-center justify-center font-bold text-sm shrink-0 border border-sky-500/20">4</span>
+            <div class="space-y-2 flex-grow">
+              <h5 class="font-bold text-white text-sm">Bootstrap Claude Memory Server</h5>
+              <p class="text-xs text-slate-400">Applies background mapping so AGY boots memory tracking snapshots locally inside the workspace folder.</p>
+              <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 flex justify-between items-center">
+                <code class="font-mono text-xs text-slate-300">Set-Content -Path .agents\mcp_config.json -Value "{...}"</code>
+                <button onclick="copyCode(this, 'Set-Content -Path .agents\\\\mcp_config.json -Value @`\\n{\\n  \"mcpServers\": {\\n    \"claude-mem\": {\\n      \"command\": \"npx\",\\n      \"args\": [\"-y\", \"@thedotmack/claude-mem\"]\\n    }\\n  }\\n}\\n`@')" class="text-slate-500 hover:text-white text-xs flex items-center gap-1"><i class="fa-regular fa-copy"></i> Copy</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-slate-800 bg-slate-950 py-10 mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+      <p class="text-sm text-slate-500">AGY IDE Workspace Custom Manager. Crafted to prevent global context bleed-over.</p>
+      <div class="flex justify-center gap-6">
+        <a href="https://github.com/garrytan/gstack" target="_blank" class="text-slate-400 hover:text-white text-xs flex items-center gap-1.5"><i class="fa-brands fa-github"></i> Garry Tan Stack</a>
+        <span class="text-slate-700">|</span>
+        <a href="https://github.com/thedotmack/claude-mem" target="_blank" class="text-slate-400 hover:text-white text-xs flex items-center gap-1.5"><i class="fa-brands fa-github"></i> Claude Mem MCP</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Application Logic (Interactive Sandbox & Filtering Routing) -->
+  <script>
+    // Robust Clipboard Copy Handler targeting Fallback options inside IFrame views
+    function copyToClipboard(text) {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(() => {
+          showToast("Copied to clipboard!");
+        }).catch(err => {
+          fallbackCopyText(text);
+        });
+      } else {
+        fallbackCopyText(text);
+      }
+    }
+
+    function fallbackCopyText(text) {
+      const textArea = document.createElement("textarea");
+      textArea.value = text;
+      textArea.style.position = "fixed"; 
+      textArea.style.left = "-999999px";
+      textArea.style.top = "-999999px";
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      try {
+        document.execCommand('copy');
+        showToast("Copied to clipboard!");
+      } catch (err) {
+        showToast("Failed to copy automatically.");
+      }
+      document.body.removeChild(textArea);
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById("toast");
+      const toastMsg = document.getElementById("toast-message");
+      toastMsg.innerText = message;
+      toast.classList.remove("translate-y-20", "opacity-0");
+      toast.classList.add("translate-y-0", "opacity-100");
+      
+      setTimeout(() => {
+        toast.classList.add("translate-y-20", "opacity-0");
+        toast.classList.remove("translate-y-0", "opacity-100");
+      }, 2500);
+    }
+
+    function copyCommand(btn, cmd) {
+      copyToClipboard(cmd);
+      animateButton(btn, "Copy Prompt");
+    }
+
+    function copyCode(btn, code) {
+      copyToClipboard(code);
+      animateButton(btn, "Copy");
+    }
+
+    function animateButton(btn, originalText) {
+      const originalHTML = btn.innerHTML;
+      btn.innerHTML = `<i class="fa-solid fa-check text-emerald-500 text-xs"></i> <span class="text-emerald-500 text-xs font-semibold">Copied!</span>`;
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.innerHTML = originalHTML;
+        btn.disabled = false;
+      }, 2000);
+    }
+
+    // Dark/Light Theme Toggle Logic
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeToggleIcon = document.getElementById('theme-toggle-icon');
+    
+    // Check local storage or default to dark mode
+    if (localStorage.getItem('theme') === 'light') {
+      document.body.classList.add('light');
+      themeToggleIcon.className = 'fa-solid fa-sun';
+    } else {
+      document.body.classList.remove('light');
+      themeToggleIcon.className = 'fa-solid fa-moon';
+    }
+    
+    themeToggleBtn.addEventListener('click', () => {
+      if (document.body.classList.contains('light')) {
+        document.body.classList.remove('light');
+        localStorage.setItem('theme', 'dark');
+        themeToggleIcon.className = 'fa-solid fa-moon';
+        showToast("Switched to Dark Mode");
+      } else {
+        document.body.classList.add('light');
+        localStorage.setItem('theme', 'light');
+        themeToggleIcon.className = 'fa-solid fa-sun';
+        showToast("Switched to Light Mode");
+      }
+    });
+
+    // CLI Interactive Handler
+    const cliInput = document.getElementById('cli-input');
+    const terminalContent = document.getElementById('terminal-content');
+
+    cliInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        const command = cliInput.value.trim();
+        if (!command) return;
+
+        // Print entered command
+        const cmdLine = document.createElement('div');
+        cmdLine.className = 'text-slate-300 font-mono mt-4 border-t border-slate-800/40 pt-2';
+        cmdLine.innerHTML = `PS C:\\Users\\admin\\my-project&gt; <span class="text-sky-400">${escapeHtml(command)}</span>`;
+        terminalContent.appendChild(cmdLine);
+
+        // Process command
+        const normalizedCmd = command.toLowerCase();
+        let simType = '';
+
+        if (normalizedCmd.startsWith('/refactor') || normalizedCmd.startsWith('/tdd')) {
+          simType = 'tdd';
+        } else if (normalizedCmd.startsWith('/design-review')) {
+          simType = 'design';
+        } else if (normalizedCmd.startsWith('/code-review')) {
+          simType = 'review';
+        } else if (normalizedCmd.startsWith('/security-scan')) {
+          simType = 'security';
+        } else if (normalizedCmd.startsWith('/plan-ceo-review')) {
+          simType = 'ceo';
+        } else if (normalizedCmd.startsWith('/technical-review')) {
+          simType = 'tech';
+        } else if (normalizedCmd.startsWith('/mcp') || normalizedCmd === '/memory') {
+          simType = 'memory';
+        } else if (normalizedCmd === 'clear' || normalizedCmd === 'cls') {
+          terminalContent.innerHTML = `
+            <div class="text-slate-400"># Choose an action from the map, search directory, or type a slash command below (e.g., /code-review, /security-scan, /design-review, /plan-ceo-review, /refactor, /technical-review).</div>
+            <div class="text-slate-500 mt-2">PS C:\\Users\\admin\\my-project&gt; <span class="animate-pulse">_</span></div>
+          `;
+          cliInput.value = '';
+          return;
+        } else if (normalizedCmd === 'help' || normalizedCmd === '?') {
+          const helpResult = document.createElement('div');
+          helpResult.className = 'text-slate-400 space-y-1 mt-2';
+          helpResult.innerHTML = `
+            <div>Available slash commands:</div>
+            <div class="pl-4 text-sky-400">/refactor [module] <span class="text-slate-500">- Simulates TDD Guardrails</span></div>
+            <div class="pl-4 text-purple-400">/design-review [view] <span class="text-slate-500">- Simulates Human-Centric UI Review</span></div>
+            <div class="pl-4 text-pink-400">/code-review <span class="text-slate-500">- Simulates Parallel Commit Review</span></div>
+            <div class="pl-4 text-amber-400">/security-scan <span class="text-slate-500">- Simulates Pre-flight Security Scan</span></div>
+            <div class="pl-4 text-emerald-400">/memory <span class="text-slate-500">- Checks Memory MCP status</span></div>
+            <div class="pl-4 text-indigo-400">/technical-review [dir] <span class="text-slate-500">- Simulates Engineering Manager review</span></div>
+            <div class="pl-4 text-sky-300">/plan-ceo-review <span class="text-slate-500">- Spawns CEO planner</span></div>
+            <div class="pl-4 text-slate-300">clear / cls <span class="text-slate-500">- Clears the terminal screen</span></div>
+          `;
+          terminalContent.appendChild(helpResult);
+          cliInput.value = '';
+          terminalContent.scrollTop = terminalContent.scrollHeight;
+          return;
+        }
+
+        if (simType) {
+          // Run simulation output
+          setTimeout(() => {
+            const simResult = document.createElement('div');
+            simResult.className = 'mt-2 space-y-1';
+            simResult.innerHTML = getSimulationHtml(simType);
+            terminalContent.appendChild(simResult);
+            terminalContent.scrollTop = terminalContent.scrollHeight;
+          }, 150);
+        } else {
+          // Unrecognized command
+          const errLine = document.createElement('div');
+          errLine.className = 'text-red-400 font-mono mt-2';
+          errLine.innerText = `Command not found: "${command}". Type "help" to see available commands.`;
+          terminalContent.appendChild(errLine);
+        }
+
+        cliInput.value = '';
+        // Ensure scroll to bottom
+        terminalContent.scrollTop = terminalContent.scrollHeight;
+      }
+    });
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.innerText = text;
+      return div.innerHTML;
+    }
+
+    // Dynamic Terminal simulation workflows
+    function simulateAction(type) {
+      let commandText = "";
+      switch(type) {
+        case 'tdd': commandText = "/refactor auth"; break;
+        case 'design': commandText = "/design-review layout"; break;
+        case 'review': commandText = "/code-review"; break;
+        case 'security': commandText = "/security-scan"; break;
+        case 'memory': commandText = "/mcp status"; break;
+        case 'ceo': commandText = "/plan-ceo-review auth-token"; break;
+        case 'tech': commandText = "/technical-review ./src"; break;
+      }
+      
+      // Append entered command
+      const cmdLine = document.createElement('div');
+      cmdLine.className = 'text-slate-300 font-mono mt-4 border-t border-slate-800/40 pt-2';
+      cmdLine.innerHTML = `PS C:\\Users\\admin\\my-project&gt; <span class="text-sky-400">${commandText}</span>`;
+      terminalContent.appendChild(cmdLine);
+
+      // Append simulation result
+      const simResult = document.createElement('div');
+      simResult.className = 'mt-2 space-y-1';
+      simResult.innerHTML = getSimulationHtml(type);
+      terminalContent.appendChild(simResult);
+      
+      terminalContent.scrollTop = terminalContent.scrollHeight;
+      showToast("Triggered terminal simulation!");
+    }
+
+    function getSimulationHtml(type) {
+      switch(type) {
+        case 'tdd':
+          return `
+<div class="text-emerald-400 font-bold">&gt; /plan Refactoring authentication logic</div>
+<div class="text-slate-300 mt-1">[Superpowers] Reading local .agents/rules/superpowers-tdd.md ...</div>
+<div class="text-amber-400 font-mono mt-1">[Superpowers Intercept] HALTING production code generation.</div>
+<div class="text-slate-400 font-mono">[Superpowers Intercept] Writing a failing test to auth.test.js first:</div>
+<div class="text-red-400 mt-1">✗ FAIL: auth.test.js - expected validateSession() to fail on empty session strings</div>
+<div class="text-sky-400 mt-2">✓ Test written and observed failing correctly. Unlocking implementation stage...</div>
+<div class="text-emerald-500 mt-1">✓ SUCCESS: Production code created and verified green. All tests pass!</div>
+          `;
+        case 'design':
+          return `
+<div class="text-purple-400 font-bold">&gt; /design-review Generate primary form layout</div>
+<div class="text-slate-300 mt-1">[Design Review] Loading Anthropic design token definitions...</div>
+<div class="text-purple-300 font-mono mt-1">[Specs Imposed]:</div>
+<div class="text-slate-400">- Grid padding set dynamically with fluid w-full rules (no static widths)</div>
+<div class="text-slate-400">- High color depth: deep slate backdrop accenting primary actions</div>
+<div class="text-emerald-400 mt-1">[Approved] Layout is compliant with modern, premium UX system. No generic AI styles detected.</div>
+          `;
+        case 'review':
+          return `
+<div class="text-pink-400 font-bold">&gt; /code-review Checking active staged changes</div>
+<div class="text-slate-300 mt-1">[Review Loop] Launching parallel analytical agent systems...</div>
+<div class="text-slate-400 font-mono mt-1">Agent 1 (Style): Validated clean semicolons and functional consistency.</div>
+<div class="text-slate-400 font-mono">Agent 2 (Regressions): Checking import statements. No deprecated packages found.</div>
+<div class="text-slate-400 font-mono">Agent 3 (Structure): Verified design conforms to strict single-file bundle layout.</div>
+<div class="text-emerald-400 font-bold mt-2">✓ All parallel checks passed cleanly. Safe to push to upstream production!</div>
+          `;
+        case 'security':
+          return `
+<div class="text-amber-400 font-bold">&gt; /security-scan Examining credentials and endpoints</div>
+<div class="text-slate-300 mt-1">[Security Engine] Initiating workspace pre-flight audit...</div>
+<div class="text-slate-400 font-mono mt-1">- Checking environment configurations: OK</div>
+<div class="text-slate-400 font-mono">- Searching for active key file leakages: None found</div>
+<div class="text-slate-400 font-mono">- Checking dependency imports: OK</div>
+<div class="text-emerald-400 font-bold mt-2">✓ Vulnerability assessment complete. Clean security bill of health.</div>
+          `;
+        case 'memory':
+          return `
+<div class="text-emerald-400 font-bold">&gt; /mcp status</div>
+<div class="text-slate-300 mt-1">[MCP Connector] Querying active local server connections...</div>
+<div class="text-slate-400 mt-1">Found Server: <span class="text-emerald-400">@thedotmack/claude-mem</span></div>
+<div class="text-slate-400 font-mono">- Active Memory Location: ./.agents/memory</div>
+<div class="text-slate-400 font-mono">- Target entities tracked: 14 project guidelines, 3 setup records</div>
+<div class="text-sky-300 mt-2">✓ Claude Mem successfully bridging context records between developer sessions!</div>
+          `;
+        case 'ceo':
+          return `
+<div class="text-sky-400 font-bold">&gt; /plan-ceo-review Build simple authentication token model</div>
+<div class="text-slate-300 mt-1">[CEO Strategist] Initiating scope review interview...</div>
+<div class="text-amber-300 font-bold mt-2">? Scope Selection: Choosing Strategic Direction</div>
+<div class="text-slate-400 mt-1">A) Hold Scope: Return basic base64 key generator</div>
+<div class="text-slate-400">B) Selective Expansion: Integrate cryptographically secure JWT model (Recommended)</div>
+<div class="text-slate-400">C) Scope Expansion: Include fully managed multi-factor login API integrations</div>
+<div class="text-slate-500 mt-2">Please choose option A, B, or C to proceed into the active design review loop...</div>
+          `;
+        case 'tech':
+          return `
+<div class="text-indigo-400 font-bold">&gt; /technical-review ./src/controllers</div>
+<div class="text-slate-300 mt-1">[Engineering Manager] Auditing directory structure and technical debt...</div>
+<div class="text-slate-400 font-mono mt-1">- Directory structure: Standardized OK</div>
+<div class="text-slate-400 font-mono">- Import guidelines check: Passed</div>
+<div class="text-slate-400 font-mono">- Code complexity limits: Passed (No files exceed 300 lines)</div>
+<div class="text-emerald-400 font-bold mt-2">✓ Technical review complete. Architecture conforms to strict modular design principles.</div>
+          `;
+        default:
+          return '';
+      }
+    }
+
+    // Dynamic Filter System
+    function filterSkills(category) {
+      const cards = document.querySelectorAll(".skill-card");
+      const chips = document.querySelectorAll("#filter-chips button");
+      
+      // Update chip CSS highlights
+      chips.forEach(chip => {
+        chip.classList.remove("bg-sky-500", "text-white");
+        chip.classList.add("bg-slate-900", "text-slate-400");
+      });
+
+      const activeChip = Array.from(chips).find(c => c.getAttribute('onclick').includes(category));
+      if (activeChip) {
+        activeChip.classList.add("bg-sky-500", "text-white");
+        activeChip.classList.remove("bg-slate-900", "text-slate-400");
+      }
+
+      // Filter card display
+      cards.forEach(card => {
+        if (category === 'all' || card.getAttribute("data-category") === category) {
+          card.style.display = "flex";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    }
+
+    // Dynamic Search System
+    document.getElementById("skillSearch").addEventListener("input", function(e) {
+      const query = e.target.value.toLowerCase();
+      const cards = document.querySelectorAll(".skill-card");
+
+      cards.forEach(card => {
+        const searchTags = card.getAttribute("data-search").toLowerCase();
+        if (searchTags.includes(query)) {
+          card.style.display = "flex";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -11,7 +11,7 @@ Welcome to the **Vibe Coding Course** repository! This index serves as your cent
     *   *Set your AI's non-negotiable baseline identity and rules via App Settings before you ever type a chat message.*
 
 *   **[Lesson 2: The Anatomy of a Perfect Prompt (The 5-Part Framework)](lessons/Lesson_2_The_5_Part_Framework.md)**
-    *   *Learn how to structure your prompts using Identity, Task, Context, Constraints, and Output Format to eliminate AI guesswork.*
+    *   *Learn how to structure your prompts using Identity, Task, Context, Constraints, and Output Format — and why the order you type them directly affects AI performance.*
 
 *   **[Lesson 3: The Art of "Chunking"](lessons/Lesson_3_The_Art_of_Chunking.md)**
     *   *Learn how to handle large projects and datasets without confusing the AI or exceeding token limits.*
@@ -65,4 +65,8 @@ Welcome to the **Vibe Coding Course** repository! This index serves as your cent
 Want to understand how this repository is actually built to support the AI? 
 *   **[View the Stateful Prompting Structure Guide (HTML)](resources/Stateful_Prompting_Structure.html)** 
     *(This interactive map explains what `AGENTS.md`, `CONTEXT.md`, and `MEMORY.md` actually do under the hood).*
+
+## Quick Reference Pages
+*   **[The 5 Core Elements of an Effective Prompt (HTML)](resources/Prompt_Core_Elements.html)**
+    *(Interactive reference card: the 5 elements, outside-in ordering rationale, the "Lost in the Middle" research, and quick-reference grid by task type.)*
 

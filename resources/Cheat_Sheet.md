@@ -28,6 +28,8 @@ Keep this guide handy when building autonomous AI workflows or debugging agentic
 4.  **Constraints:** What should the AI avoid doing? (e.g., "Do not use third-party libraries, only use the standard library.")
 5.  **Output Format:** What should the physical result look like? (e.g., "Output the code in a single Python file and provide a markdown table of the functions.")
 
+> **Type them in this order.** Each element narrows the AI's interpretation before the next adds detail (outside-in). LLM accuracy drops 15–25% for information placed in the middle of a prompt — front-load Identity and Task so all subsequent tokens are interpreted under the correct frame. *(Liu et al., 2023 — "Lost in the Middle," arXiv:2307.03172)*
+
 ---
 
 ## The InfoSec Triad (CIA)

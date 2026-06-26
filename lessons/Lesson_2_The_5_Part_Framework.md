@@ -44,6 +44,36 @@ If you want a table, ask for a table. If you want a markdown file, ask for a mar
 *   *Weak:* "Give me the results."
 *   *Strong:* "Format the output as a Markdown table with three columns: Concept, Definition, and Real-World Example."
 
+---
+
+## Why Order Matters: The Outside-In Principle
+
+The 5 parts above are listed in the order you should **type them**. This sequence is not arbitrary — it is grounded in how transformer-based LLMs process information at inference time.
+
+### The Outside-In Logic
+
+Each element narrows the model's interpretation space before the next one adds detail:
+
+| Order | Element | Why it goes here |
+| :---: | :--- | :--- |
+| 1 | **Identity** | Establishes role before the model reads anything else. Every subsequent token is weighted against this frame. |
+| 2 | **Task** | States the goal while the identity is fresh — the model now scans everything that follows with purpose. |
+| 3 | **Context** | Background material is interpreted through the combined lens of role + task simultaneously, not neutrally. |
+| 4 | **Constraints** | Applied to a solution the model is already forming, making guardrails more binding than if placed earlier. |
+| 5 | **Output Format** | A final narrowing at the moment of generation — collapses the solution space last, not first. |
+
+### The Research Backing: "Lost in the Middle"
+
+LLMs do not read prompts linearly — they weight tokens by **position**. A landmark study by Liu et al. (2023), published in *Transactions of the Association for Computational Linguistics*, demonstrated that models perform **15–25 percentage points worse** when critical information is placed in the middle of a long context. Accuracy holds at the start and end of the context window but collapses in the middle — a **U-shaped performance curve**.
+
+The root cause is structural. The attention mechanism in modern transformers uses Rotary Position Embedding (RoPE), which causes attention scores to decay naturally for tokens far apart in the sequence. Initial tokens accumulate attention influence across every subsequent layer — a phenomenon called **attention sinks**. Earlier tokens carry disproportionately more interpretive weight.
+
+**The practical rule:** Put your most important framing — Identity and Task — at the very top. The model encodes everything that follows against what it has already seen.
+
+> **Source:** Liu et al., "Lost in the Middle: How Language Models Use Long Contexts." *Transactions of the Association for Computational Linguistics*, 2024. arXiv:2307.03172.
+
+---
+
 ### Reference Card: The Prompt Structure Framework
 ![Prompt Structure Framework](assets/prompt_structure_framework.png)
 
