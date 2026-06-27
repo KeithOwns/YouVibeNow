@@ -1,22 +1,13 @@
-\# Current Project
+# Current Project
 
+## What we are building
 
+[Describe your project in 2-3 sentences]
 
-\## What we are building
+## What good looks like
 
-\[Describe your project in 2-3 sentences]
+[What does a successful output look like?]
 
+## What to avoid
 
-
-\## What good looks like
-
-\[What does a successful output look like?]
-
-
-
-\## What to avoid
-
-\[Common mistakes or things you do not want]
-
-
-
+[Common mistakes or things you do not want]

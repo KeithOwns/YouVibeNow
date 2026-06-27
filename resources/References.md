@@ -1,22 +1,13 @@
-\# References
+# References
 
+## Examples of good work
 
+[Paste an example or describe what you liked about it]
 
-\## Examples of good work
+## Relevant links
 
-\[Paste an example or describe what you liked about it]
+[URLs, docs, resources for this project]
 
+## Notes
 
-
-\## Relevant links
-
-\[URLs, docs, resources for this project]
-
-
-
-\## Notes
-
-\[Anything else Claude should know]
-
-
-
+[Anything else Claude should know]
