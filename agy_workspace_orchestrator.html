@@ -624,6 +624,76 @@
       </div>
     </section>
 
+    <!-- Section 5: Real Skill Inventory (from this Claude session, not simulated) -->
+    <section class="space-y-6">
+      <div>
+        <h3 class="text-lg font-bold text-white">Skills Currently Active in This Claude Session</h3>
+        <p class="text-sm text-slate-400">
+          This is the actual `Skill` tool list reported by Claude Code for this session &mdash; unlike the cards in
+          Section&nbsp;1/2 above (which describe a simulated/fictional "AGY" plugin stack: Garry Tan's
+          <code>gstack</code>, <code>claude-mem</code>, etc., none of which are real Claude Code components).
+          Real availability depends on which plugins are installed for this account/project.
+        </p>
+      </div>
+
+      <div class="border border-slate-800 bg-slate-900/40 rounded-xl overflow-hidden">
+        <div class="p-4 max-h-[480px] overflow-y-auto space-y-5 font-mono text-xs">
+
+          <div>
+            <h5 class="text-slate-200 font-bold text-sm mb-1.5 not-italic font-sans">superpowers</h5>
+            <p class="text-slate-400">using-superpowers, brainstorming, dispatching-parallel-agents, executing-plans, finishing-a-development-branch, receiving-code-review, requesting-code-review, subagent-driven-development, systematic-debugging, test-driven-development, using-git-worktrees, verification-before-completion, writing-plans, writing-skills</p>
+          </div>
+
+          <div>
+            <h5 class="text-slate-200 font-bold text-sm mb-1.5 font-sans">gsd (Get Stuff Done workflow suite)</h5>
+            <p class="text-slate-400">add-tests, ai-integration-phase, audit-fix, audit-milestone, audit-uat, autonomous, capture, cleanup, code-review, complete-milestone, config, debug, discuss-phase, docs-update, eval-review, execute-phase, explore, extract-learnings, fast, forensics, graphify, health, help, import, inbox, ingest-docs, manager, map-codebase, milestone-summary, mvp-phase, new-milestone, new-project, ns-context/ideate/manage/project/review/workflow, pause-work, phase, plan-phase, plan-review-convergence, pr-branch, profile-user, progress, quick, resume-work, review, review-backlog, secure-phase, settings, ship, sketch, spec-phase, spike, stats, surface, thread, ultraplan-phase, undo, update, validate-phase, verify-work, workspace, workstreams</p>
+          </div>
+
+          <div>
+            <h5 class="text-slate-200 font-bold text-sm mb-1.5 font-sans">code-modernization</h5>
+            <p class="text-slate-400">modernize-assess, modernize-brief, modernize-extract-rules, modernize-harden, modernize-map, modernize-preflight, modernize-reimagine, modernize-status, modernize-transform, modernize-uplift (+ workflow-only variants: portfolio-assess, reimagine-scaffold, uplift-deltas)</p>
+          </div>
+
+          <div>
+            <h5 class="text-slate-200 font-bold text-sm mb-1.5 font-sans">code-review / quality tooling</h5>
+            <p class="text-slate-400">code-review, simplify, pr-review-toolkit:review-pr, commit-commands (commit, commit-push-pr, clean_gone), claude-md-management:revise-claude-md / claude-md-improver, fewer-permission-prompts, plugin-dev:create-plugin, hookify (hookify, configure, list, help, writing-rules)</p>
+          </div>
+
+          <div>
+            <h5 class="text-slate-200 font-bold text-sm mb-1.5 font-sans">cloud / platform integrations</h5>
+            <p class="text-slate-400">cloudflare:* (agents-sdk, build-agent, build-mcp, cloudflare, durable-objects, sandbox-sdk, turnstile-spin, web-perf, workers-best-practices, wrangler, etc.), vercel:* (ai-sdk, ai-gateway, auth, bootstrap, deploy, deployments-cicd, env, marketplace, nextjs, vercel-cli, vercel-storage, etc.), supabase, agent-sdk-dev:new-sdk-app</p>
+          </div>
+
+          <div>
+            <h5 class="text-slate-200 font-bold text-sm mb-1.5 font-sans">design / frontend</h5>
+            <p class="text-slate-400">frontend-design, figma:* (figma-use, figma-generate-design, figma-generate-library, figma-code-connect, figma-implement-motion, figma-swiftui, figma-use-figjam, figma-use-motion, figma-use-slides), design:* (accessibility-review, design-critique, design-handoff, design-system, research-synthesis, user-research, ux-copy), build-with-wordpress:* (preview-designs, quick-build, site-specification)</p>
+          </div>
+
+          <div>
+            <h5 class="text-slate-200 font-bold text-sm mb-1.5 font-sans">research / data / business</h5>
+            <p class="text-slate-400">deep-research, data:* (analyze, build-dashboard, create-viz, explore-data, sql-queries, statistical-analysis, validate-data, write-query), product-management:*, marketing:*, sales:*, finance:*, human-resources:*, operations:*, engineering:*, small-business:*, searchfit-seo:*, bio-research:*, legal:*, customer-support:*, enterprise-search:*</p>
+          </div>
+
+          <div>
+            <h5 class="text-slate-200 font-bold text-sm mb-1.5 font-sans">anthropic-skills (general utility)</h5>
+            <p class="text-slate-400">algorithmic-art, brand-guidelines, canvas-design, consolidate-memory, doc-coauthoring, docx, internal-comms, learn, mcp-builder, pdf, pptx, schedule, setup-cowork, skill-creator, slack-gif-creator, theme-factory, web-artifacts-builder, xlsx, lite-cge-* (holy-trifecta, scriptwriter, video-idea-finder, etc.)</p>
+          </div>
+
+          <div>
+            <h5 class="text-slate-200 font-bold text-sm mb-1.5 font-sans">housekeeping / harness</h5>
+            <p class="text-slate-400">update-config, keybindings-help, verify, run, claude-api, init, review, security-review</p>
+          </div>
+
+          <div class="pt-3 border-t border-slate-800/60 text-slate-500">
+            Generated by Claude Code from the live `Skill` tool list, 2026-06-26. This is the catalog of skills the
+            assistant can invoke &mdash; it is not the same as the "23 nested agent personas" / 6-plugin map described
+            in Sections&nbsp;1&ndash;2, which are illustrative placeholder content for this dashboard mockup, not a real
+            installed configuration.
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <footer class="border-t border-slate-800 bg-slate-950 py-10 mt-20">
