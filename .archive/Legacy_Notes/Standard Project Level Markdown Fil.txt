@@ -1,6 +1,0 @@
-Standard Project Level Markdown Files:
-AGENTS.md
-[LLM].md
-CONTEXT.md
-MEMORY.md
-SKILLS.md

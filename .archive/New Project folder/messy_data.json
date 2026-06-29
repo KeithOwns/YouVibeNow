@@ -1,6 +1,0 @@
-{
-"name":   "test module", "active":true,
-  "nested" :{"x": 1,
-"y":2}
-,"items" : [ 1, 2,  3 ]
-}
