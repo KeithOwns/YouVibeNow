@@ -1,8 +1,13 @@
 # Analysis: The 5 Core Elements of a High-Fidelity Prompt
 
-> **Provenance:** Reconstructed 2026-06-29 from the Gemini chat log ("Analysis of High-Fidelity
-> Prompt Elements", originally a vector-outline PDF with no extractable text). Substance preserved;
-> over-reaching claims flagged in **Critical notes**.
+> **Provenance:** This file's own dedicated PDF (`Technical Analysis_The 5 Core Elements of a
+> High-Fidelity Prompt.pdf`) is genuinely empty — confirmed 2026-06-29: 1.9 KB, 4 pages, 0
+> characters of text, and visually blank when rendered. No original content is recoverable from
+> that file. **The element names below are corrected to the real terms**, cross-sourced from §3
+> ("The Outside-In Prompting Strategy") of `Technical Brief_The Mathematical Mechanics of
+> High-Fidelity Prompting.pdf`, which independently covers this exact same topic and *does* render
+> with legible content. The original placeholder version of this file used invented generic labels
+> (Role/Task/Context/Format/Guardrails); those are now replaced with the confirmed real terms.
 
 ## Terminology
 
@@ -13,15 +18,19 @@
 
 ## The five elements (outside-in order)
 
-The claim is that a prompt is most reliable when structured **outside-in** — the most important
-framing at the very start and very end, detail in the middle:
+Per the cross-sourced original (see Provenance), the claim is that a prompt is most reliable when
+structured **outside-in** — the most important framing at the very start and very end, detail in
+the middle:
 
-1. **Role / Persona** — who the model is acting as (prefix; sets the whole reasoning frame).
-2. **Task / Objective** — the single concrete goal.
-3. **Context / Inputs** — supporting material, files, constraints (the bulk; sits in the middle).
-4. **Format / Output contract** — exact shape of the expected answer.
-5. **Guardrails / Reinforcement** — what to avoid, plus a restatement of the key constraint
-   (suffix; catches the model's attention on the way out).
+1. **Identity & Persona** (Absolute Start) — "Leverages the 'Attention Sink' at p[osition 1]"
+   *(source table cut off — see [[Analysis_Mathematical_Mechanics_High_Fidelity]] for the exact
+   transcription with the cutoff marked)*.
+2. **Primary Task** (Start) — "Establishes Query trajectory early."
+3. **Background Context and Schemas** (Middle) — "Placed in the 'Middle' context vall[ey]... large
+   reference files sit safely he[re]" *(cut off in source)*.
+4. **Guard Constraints and Banned Patterns** (Near End) — "Re-activates attention directly pri[or]
+   to the generation phase" *(cut off in source)*.
+5. **Output Format** (Absolute End) — "Sits at the generation boundary" *(cut off in source)*.
 
 The ordering rationale: models attend most strongly to the **beginning and end** of a prompt, so
 the highest-stakes instructions (Role, Guardrails) are placed at those boundaries, and the

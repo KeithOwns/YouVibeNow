@@ -1,49 +1,65 @@
-# Analysis: The 6 Types of Markdown Files in a Workspace
+# Analysis: The 6 Types of Markdown Files in Your Workspace
 
-> **Provenance:** Reconstructed 2026-06-29 from the Gemini "Webapp Code Review and Optimization"
-> chat log. The original was exported as a vector-outline PDF (no extractable text), so this is a
-> faithful re-creation of the *substance*, not a byte copy. Claims have been checked against the
-> live `ai_context_tree.html` dashboard and corrected where they diverged — see **Corrections**.
+> **Provenance:** Transcribed 2026-06-29 directly from the original PDF (1 page) via visual
+> reading — the file has no extractable text layer (confirmed: 0 characters via text extraction),
+> but renders as a legible image. This supersedes an earlier version of this file reconstructed
+> only from the Gemini chat-log narrative; the text below is the verbatim original content,
+> including its file citations.
 
-## The six tool-loaded context-file types
+## Original analysis
 
-These are the files an AI coding tool reads **automatically**, keyed by filename:
+*"An audit of your files reveals that the concept of '6 types of markdown files' appears in two
+highly structured ways within your codebase:"*
 
-| # | File | Loaded by | Reach |
-|---|------|-----------|-------|
-| 1 | `CLAUDE.md` | Claude Code | Global (`~/.claude/`) or project-root |
-| 2 | `GEMINI.md` | Gemini CLI + Antigravity IDE | Global or project-root |
-| 3 | `AGENTS.md` | Codex CLI, Antigravity, other open-standard tools | Project-level |
-| 4 | `.cursorrules` / `*.mdc` | Cursor | Global or directory-level |
-| 5 | `.windsurfrules` | Windsurf | Directory-level |
-| 6 | `.clinerules` | Cline / Roo Code | Directory-level |
+### 1. The 6 Dashboard Categories (By Agent Utility)
 
-A seventh signal, `copilot-instructions.md` (GitHub Copilot), is tracked by the dashboard but sits
-outside the "6 standard files" framing.
+*As recorded in `project_ai_context_tree.md` (File `f20`) and rendered dynamically by your
+`ai_context_tree.html` dashboard, your files are aggregated into 6 core types based on how LLMs
+ingest them:*
 
-## The thin-prompt principle
+1. **`CLAUDE.md`** — Dedicated directory rules auto-loaded specifically by the Claude Code CLI.
+2. **`GEMINI.md`** — Rules and instructions auto-loaded by the Gemini CLI and Antigravity IDE.
+3. **`AGENTS.md`** — Universal multi-agent boundary systems compatible with Codex CLI and open
+   standard tools.
+4. **`SKILL.md`** — Packaged, reusable workflows loaded on-demand via progressive disclosure.
+5. **`memory` (auto-mem .md)** — Claude Code's per-directory memory files tracking dynamic lessons
+   across sessions.
+6. **`Other .md`** — Static documentation (READMEs, logs, manuals) that are not auto-loaded but
+   read by the AI on demand.
 
-The pedagogy: keep **daily execution prompts "thin"** (only the immediate task) and let the
-**folder + file architecture carry durable context**. The six files do the heavy lifting so the
-active prompt stays small. This is exactly what the `ai_context_tree.html` dashboard visualizes —
-every auto-loaded file, where it lives, and what session it would inject into.
+### 2. The 6 Standard Project-Level Files (Vibe Coding Starter Kit)
 
-## Two ways "6 types" appears in this workspace
+*As documented in the `YouVibeNow` course curriculum and chat history logs
+(`YouVibeNow/.archive/chat_history.md` — File `f64`), you define a standard set of 6 essential
+files that every codebase or workspace folder should contain to maximize stateful prompting
+performance:*
 
-1. **Tool-loaded context files** — the table above (what a tool reads without being told to).
-2. **Project folder-template categories** — the standard doc set a new project scaffolds
-   (README, CONTEXT, TASKS, etc.), which are *content* docs, not tool-loaded rules.
+1. **`AGENTS.md`** — Anchors the agent's identity, role, and absolute safety constraints (e.g.,
+   backup requirements).
+2. **`CONTEXT.md`** — Outlines the project background, tech stack, directory layouts, and "what
+   good looks like" definitions.
+3. **`TASKS.md`** — Keeps track of the active sprint with structured Markdown checklists
+   (`- [ ]`, `- [/]`, `- [x]`).
+4. **`MEMORY.md`** — Acts as the dynamic brain, logging learned preferences, self-corrections, and
+   design pivots.
+5. **`SKILL.md`** (inside `skills/`) — Packages repetitive, complex multi-step execution tasks into
+   single-command automation macros.
+6. **`README.md`** — Serves as the human-facing front-door introducing the repository.
 
-These are different axes and were occasionally conflated in the source material.
+## Reconciling the two framings (added during review, not in the original)
 
-## Corrections vs. the original Gemini analysis
+These are genuinely two different axes, not a contradiction:
 
-- **Anything not in the table is never auto-loaded.** Plain `*.md` (README, notes, logs) is only
-  read if a rule file or the user explicitly points the agent at it. The dashboard renders these
-  gray as `(Other_.md)`.
-- The original claimed the dashboard's memory color was `#ffaa3b` (gold). The live file actually
-  uses `#ff8b38` (orange) for auto-memory. Claude `#ff6b35`, Gemini `#a78bfa`, Agents `#22c55e`
-  are correct.
+- **Framing 1** = *what a tool auto-loads, by filename* — the dashboard's actual `TYPE`/`scope`
+  taxonomy (`gen_tree.ps1`/`ai_context_tree.html`).
+- **Framing 2** = *what a new project should scaffold* — a content-authoring checklist for the
+  YouVibeNow curriculum's "vibe coding starter kit," largely orthogonal to auto-load behavior
+  (e.g. `CONTEXT.md`/`TASKS.md`/`README.md` are never auto-loaded by any tool; they're read only
+  because an `AGENTS.md`/`CLAUDE.md` instruction or the user points the agent at them).
+
+Only Framing 1's filenames are confirmed auto-loaded by real tools (per the dashboard's own
+Filename/Auto-loaded-by table): `CLAUDE.md`, `GEMINI.md`, `AGENTS.md`, `.cursorrules`/`*.mdc`,
+`.windsurfrules`, `.clinerules`, `copilot-instructions.md`. `README.md` is never auto-loaded.
 
 ## See also
 

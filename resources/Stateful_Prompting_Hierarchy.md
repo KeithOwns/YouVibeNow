@@ -1,54 +1,58 @@
 # Stateful Prompting Hierarchy
 
-> **Provenance:** Reconstructed 2026-06-29 from the Gemini chat log ("Stateful Prompting Hook
-> Options" + the surrounding code-review conversation; originals were vector-outline PDFs with no
-> extractable text). Concept preserved; marketing framing trimmed.
+> **Provenance:** Transcribed 2026-06-29 directly from the original PDF (`High-Fidelity Hooks_
+> Stateful Prompting Hierarchy.pdf`, 1 page) via visual reading — the file has no extractable text
+> layer (confirmed: 0 characters via text extraction), but renders as a legible image. This
+> supersedes an earlier version of this file reconstructed only from the Gemini chat-log narrative;
+> the text below is the verbatim original content.
 
-## Definition
+## Three hook options
 
-A **Stateful Prompting Hierarchy** is a folder-and-markdown-file organization system that holds an
-AI agent's durable context **in the file tree** rather than in each chat message. Because the
-context is stored (stateful), the live prompt can stay **thin** — it only carries the immediate
-task, while the hierarchy supplies role, standards, history, and project knowledge automatically.
+*"Here are three tailored directions to complete your hook, ranging from punchy educational
+marketing to rigorous technical engineering."*
 
-It is the system the `ai_context_tree.html` dashboard exists to visualize.
+### Option 1: The "Thin Prompting" Hook (Pedagogical & High-Yield)
+**Best for:** YouTube Shorts, Skool course intros, and beginners.
 
-## The layers (what gets injected, in order)
+> "So this is my **Stateful Prompting Hierarchy** (folder and markdown file organization system)
+> which completely cures AI amnesia by offloading your massive, repetitive system prompts directly
+> into your repository's directory tree—allowing you to write lightning-fast, single-sentence
+> 'thin prompts' that execute with 100% mathematical consistency every single time."
 
-1. **Global** — `~/.claude/CLAUDE.md`, `~/.gemini/GEMINI.md`. Always loaded, every project.
-2. **Project root** — `CLAUDE.md` / `GEMINI.md` / `AGENTS.md` at a repo root. Loaded when the
-   session's working directory is at or under that folder.
-3. **Nested** — the same files in a subfolder. Loaded only when the cwd is at/under *that* subfolder.
-4. **Auto-memory** — Claude Code's per-directory memory, written across sessions and re-injected
-   when you work in that directory.
-5. **On-demand** — `SKILL.md` skills: name + description listed upfront, full body loaded only when
-   invoked (not part of the always-on prompt).
+### Option 2: The "Attention-Sink" Hook (Deeply Technical & Authoritative)
+**Best for:** README documentation, developer portfolios, and advanced engineering articles.
 
-The dashboard's **"⛓ combined"** button on any project-root file shows the literal concatenation
-(global + project + auto-memory) that would be prepended to a new chat started there.
+> "So this is my **Stateful Prompting Hierarchy** (folder and markdown file organization system)
+> which aligns your local repository topology with the mathematical mechanics of transformer
+> self-attention—encoding your global safety rules and local domain context into persistent,
+> stateful boundary conditions that eliminate context drift and secure your file integrity."
 
-## Hook options (for articulating it)
+### Option 3: The "Engineering-over-Vibes" Hook (Engaging & Paradigm-Shifting)
+**Best for:** General productivity enthusiasts and transitioning developers.
 
-Completing *"This is my Stateful Prompting Hierarchy, which …"*:
+> "So this is my **Stateful Prompting Hierarchy** (folder and markdown file organization system)
+> which bridges the gap between chaotic, ephemeral 'vibe coding' and rigorous, deterministic
+> agentic engineering—turning the physical file system itself into the ultimate high-fidelity
+> prompt."
 
-- **Curriculum framing:** "…turns my file tree into the agent's long-term memory, so every prompt
-  starts with full project context and I never re-explain myself."
-- **Short-form / punchy:** "…so my AI already knows the rules before I say a word."
-- **Repo-doc framing:** "…a file-based context system where durable instructions live in the
-  hierarchy and daily prompts stay thin."
+## What this means in practice
 
-## Honest caveats
+A Stateful Prompting Hierarchy is the folder-and-markdown-file organization system that holds an
+AI agent's durable context **in the file tree** rather than in each chat message — the system the
+`ai_context_tree.html` dashboard exists to visualize. The layers (global → project root → nested →
+auto-memory → on-demand skills) are documented in `resources/Analysis_6_Markdown_File_Types.md`.
+
+## Honest caveats (added during review, not in the original)
 
 - **Cascading overrides get complex.** Global → project → nested → memory can conflict; tracing
-  *which* instruction won requires care (the dashboard's combined view helps).
-- **Tool-specific syntax drift.** `CLAUDE.md`, `GEMINI.md`, and `AGENTS.md` don't share identical
-  loading rules; the same file (`GEMINI.md`) is shared by Gemini CLI *and* Antigravity and can
-  conflict between them.
-- **Files must stay machine-readable.** Export supporting analyses as `.md`, not image-style PDFs —
-  otherwise the agents this system feeds can't actually read them.
+  *which* instruction won requires care (the dashboard's "⛓ combined" view helps).
+- **Marketing-hook language ("100% mathematical consistency," "cures AI amnesia") is rhetorical,
+  not literal.** Structuring context into files reduces repetition and drift; it doesn't guarantee
+  determinism — see the corrections in
+  [[Analysis_Mathematical_Mechanics_High_Fidelity]] for where the underlying math claims overreach.
 
 ## See also
 
 - [[Analysis_6_Markdown_File_Types]] — the file types this hierarchy is built from
 - [[Analysis_5_Core_Elements_High_Fidelity_Prompt]] — how a thin prompt is structured
-- [[Analysis_Mathematical_Mechanics_High_Fidelity]] — why boundary placement matters
+- [[Analysis_Mathematical_Mechanics_High_Fidelity]] — why boundary placement matters (with corrections)

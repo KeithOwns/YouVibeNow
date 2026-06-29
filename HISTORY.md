@@ -14,8 +14,11 @@ Converted the four Gemini-generated analyses (originally vector-outline PDFs wit
 - `resources/Analysis_Mathematical_Mechanics_High_Fidelity.md`
 - `resources/Stateful_Prompting_Hierarchy.md`
 
+### Changed
+- Re-transcribed 3 of the 4 analyses directly from their original PDFs (`High-Fidelity Hooks`, `Analysis_The 6 Types of Markdown Files`, `Technical Brief_The Mathematical Mechanics`) — they have no extractable text layer but render as legible images, which a dedicated PDF tool's text-extraction pass had missed. Initial "PDFs are unrecoverable" assessment was wrong; only `Technical Analysis_The 5 Core Elements` is genuinely empty (1.9 KB, 0 characters, confirmed blank) — that file's content is now cross-sourced from the matching section in the Mathematical Mechanics brief instead.
+
 ### Notes
-- Reconstructed from the Gemini chat-log narrative (the PDFs were unrecoverable). Each carries a provenance header, `[[wikilink]]` cross-references, and inline technical corrections — most notably that "Lost in the Middle" is driven by pre-training data distribution and RLHF, not RoPE positional decay, and that the Q/K/V→files mapping is metaphor, not literal math.
+- Each file carries a provenance header, `[[wikilink]]` cross-references, and inline technical corrections — most notably that "Lost in the Middle" is driven by pre-training data distribution and RLHF, not RoPE positional decay, and that the Q/K/V→files mapping is metaphor, not literal math. The Mathematical Mechanics file's source table (page 3) is cut off at the page margin in the original; truncated cells are marked rather than guessed.
 
 ## [2026-06-15] - Module 2 Completion & Memory Sync
 - **Goal**: Complete Module 2 and update project progress states.
