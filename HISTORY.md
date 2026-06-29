@@ -1,14 +1,19 @@
 # Change History (HISTORY.md)
 
+> **Format:** [Keep a Changelog](https://keepachangelog.com) style — newest first; changes grouped under `### Added / Changed / Fixed / Removed`. Entries from **2026-06-29** onward follow this convention; earlier entries use the legacy `Goal / Completed Changes` style and are kept as-is (historical record, not rewritten).
+
 ## [2026-06-29] - Prompt-Engineering Analyses Re-exported as Markdown
 
-- **Goal**: Convert the four Gemini-generated analyses (originally vector-outline PDFs with no extractable text) into machine-readable, indexable Markdown so they become first-class nodes in the ai_context_tree dashboard.
-- **Added** under `resources/`:
-  - `Analysis_6_Markdown_File_Types.md`
-  - `Analysis_5_Core_Elements_High_Fidelity_Prompt.md`
-  - `Analysis_Mathematical_Mechanics_High_Fidelity.md`
-  - `Stateful_Prompting_Hierarchy.md`
-- **Notes**: Reconstructed from the Gemini chat-log narrative (the PDFs were unrecoverable). Each carries a provenance header, `[[wikilink]]` cross-references, and inline technical corrections — most notably that "Lost in the Middle" is driven by pre-training data distribution and RLHF, not RoPE positional decay, and that the Q/K/V→files mapping is metaphor, not literal math.
+Converted the four Gemini-generated analyses (originally vector-outline PDFs with no extractable text) into machine-readable, indexable Markdown so they become first-class nodes in the ai_context_tree dashboard.
+
+### Added
+- `resources/Analysis_6_Markdown_File_Types.md`
+- `resources/Analysis_5_Core_Elements_High_Fidelity_Prompt.md`
+- `resources/Analysis_Mathematical_Mechanics_High_Fidelity.md`
+- `resources/Stateful_Prompting_Hierarchy.md`
+
+### Notes
+- Reconstructed from the Gemini chat-log narrative (the PDFs were unrecoverable). Each carries a provenance header, `[[wikilink]]` cross-references, and inline technical corrections — most notably that "Lost in the Middle" is driven by pre-training data distribution and RLHF, not RoPE positional decay, and that the Q/K/V→files mapping is metaphor, not literal math.
 
 ## [2026-06-15] - Module 2 Completion & Memory Sync
 - **Goal**: Complete Module 2 and update project progress states.
