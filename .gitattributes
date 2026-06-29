@@ -1,0 +1,6 @@
+# Normalize line endings: store as LF in the repo, check out native per-OS.
+# Silences the "LF will be replaced by CRLF" warnings and prevents cross-tool churn.
+* text=auto
+
+# PowerShell scripts: keep CRLF on checkout (Windows-native).
+*.ps1 text eol=crlf
