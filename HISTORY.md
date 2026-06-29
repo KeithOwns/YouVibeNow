@@ -1,6 +1,8 @@
 # Change History (HISTORY.md)
 
 > **Format:** [Keep a Changelog](https://keepachangelog.com) style — newest first; changes grouped under `### Added / Changed / Fixed / Removed`. Entries from **2026-06-29** onward follow this convention; earlier entries use the legacy `Goal / Completed Changes` style and are kept as-is (historical record, not rewritten).
+>
+> **Division of labor (added 2026-06-29):** entries here stay terse — *what* shipped, not why. Day-to-day specifics live in git commit history; decision rationale and rejected alternatives for anything with real tradeoffs live in [`docs/adr/`](docs/adr/) (empty so far — nothing here has met that bar yet).
 
 ## [2026-06-29] - Prompt-Engineering Analyses Re-exported as Markdown
 
