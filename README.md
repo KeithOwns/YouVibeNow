@@ -15,14 +15,14 @@ This repository contains a full 10-lesson curriculum designed to teach you **Age
 
 ## 📖 How to Read the Course
 You have two ways to consume this masterclass:
-1.  **The Interactive Repository:** Start at the [Table_of_Contents.md](Table_of_Contents.md) and click through the lessons. This allows you to explore the actual file architecture (like `AGENTS.md` and `CONTEXT.md`) that makes the AI run.
-2.  **The Master eBook:** If you prefer to read the entire course as a single document, navigate to `Outputs/Vibe_Coding_Masterclass.md`. (You can easily convert this file into a PDF).
+1.  **The Interactive Repository:** Start at the [Table_of_Contents.html](Table_of_Contents.html) and click through the lessons. This allows you to explore the actual file architecture (like `AGENTS.md` and `CONTEXT.md`) that makes the AI run.
+2.  **The Master eBook:** If you prefer to read the entire course as a single document, navigate to `Outputs/Vibe_Coding_Masterclass.html`.
 
 ## 📁 Repository Structure
 To keep things clean, the repository is organized as follows:
 *   `lessons/`: Contains the core Markdown files for all 10 lessons and 3 Capstone projects.
 *   `examples/`: Contains the successful, finalized output architectures from the Capstone stress tests (e.g., the Automated File Processor, the multi-agent Software Factory).
-*   `resources/`: Contains supplemental research, empirical data on Prompt Engineering frameworks, interactive HTML architecture guides, and the **[Quick Reference Cheat Sheet](resources/Cheat_Sheet.md)**.
+*   `resources/`: Contains supplemental research, empirical data on Prompt Engineering frameworks, interactive HTML architecture guides, and the **[Quick Reference Cheat Sheet](resources/Cheat_Sheet.html)**.
 *   `Outputs/`: Contains the compiled, single-file eBook version of the course.
 
 ## 🛠 Contributing

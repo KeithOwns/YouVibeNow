@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 1: Application-Level Global Instructions — YouVibeNow</title>
+<style>
+  :root{
+    --bg:#0f1117; --surface:#1e293b; --border:#334155; --muted:#475569;
+    --text:#e2e8f0; --subtle:#94a3b8; --accent:#a78bfa; --accent-bg:#2e1a4a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding:3rem 1.5rem;line-height:1.65}
+  .page{max-width:780px;margin:0 auto}
+  .breadcrumb{font-size:.78rem;color:var(--muted);margin-bottom:1.75rem}
+  .breadcrumb a{color:var(--subtle);text-decoration:none}
+  .breadcrumb a:hover{text-decoration:underline}
+  .header{margin-bottom:2.5rem}
+  .tag{display:inline-block;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);background:var(--accent-bg);border:1px solid var(--accent);border-radius:999px;padding:.25rem .85rem;margin-bottom:1rem}
+  h1{font-size:1.85rem;font-weight:700;margin-bottom:.5rem;line-height:1.3}
+  .subtitle{color:var(--subtle);font-size:.95rem;max-width:620px}
+  .section{margin-bottom:2.25rem}
+  h2{font-size:1rem;font-weight:600;color:var(--subtle);letter-spacing:.04em;text-transform:uppercase;margin-bottom:.9rem;padding-bottom:.45rem;border-bottom:1px solid var(--border)}
+  .step-num{display:inline-flex;align-items:center;justify-content:center;width:1.6rem;height:1.6rem;border-radius:50%;background:var(--accent-bg);color:var(--accent);font-size:.8rem;font-weight:700;margin-right:.6rem}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.25rem 1.5rem;margin-bottom:1rem}
+  .card:last-child{margin-bottom:0}
+  p{color:var(--subtle);font-size:.92rem;margin-bottom:.75rem}
+  p:last-child{margin-bottom:0}
+  code{color:var(--accent);background:#0f172a;padding:.05rem .35rem;border-radius:4px;font-size:.85em;font-family:'Consolas','Cascadia Code',monospace}
+  ul.plain{list-style:none}
+  ul.plain li{position:relative;padding-left:1.1rem;margin-bottom:.6rem;color:var(--subtle);font-size:.92rem}
+  ul.plain li::before{content:'—';position:absolute;left:0;color:var(--muted)}
+  ul.plain li:last-child{margin-bottom:0}
+  ol.steps{list-style:none;counter-reset:step}
+  ol.steps li{counter-increment:step;position:relative;padding-left:1.6rem;margin-bottom:.6rem;color:var(--subtle);font-size:.92rem}
+  ol.steps li::before{content:counter(step);position:absolute;left:0;color:var(--accent);font-weight:700;font-size:.85em}
+  pre{background:#0f172a;border:1px solid var(--border);border-radius:8px;padding:1rem 1.25rem;overflow-x:auto;font-family:'Consolas','Cascadia Code',monospace;font-size:.82rem;color:#e2c97a;line-height:1.6}
+  .intro{color:var(--subtle);font-size:.95rem;font-style:italic;margin-bottom:1.5rem}
+  details{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.25rem}
+  summary{cursor:pointer;color:var(--accent);font-size:.9rem;font-weight:600;outline:none}
+  details[open] summary{margin-bottom:.9rem}
+  .exercise-prompt{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:6px;padding:.9rem 1.1rem;margin-bottom:1rem;color:var(--subtle);font-size:.9rem;font-style:italic}
+  blockquote{border-left:3px solid var(--accent);padding-left:1rem;color:var(--subtle);font-size:.9rem;margin:.5rem 0}
+  blockquote strong{color:var(--text)}
+  .footer{text-align:center;font-size:.78rem;color:var(--muted);padding-top:2rem;margin-top:2rem;border-top:1px solid var(--border)}
+  .footer a{color:var(--subtle);text-decoration:none}
+  .footer a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="breadcrumb"><a href="../README.html">YouVibeNow</a> / <a href="../Table_of_Contents.html">Lessons</a> / Lesson 1: Application-Level Global Instructions</div>
+  <div class="header">
+    <div class="tag">Module 1 · Lesson 1</div>
+    <h1>Application-Level Global Instructions</h1>
+    <p class="subtitle">The Stateful Baseline — before you type a single chat message, you must build your safety net.</p>
+  </div>
+
+  <div class="section">
+    <h2>Introduction</h2>
+    <div class="card">
+      <p>The biggest mistake beginners make in Prompt Engineering is starting in the chat box. If you open a new chat and immediately type "Act like an expert coder," you have already failed.</p>
+      <p>To build autonomous, safe AI workflows, we use a <strong>3-Tier Hierarchy</strong> for our prompts. The absolute first tier is the <strong>Application-Level Stateful Prompt</strong>. This involves adjusting the global settings within your AI application (like Google Antigravity, Claude Code, or ChatGPT's Custom Instructions) to set non-negotiable rules that apply to <em>every single project</em> you work on. This is your baseline identity and your ultimate safety net.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="step-num">1</span>The 3-Tier Hierarchy</h2>
+    <div class="card">
+      <p>A professional "Stateful Prompt" is distributed across three levels:</p>
+      <ul class="plain">
+        <li><strong>Tier 1: Application-Level (Global Customizations):</strong> The absolute baseline. This sets universal rules (e.g., "Always backup files before editing") that the AI must follow on your machine, regardless of the project.</li>
+        <li><strong>Tier 2: Project-Level (The Folder Architecture):</strong> We use files like <code>AGENTS.md</code> and <code>CONTEXT.md</code> inside a specific project folder to <em>specialize</em> the AI for that specific codebase.</li>
+        <li><strong>Tier 3: Execution-Level (The Chat Box):</strong> Your day-to-day chat messages, which only need to provide the immediate Task and Output Format.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="step-num">2</span>Global Customizations (The Safety Net)</h2>
+    <div class="card">
+      <p>Modern LLM IDEs like Google Antigravity and Claude Code allow you to set global rules. These are usually stored in a root configuration folder on your hard drive (e.g., <code>~/.gemini/config/AGENTS.md</code>).</p>
+      <p>By writing a rule here like <em>"NEVER overwrite a file without making a copy in the Archive folder,"</em> you ensure that even if you write a terrible, dangerous prompt in Tier 3 (the chat box), the AI will refuse to destroy your data because the Tier 1 Application setting permanently overrides it.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="step-num">3</span>The Baseline Identity</h2>
+    <div class="card">
+      <p>In addition to safety rules, you can set your AI's default personality. If you prefer concise, jargon-free answers, you don't need to ask for it every time. Set a global rule: <em>"Always write in plain, direct English. Never use corporate buzzwords."</em> From that moment on, the AI's default "state" perfectly matches your vibe.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Exercise: Building the Baseline</h2>
+    <div class="exercise-prompt">Open the Global Customization settings in your LLM application (e.g., Google Antigravity's config folder or ChatGPT's "Custom Instructions" menu). Write exactly two sentences: one that defines the AI's baseline Identity, and one that sets an absolute, non-negotiable safety constraint.</div>
+    <details>
+      <summary>Click to see an Example Solution</summary>
+      <blockquote>
+        <p><strong>Identity:</strong> "You are an expert, senior-level AI pair programmer who communicates in concise, plain English."</p>
+        <p><strong>Constraint:</strong> "Security Rule: You must always create a backup copy of a file before you run any command to modify it."</p>
+      </blockquote>
+    </details>
+  </div>
+
+  <div class="footer">Part of the <a href="../README.html">Vibe Coding &amp; Prompt Engineering Masterclass</a> — see <a href="../Table_of_Contents.html">Table of Contents</a> for the full curriculum</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 2: The 5-Part Framework — YouVibeNow</title>
+<style>
+  :root{
+    --bg:#0f1117; --surface:#1e293b; --border:#334155; --muted:#475569;
+    --text:#e2e8f0; --subtle:#94a3b8; --accent:#a78bfa; --accent-bg:#2e1a4a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding:3rem 1.5rem;line-height:1.65}
+  .page{max-width:780px;margin:0 auto}
+  .breadcrumb{font-size:.78rem;color:var(--muted);margin-bottom:1.75rem}
+  .breadcrumb a{color:var(--subtle);text-decoration:none}
+  .breadcrumb a:hover{text-decoration:underline}
+  .header{margin-bottom:2.5rem}
+  .tag{display:inline-block;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);background:var(--accent-bg);border:1px solid var(--accent);border-radius:999px;padding:.25rem .85rem;margin-bottom:1rem}
+  h1{font-size:1.85rem;font-weight:700;margin-bottom:.5rem;line-height:1.3}
+  .subtitle{color:var(--subtle);font-size:.95rem;max-width:620px}
+  .section{margin-bottom:2.25rem}
+  h2{font-size:1rem;font-weight:600;color:var(--subtle);letter-spacing:.04em;text-transform:uppercase;margin-bottom:.9rem;padding-bottom:.45rem;border-bottom:1px solid var(--border)}
+  .step-num{display:inline-flex;align-items:center;justify-content:center;width:1.6rem;height:1.6rem;border-radius:50%;background:var(--accent-bg);color:var(--accent);font-size:.8rem;font-weight:700;margin-right:.6rem}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.25rem 1.5rem;margin-bottom:1rem}
+  .card:last-child{margin-bottom:0}
+  p{color:var(--subtle);font-size:.92rem;margin-bottom:.75rem}
+  p:last-child{margin-bottom:0}
+  code{color:var(--accent);background:#0f172a;padding:.05rem .35rem;border-radius:4px;font-size:.85em;font-family:'Consolas','Cascadia Code',monospace}
+  ul.plain{list-style:none}
+  ul.plain li{position:relative;padding-left:1.1rem;margin-bottom:.6rem;color:var(--subtle);font-size:.92rem}
+  ul.plain li::before{content:'—';position:absolute;left:0;color:var(--muted)}
+  ul.plain li:last-child{margin-bottom:0}
+  ol.steps{list-style:none;counter-reset:step}
+  ol.steps li{counter-increment:step;position:relative;padding-left:1.6rem;margin-bottom:.6rem;color:var(--subtle);font-size:.92rem}
+  ol.steps li::before{content:counter(step);position:absolute;left:0;color:var(--accent);font-weight:700;font-size:.85em}
+  pre{background:#0f172a;border:1px solid var(--border);border-radius:8px;padding:1rem 1.25rem;overflow-x:auto;font-family:'Consolas','Cascadia Code',monospace;font-size:.82rem;color:#e2c97a;line-height:1.6}
+  details{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.25rem}
+  summary{cursor:pointer;color:var(--accent);font-size:.9rem;font-weight:600;outline:none}
+  details[open] summary{margin-bottom:.9rem}
+  .exercise-prompt{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:6px;padding:.9rem 1.1rem;margin-bottom:1rem;color:var(--subtle);font-size:.9rem;font-style:italic}
+  blockquote{border-left:3px solid var(--accent);padding-left:1rem;color:var(--subtle);font-size:.9rem;margin:.5rem 0}
+  blockquote strong{color:var(--text)}
+  .weak-strong{margin-top:.5rem}
+  .weak-strong div{font-size:.88rem;margin-bottom:.35rem}
+  .weak-strong .weak{color:var(--muted)}
+  .weak-strong .strong{color:var(--text)}
+  table{width:100%;border-collapse:collapse;font-size:.85rem}
+  th{text-align:left;color:var(--accent);font-weight:600;padding:.6rem .75rem;border-bottom:1px solid var(--border);background:#171c2a}
+  td{padding:.6rem .75rem;border-bottom:1px solid var(--border);color:var(--subtle);vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  td strong{color:var(--text)}
+  .callout{background:var(--accent-bg);border:1px solid var(--accent);border-radius:8px;padding:1rem 1.25rem;margin-top:1rem;font-size:.88rem;color:var(--text)}
+  .callout strong{color:var(--accent)}
+  .source-note{font-size:.78rem;color:var(--muted);margin-top:.75rem;font-style:italic}
+  .footer{text-align:center;font-size:.78rem;color:var(--muted);padding-top:2rem;margin-top:2rem;border-top:1px solid var(--border)}
+  .footer a{color:var(--subtle);text-decoration:none}
+  .footer a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="breadcrumb"><a href="../README.html">YouVibeNow</a> / <a href="../Table_of_Contents.html">Lessons</a> / Lesson 2: The 5-Part Framework</div>
+  <div class="header">
+    <div class="tag">Module 1 · Lesson 2</div>
+    <h1>The Anatomy of a Perfect Prompt</h1>
+    <p class="subtitle">The 5-Part Framework — the core lesson on structuring instructions to get useful results on the first try.</p>
+  </div>
+
+  <div class="section">
+    <h2>Introduction</h2>
+    <div class="card">
+      <p>The difference between a frustrating AI experience and a magical one usually comes down to one thing: structure. Most people treat AI like a search engine or a text message conversation. They write things like:</p>
+      <blockquote>"Write a blog post about AI."</blockquote>
+      <p>This is called an <strong>Unstructured Prompt</strong>. It forces the AI to guess who it is, who the audience is, what the tone should be, and what the final product should look like. When you force an AI to guess, it resorts to average, generic training data.</p>
+      <p>To eliminate guesswork and get production-ready results on the first try, we use the <strong>5-Part Prompt Framework</strong>.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="step-num">1</span>Identity</h2>
+    <div class="card">
+      <p><strong>Who is the AI right now?</strong> Before you ask the AI to do anything, you must tell it what "role" to play. This anchors the model, narrowing down its trillions of parameters to focus only on the tone and knowledge relevant to that persona.</p>
+      <div class="weak-strong">
+        <div class="weak">Weak: (No identity given)</div>
+        <div class="strong">Strong: "You are a senior content marketing manager specializing in B2B SaaS."</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="step-num">2</span>Task</h2>
+    <div class="card">
+      <p><strong>What exactly needs to get done?</strong> Define the action, the scope, and the specific details of the request. Be as explicit as possible.</p>
+      <div class="weak-strong">
+        <div class="weak">Weak: "Write a blog post."</div>
+        <div class="strong">Strong: "Draft a 500-word blog post explaining how artificial intelligence is streamlining supply chain logistics."</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="step-num">3</span>Context</h2>
+    <div class="card">
+      <p><strong>What background information does the AI need to know?</strong> The AI doesn't know your business, your current project, or your target audience unless you tell it. Context bridges the gap between the AI's general knowledge and your specific situation.</p>
+      <div class="weak-strong">
+        <div class="weak">Weak: "Make it sound professional."</div>
+        <div class="strong">Strong: "Our target audience is supply chain executives at Fortune 500 companies who are skeptical of new technology but care deeply about cost reduction."</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="step-num">4</span>Constraints</h2>
+    <div class="card">
+      <p><strong>What should the AI <em>avoid</em> doing?</strong> This is the most frequently skipped, yet most valuable step. Telling an AI what not to do is often more powerful than telling it what to do. It establishes the "guardrails" for the task.</p>
+      <div class="weak-strong">
+        <div class="weak">Weak: (No constraints given)</div>
+        <div class="strong">Strong: "Do not use corporate jargon like 'synergy' or 'paradigm shift'. Do not mention our competitors."</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="step-num">5</span>Output Format</h2>
+    <div class="card">
+      <p><strong>What should the physical result look like?</strong> If you want a table, ask for a table. If you want a markdown file, ask for a markdown file. If you don't specify the format, the AI will guess (and usually default to a wall of text).</p>
+      <div class="weak-strong">
+        <div class="weak">Weak: "Give me the results."</div>
+        <div class="strong">Strong: "Format the output as a Markdown table with three columns: Concept, Definition, and Real-World Example."</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Why Order Matters: The Outside-In Principle</h2>
+    <div class="card">
+      <p>The 5 parts above are listed in the order you should <strong>type them</strong>. This sequence is not arbitrary — it is grounded in how transformer-based LLMs process information at inference time.</p>
+      <p style="margin-top:.9rem"><strong>The Outside-In Logic.</strong> Each element narrows the model's interpretation space before the next one adds detail:</p>
+      <table style="margin-top:.75rem">
+        <tr><th>Order</th><th>Element</th><th>Why it goes here</th></tr>
+        <tr><td>1</td><td><strong>Identity</strong></td><td>Establishes role before the model reads anything else. Every subsequent token is weighted against this frame.</td></tr>
+        <tr><td>2</td><td><strong>Task</strong></td><td>States the goal while the identity is fresh — the model now scans everything that follows with purpose.</td></tr>
+        <tr><td>3</td><td><strong>Context</strong></td><td>Background material is interpreted through the combined lens of role + task simultaneously, not neutrally.</td></tr>
+        <tr><td>4</td><td><strong>Constraints</strong></td><td>Applied to a solution the model is already forming, making guardrails more binding than if placed earlier.</td></tr>
+        <tr><td>5</td><td><strong>Output Format</strong></td><td>A final narrowing at the moment of generation — collapses the solution space last, not first.</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>The Research Backing: "Lost in the Middle"</h2>
+    <div class="card">
+      <p>LLMs do not read prompts linearly — they weight tokens by <strong>position</strong>. A landmark study by Liu et al. (2023), published in <em>Transactions of the Association for Computational Linguistics</em>, demonstrated that models perform <strong>15–25 percentage points worse</strong> when critical information is placed in the middle of a long context. Accuracy holds at the start and end of the context window but collapses in the middle — a <strong>U-shaped performance curve</strong>.</p>
+      <p>The root cause is structural. The attention mechanism in modern transformers uses Rotary Position Embedding (RoPE), which causes attention scores to decay naturally for tokens far apart in the sequence. Initial tokens accumulate attention influence across every subsequent layer — a phenomenon called <strong>attention sinks</strong>. Earlier tokens carry disproportionately more interpretive weight.</p>
+      <div class="callout"><strong>The practical rule:</strong> Put your most important framing — Identity and Task — at the very top. The model encodes everything that follows against what it has already seen.</div>
+      <p class="source-note">Source: Liu et al., "Lost in the Middle: How Language Models Use Long Contexts." Transactions of the Association for Computational Linguistics, 2024. arXiv:2307.03172.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Reference Card: The Prompt Structure Framework</h2>
+    <div class="card">
+      <img src="../assets/prompt_structure_framework.png" alt="Prompt Structure Framework diagram" style="max-width:100%;border-radius:8px;border:1px solid var(--border);margin-bottom:1.1rem">
+      <p><strong>Prompt Strategy Table</strong> — a quick reference guide for when to use which elements:</p>
+      <table style="margin-top:.75rem">
+        <tr><th>Task Type</th><th>Required Prompt Elements</th></tr>
+        <tr><td><strong>Simple task</strong></td><td>Task only.</td></tr>
+        <tr><td><strong>Creative</strong></td><td>Identity + Task + Constraints + Format.</td></tr>
+        <tr><td><strong>Complex</strong></td><td>All five.</td></tr>
+        <tr><td><strong>Ongoing project</strong></td><td>Identity and Context in files, Task and Constraints in each prompt.</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Exercise: The Rewrite</h2>
+    <div class="exercise-prompt">Look at the following poorly written, unstructured prompt: "Write me an email to the team about the new software update." Rewrite this prompt so that it explicitly utilizes all 5 parts of the framework.</div>
+    <details>
+      <summary>Click to see an Example Solution</summary>
+      <blockquote>
+        <p><strong>[Identity]</strong> You are a friendly but direct Technical Project Manager.</p>
+        <p><strong>[Task]</strong> Write an email to the engineering team announcing the successful deployment of the v2.0 software update.</p>
+        <p><strong>[Context]</strong> The team has been working overtime for three weeks to get this done, and morale is a bit low. This update fixes the critical database latency issues we've been experiencing for the past month.</p>
+        <p><strong>[Constraints]</strong> Do not make the email longer than three short paragraphs. Do not focus on future bugs or upcoming sprints; only celebrate the current win.</p>
+        <p><strong>[Output Format]</strong> Format the output with a clear Subject Line, use bullet points to highlight the 3 key features included in the update, and include a professional sign-off.</p>
+      </blockquote>
+    </details>
+  </div>
+
+  <div class="footer">Part of the <a href="../README.html">Vibe Coding &amp; Prompt Engineering Masterclass</a> — see <a href="../Table_of_Contents.html">Table of Contents</a> for the full curriculum</div>
+</div>
+</body>
+</html>

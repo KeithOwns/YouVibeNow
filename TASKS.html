@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Active Task Checklist — YouVibeNow</title>
+<style>
+  :root{
+    --bg:#0f1117; --surface:#1e293b; --border:#334155; --muted:#475569;
+    --text:#e2e8f0; --subtle:#94a3b8; --accent:#4ade80; --accent-bg:#052e16;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding:3rem 1.5rem;line-height:1.65}
+  .page{max-width:760px;margin:0 auto}
+  .breadcrumb{font-size:.78rem;color:var(--muted);margin-bottom:1.75rem}
+  .breadcrumb a{color:var(--subtle);text-decoration:none}
+  .breadcrumb a:hover{text-decoration:underline}
+  .header{margin-bottom:2.5rem}
+  .tag{display:inline-block;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);background:var(--accent-bg);border:1px solid var(--accent);border-radius:999px;padding:.25rem .85rem;margin-bottom:1rem}
+  h1{font-size:1.85rem;font-weight:700;margin-bottom:.5rem}
+  .subtitle{color:var(--subtle);font-size:.95rem;max-width:600px}
+  .section{margin-bottom:2.25rem}
+  h2{font-size:1rem;font-weight:600;color:var(--subtle);letter-spacing:.04em;text-transform:uppercase;margin-bottom:.9rem;padding-bottom:.45rem;border-bottom:1px solid var(--border)}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:.5rem 1.5rem}
+  .task{display:flex;align-items:center;gap:.75rem;padding:.7rem 0;border-bottom:1px solid var(--border);font-size:.92rem}
+  .task:last-child{border-bottom:none}
+  .check{flex-shrink:0;width:1.3rem;height:1.3rem;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700}
+  .check.done{background:var(--accent-bg);color:var(--accent);border:1px solid var(--accent)}
+  .check.todo{background:#0f172a;border:1px solid var(--border)}
+  .task.done .task-label{color:var(--subtle);text-decoration:line-through;text-decoration-color:var(--muted)}
+  .task.todo .task-label{color:var(--text)}
+  .legend{display:flex;gap:1.5rem;font-size:.78rem;color:var(--muted);margin-top:1rem}
+  .legend span{display:flex;align-items:center;gap:.4rem}
+  .footer{text-align:center;font-size:.78rem;color:var(--muted);padding-top:2rem;margin-top:2rem;border-top:1px solid var(--border)}
+  .footer a{color:var(--subtle);text-decoration:none}
+  .footer a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="breadcrumb"><a href="README.html">YouVibeNow</a> / Tasks</div>
+  <div class="header">
+    <div class="tag">Task Checklist</div>
+    <h1>Active Task Checklist</h1>
+    <p class="subtitle">Complex instructions broken down into sequential, manageable chunks. Checkboxes update as work progresses.</p>
+  </div>
+
+  <div class="section">
+    <h2>Current Sprint: Masterclass Development</h2>
+    <div class="card">
+      <div class="task done"><div class="check done">✓</div><div class="task-label">Draft Module 1: Vibe Coding &amp; Stateful Prompting (Lessons 1-5 &amp; Capstone)</div></div>
+      <div class="task done"><div class="check done">✓</div><div class="task-label">Draft Module 2: Automation &amp; Agentic Workflows (Lessons 6-7 &amp; Capstone)</div></div>
+      <div class="task done"><div class="check done">✓</div><div class="task-label">Refactor <code>Stateful_Prompting_Structure.html</code> for premium UI/UX</div></div>
+      <div class="task done"><div class="check done">✓</div><div class="task-label">Integrate Empirical Research (<code>Prompt Engineering Frameworks Research.md</code>)</div></div>
+      <div class="task done"><div class="check done">✓</div><div class="task-label">Execute Module 1 Capstone (Expense Calculator) as a stress test</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Current Sprint: Module 2 Stress Test</h2>
+    <div class="card">
+      <div class="task done"><div class="check done">✓</div><div class="task-label">Execute Module 2 Capstone (Automated File Processor)</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Current Sprint: Module 3 (Advanced Workflows)</h2>
+    <div class="card">
+      <div class="task done"><div class="check done">✓</div><div class="task-label">Draft Module 3: Advanced Workflows (Lessons 8-10 &amp; Capstone)</div></div>
+      <div class="task done"><div class="check done">✓</div><div class="task-label">Update Masterclass packaging (<code>build_ebook.py</code>)</div></div>
+    </div>
+    <div class="legend"><span><div class="check done" style="width:1rem;height:1rem;font-size:.6rem">✓</div>completed</span><span><div class="check todo" style="width:1rem;height:1rem"></div>not started</span></div>
+  </div>
+
+  <div class="footer">Part of the <a href="README.html">Vibe Coding &amp; Prompt Engineering Masterclass</a></div>
+</div>
+</body>
+</html>

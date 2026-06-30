@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Architectural Synthesis of Agentic Engineering — YouVibeNow</title>
+<style>
+  :root{
+    --bg:#0f1117; --surface:#1e293b; --border:#334155; --muted:#475569;
+    --text:#e2e8f0; --subtle:#94a3b8; --accent:#c084fc; --accent-bg:#2e1a4a;
+    --warn:#f87171; --warn-bg:#3b0a0a; --good:#4ade80;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding:3rem 1.5rem;line-height:1.65}
+  .page{max-width:840px;margin:0 auto}
+  .breadcrumb{font-size:.78rem;color:var(--muted);margin-bottom:1.75rem}
+  .breadcrumb a{color:var(--subtle);text-decoration:none}
+  .breadcrumb a:hover{text-decoration:underline}
+  .header{margin-bottom:2rem}
+  .tag{display:inline-block;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);background:var(--accent-bg);border:1px solid var(--accent);border-radius:999px;padding:.25rem .85rem;margin-bottom:1rem}
+  h1{font-size:1.85rem;font-weight:700;margin-bottom:.5rem;line-height:1.3}
+  .subtitle{color:var(--subtle);font-size:.95rem;max-width:640px}
+  .provenance{background:#1c1606;border:1px solid #4d3a06;border-left:4px solid #facc15;border-radius:8px;padding:1rem 1.25rem;margin-bottom:2rem;font-size:.84rem;color:#e2c97a}
+  .provenance strong{color:#fde68a}
+  .section{margin-bottom:2.25rem}
+  h2{font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:1rem}
+  h3{font-size:.95rem;font-weight:700;color:var(--accent);margin:1.4rem 0 .75rem}
+  h3:first-child{margin-top:0}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.4rem 1.6rem}
+  .card p{color:var(--subtle);font-size:.9rem;margin-bottom:.85rem}
+  .card p:last-child{margin-bottom:0}
+  .card em{font-style:italic}
+  .card strong{color:var(--text)}
+  .card sup{color:var(--accent);font-size:.7em;margin-left:1px}
+  .var-def{background:#0f172a;border:1px solid var(--border);border-radius:8px;padding:1rem 1.25rem;margin-bottom:.75rem}
+  .var-def .vname{font-family:'Consolas','Cascadia Code',monospace;font-weight:700;color:var(--accent);font-size:.92rem;margin-bottom:.35rem}
+  .var-def p{font-size:.88rem;margin-bottom:0;color:var(--subtle)}
+  ul.dashed{list-style:none;margin:.5rem 0}
+  ul.dashed li{position:relative;padding-left:1.1rem;margin-bottom:.5rem;color:var(--subtle);font-size:.88rem}
+  ul.dashed li::before{content:'—';position:absolute;left:0;color:var(--muted)}
+  .card ul.dashed{margin-top:.25rem}
+  code{color:var(--accent);background:#0f172a;padding:.05rem .35rem;border-radius:4px;font-size:.85em;font-family:'Consolas','Cascadia Code',monospace}
+  pre.codeblock{background:#0f172a;border:1px solid var(--border);border-radius:8px;padding:1rem 1.25rem;margin:.85rem 0;overflow-x:auto;font-family:'Consolas','Cascadia Code',monospace;font-size:.82rem;color:var(--accent);line-height:1.6}
+  .order-table{width:100%;border-collapse:collapse;font-size:.85rem;margin-top:1rem}
+  .order-table th{text-align:left;padding:.6rem .9rem;background:#0f172a;color:var(--muted);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid var(--border)}
+  .order-table td{padding:.7rem .9rem;border-bottom:1px solid var(--border);vertical-align:top;color:var(--subtle)}
+  .order-table tr:last-child td{border-bottom:none}
+  .order-table td strong{color:var(--text)}
+  .table-wrap{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;overflow-x:auto}
+  .takeaway{background:#2e1a4a;border:1px solid #6b21a8;border-left:4px solid var(--accent);border-radius:10px;padding:1.25rem 1.5rem}
+  .takeaway p{color:#e9d5ff;font-size:.9rem;margin:0}
+  .takeaway strong{color:#f3e8ff}
+  .omitted{color:var(--muted);font-style:italic;font-size:.85rem}
+  .pillars{list-style:none;margin:.5rem 0}
+  .pillars li{padding:.85rem 0;border-bottom:1px solid var(--border)}
+  .pillars li:last-child{border-bottom:none;padding-bottom:0}
+  .pillars li:first-child{padding-top:0}
+  .pillars strong{color:var(--accent);font-size:.92rem}
+  .pillars p{color:var(--subtle);font-size:.88rem;margin-top:.3rem}
+  .bib-entry{margin-bottom:1.1rem;padding-bottom:1.1rem;border-bottom:1px solid var(--border)}
+  .bib-entry:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+  .bib-entry .citation{color:var(--text);font-size:.88rem;margin-bottom:.4rem}
+  .bib-entry .url{color:var(--accent);font-size:.8rem;word-break:break-all;margin-bottom:.4rem;display:block}
+  .bib-entry .justification{color:var(--subtle);font-size:.85rem}
+  .works-cited{font-size:.82rem;color:var(--subtle);margin:0;padding-left:1.3rem}
+  .works-cited li{margin-bottom:.55rem}
+  .works-cited a{color:var(--accent);text-decoration:none;word-break:break-all}
+  .works-cited a:hover{text-decoration:underline}
+  .footer{text-align:center;font-size:.78rem;color:var(--muted);padding-top:2rem;margin-top:2rem;border-top:1px solid var(--border)}
+  .footer a{color:var(--subtle);text-decoration:none}
+  .footer a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="breadcrumb"><a href="../README.html">YouVibeNow</a> / Resources / Frameworks Research</div>
+  <div class="header">
+    <div class="tag">Research</div>
+    <h1>Architectural Synthesis of Agentic Engineering</h1>
+    <p class="subtitle">File-based stateful prompting, empirical prompt design, and hierarchical orchestration — how the industry moved from "vibe coding" to disciplined, repo-native agent configuration.</p>
+  </div>
+
+  <div class="section">
+    <h2>Executive Summary</h2>
+    <div class="card">
+      <p>The paradigm of software development has undergone a fundamental transformation, transitioning from manual syntax construction to intent-driven software orchestration. Initially popularized in early 2025 as "vibe coding" by computer scientist Andrej Karpathy, the practice characterized a conversational, low-friction method of software creation where developers directed Large Language Models (LLMs) to generate, refine, and deploy code using natural language<sup>1</sup>. However, the initial phase of vibe coding frequently fell victim to the "vibe coding doom loop" — a state of localized technical failure where unguided, conversational iterations resulted in code drift, architectural inconsistency, and unmaintainable legacy codebases<sup>3</sup>.</p>
+      <p>By 2026, the industry transitioned to a disciplined framework known as "agentic engineering"<sup>5</sup>. This approach replaces casual natural language prompting with structured, deterministic workflows where human operators orchestrate specialized AI agents governed by rigorous validation, testing, and contextual boundaries<sup>5</sup>. A core enabler of this evolution is "stateful prompting" — the injection of global rules, context, and operational guidelines directly into the agent's execution loop via local, directory-scoped markdown configurations<sup>8</sup>.</p>
+      <p>Empirical evaluation data underscores the superiority of structured, repository-native files over dynamic runtime configurations. In comparative tests, localized repository rules files such as AGENTS.md achieved a perfect 100% execution pass rate<sup>10</sup>. Conversely, dynamic skills — which rely on the model autonomously determining when to retrieve and invoke specialized tasks — topped out at a 53% pass rate due to the cognitive overhead of real-time tool orchestration<sup>10</sup>.</p>
+      <p>To systematically implement agentic engineering, organizations deploy a structured, three-tier prompting hierarchy consisting of application-level system instructions<sup>9</sup>, project-level repository boundary configurations<sup>8</sup>, and execution-level task commands<sup>8</sup>. This architecture anchors the agent's cognitive attention, minimizes context window rot<sup>3</sup>, and guarantees repeatable, high-quality code generation.</p>
+      <p>The transition from fluid, conversational development to deterministic software engineering is summarized in the comparison table below, showcasing how structural constraints have replaced absolute reliance on raw model outputs:</p>
+      <div class="table-wrap" style="margin-top:1rem">
+        <table class="order-table">
+          <thead><tr><th>Characteristic</th><th>Vibe Coding (Phase&nbsp;1, 2025)</th><th>Agentic Engineering (Phase&nbsp;2, 2026)</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Primary Interaction Model</strong></td><td>Conversational chat interfaces and broad, casual natural language prompts<sup>1</sup>.</td><td>Structured, directory-scoped, and version-controlled configuration templates<sup>8</sup>.</td></tr>
+            <tr><td><strong>Model Verification</strong></td><td>Manual "Accept All" executions without differential inspection or automated validation<sup>3</sup>.</td><td>Automated multi-agent validation loops combining linter, static analysis, and unit test runners<sup>7</sup>.</td></tr>
+            <tr><td><strong>State Retention Strategy</strong></td><td>Ephemeral, session-level memory prone to contextual degradation and cognitive drift<sup>3</sup>.</td><td>Stateful prompting using repo-native files like AGENTS.md and CLAUDE.md<sup>8</sup>.</td></tr>
+            <tr><td><strong>Architectural Integrity</strong></td><td>High risk of the "vibe coding doom loop," leading to spec dilution and code duplication<sup>3</sup>.</td><td>Anchored to formal specifications under Spec-Driven Development (SDD)<sup>15</sup>.</td></tr>
+            <tr><td><strong>Empirical Code Pass Rate</strong></td><td>Low consistency on complex architectures; highly reliant on user remediation<sup>4</sup>.</td><td>Decisively higher performance, reaching up to 100% on evaluation suites using explicit file bounds<sup>10</sup>.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Literature Review on Core Elements of Prompts</h2>
+    <div class="card">
+      <p>Developing highly reliable AI agent prompts requires an empirical understanding of cognitive engineering<sup>11</sup>. Foundational studies, including the 26 prompting principles defined by Bsharat et al. (2023), alongside engineering guidelines published by frontier laboratories such as Anthropic and OpenAI, demonstrate that prompt performance is directly proportional to its structural modularity<sup>17</sup>. High-performing prompts are constructed upon five foundational pillars:</p>
+      <ul class="pillars">
+        <li><strong>Identity &amp; Persona</strong><p>Directing the neural network's behavioral manifold by establishing a specialized expert persona<sup>22</sup>. This sets the proper tone, target vocabulary, and baseline cognitive domain<sup>23</sup>.</p></li>
+        <li><strong>Task Specification</strong><p>A clear, sequential description of the target objective<sup>17</sup>. Vague commands are replaced with numbered, deterministic steps to prevent execution omissions<sup>17</sup>.</p></li>
+        <li><strong>Contextual Metadata</strong><p>Relevant background information, technology stack details, and system configurations that locate the agent within the execution workspace<sup>14</sup>.</p></li>
+        <li><strong>Constraints &amp; Boundaries</strong><p>Explicit rules defining what the model is strictly prohibited from executing (e.g., modifying raw source files when generating documentation, or editing database schemas without human authorization)<sup>22</sup>.</p></li>
+        <li><strong>Output Format</strong><p>Precise structural templates (e.g., JSON schemas, XML wrappers, or markdown tables) often enforced by pre-filling the model's response buffer<sup>23</sup>.</p></li>
+      </ul>
+
+      <h3>Anthropic's Structural Taxonomy and XML Tagging</h3>
+      <p>Anthropic's prompt engineering paradigm heavily emphasizes the use of XML tags to structure system inputs<sup>23</sup>. Because frontier models are fine-tuned to recognize and prioritize XML tags (e.g., <code>&lt;instructions&gt;</code>, <code>&lt;context&gt;</code>, <code>&lt;example&gt;</code>), this formatting acts as a syntactic boundary within the transformer's attention block<sup>23</sup>.</p>
+      <p>When prompts combine raw text, dynamic variables, and external files, unstructured prompts often trigger localized attention dilution, causing models to miss critical directives<sup>26</sup>. Structuring prompts with nested XML tags ensures that instructions, reference material, and target variables remain cleanly segregated<sup>26</sup>. For example, a system prompt managing API queries would wrap technical documentation in <code>&lt;documents&gt;</code> tags and the specific user query in <code>&lt;input&gt;</code> tags, preventing structural instruction injection<sup>25</sup>.</p>
+      <p>Furthermore, XML tags mitigate the "lost in the middle" phenomenon<sup>25</sup>. When long contexts are loaded into an LLM, the model's attention is disproportionately weighted toward the beginning and the end of the context window<sup>25</sup>. Placing core directives inside <code>&lt;instructions&gt;</code> at the terminal boundaries of the prompt, while nesting large documentation blocks in the middle under <code>&lt;documents&gt;</code>, optimizes the transformer's attention mapping<sup>25</sup>.</p>
+
+      <h3>OpenAI and Andrew Ng's Empirical Principles</h3>
+      <p>The prompting methodologies pioneered by OpenAI and DeepLearning.AI emphasize clarity, delimiter usage, and explicit computational step-allocation<sup>19</sup>. The core guidelines dictate that models must not be forced to guess the developer's intent<sup>17</sup>. Instructing a model to "write a script" is empirically inferior to detailing the target execution environment, required dependencies, and exception handling protocols<sup>17</sup>.</p>
+      <p>To maximize consistency, these guides champion multi-shot prompting — the inclusion of 2 to 5 well-crafted input/output examples wrapped in <code>&lt;example&gt;</code> tags<sup>17</sup>. Examples establish the target response casing, structural styling, and cognitive depth without requiring verbose instructions<sup>17</sup>.</p>
+      <p>Additionally, both OpenAI and Anthropic recommend allocating explicit tokens for step-by-step rationalization<sup>23</sup>. By instructing a model to evaluate its choices inside <code>&lt;thinking&gt;</code> tags prior to generating its final output, the model maps out its logical trajectory, drastically reducing cognitive execution errors<sup>23</sup>.</p>
+
+      <h3>Mathematical Underpinnings of Prompt Structuring</h3>
+      <p>The empirical success of structured prompting can be traced to the underlying mathematical mechanics of the self-attention mechanism in transformer architectures. <span class="omitted">[diagram omitted — source image unavailable]</span></p>
+      <p>In an unstructured prompt, the query vector (representing the developer's target) is evaluated against key vectors representing a noisy, unstructured sequence of mixed instructions, documentation, and chat history. This results in an attention distribution spread thin across irrelevant tokens, leading to code errors or format deviations.</p>
+      <p>By applying strict structural delimiters (such as XML tags or Markdown headers), the key-value vectors corresponding to vital boundaries and instructions are mathematically clustered. The softmax attention probability becomes highly focused on these structured clusters, ensuring that the output sequence aligns tightly with the developer's constraints.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Industry Survey on Standard File Sets</h2>
+    <div class="card">
+      <p>Large Language Models are inherently stateless; each new execution session starts with a blank context window<sup>8</sup>. Historically, developers had to manually input project constraints and tech-stack requirements during every interaction, leading to high friction and inconsistent outputs<sup>8</sup>. To resolve this, the modern software industry has adopted "stateful prompting" — using standardized, repo-native markdown files placed in folder-level structures to automatically inject persistent context directly into the agent's execution loop<sup>8</sup>.</p>
+      <p>These persistent configurations have evolved into specific, highly specialized toolchains. The primary files in this ecosystem include:</p>
+
+      <h3>CLAUDE.md (Claude Code)</h3>
+      <p>Introduced as the default onboarding document for Anthropic's CLI agent, Claude Code, CLAUDE.md is automatically loaded into the agent's context window at the start of every session<sup>8</sup>. It is designed as a short, highly opinionated document (ideally under 200 lines to preserve token capacity) that outlines the project's tech stack, build commands, and strict architecture principles<sup>8</sup>.</p>
+      <p>Claude Code also supports directory-scoped rules through the <code>.claude/rules/</code> directory<sup>8</sup>. These modular rules utilize YAML frontmatter with glob patterns to activate specific guidelines only when the agent interacts with files matching the paths<sup>8</sup>:</p>
+      <pre class="codeblock">paths:
+  - "src/backend/"
+
+# Backend Operations
+- Ensure all queries use the async connection pool.
+- Never write raw SQL; always utilize the query builder.</pre>
+      <p>Furthermore, Claude Code supports imports (up to a maximum of 4 hops) using <code>@</code> directives, allowing developer teams to reference global rules from local configurations<sup>22</sup>.</p>
+
+      <h3>.cursorrules and .cursor/rules/*.mdc (Cursor)</h3>
+      <p>Cursor pioneered file-based prompting via the <code>.cursorrules</code> file placed in the repository root, serving as background context for its Chat, Composer, and Tab features<sup>8</sup>. Cursor has since evolved this format into a modular directory structure under <code>.cursor/rules/</code>, where configurations are stored as <code>.mdc</code> files<sup>9</sup>. These files combine YAML frontmatter (defining triggering glob patterns and model parameters) with rich markdown instructions<sup>9</sup>. This prevents the main prompt from becoming bloated, as the IDE dynamically loads only the <code>.mdc</code> files that correspond to the developer's current active file paths<sup>9</sup>.</p>
+
+      <h3>AGENTS.md (The 2026 Universal Standard)</h3>
+      <p>To eliminate the fragmentation of maintaining unique configuration files for separate IDEs (e.g., <code>.cursorrules</code> for Cursor, CLAUDE.md for Claude Code, and <code>.github/copilot-instructions.md</code> for GitHub Copilot), an industry coalition including Google, OpenAI, Sourcegraph, Cursor, and Factory established AGENTS.md in 2026 as the universal standard for cross-agent configuration<sup>8</sup>.</p>
+      <p>Designed as a plain Markdown file with a default size cap of 32 KiB, AGENTS.md acts as an onboarding document specifically written for AI agents rather than human developers<sup>22</sup>. It is designed with five key sections: Build &amp; Test, Architecture, Conventions, Security, and Git Workflow<sup>8</sup>. To preserve compatibility across fractured toolchains, developers frequently write a single AGENTS.md as the single source of truth, creating symbolic links to tool-specific configurations<sup>8</sup>:</p>
+      <pre class="codeblock">ln -s AGENTS.md CLAUDE.md
+ln -s AGENTS.md .cursorrules</pre>
+      <p>AGENTS.md operates on a "nearest file wins" directory-scoped reading strategy<sup>8</sup>. In monorepos, agents scan the file system tree and prioritize the AGENTS.md file closest to the code being edited, enabling localized packages to override global repository behaviors<sup>8</sup>.</p>
+      <p>Matt Nigh, leading the AI program at GitHub, conducted an in-depth empirical analysis of over 2,500 agent configuration files<sup>22</sup>. The study revealed that generic instruction templates (such as <em>"You are a helpful coding assistant"</em>) routinely fail<sup>22</sup>. Conversely, highly successful configurations define hyper-specialized agent personas and contain concrete code examples, explicit build commands, and strict operational boundaries (such as preventing database modifications or secret leaks)<sup>22</sup>.</p>
+      <p>The empirical findings from Nigh's analysis recommend structuring the development workspace around five specialized agent personas<sup>22</sup>. These are detailed in the structural comparison table below:</p>
+      <div class="table-wrap" style="margin-top:1rem">
+        <table class="order-table">
+          <thead><tr><th>Agent Persona</th><th>Structural Purpose</th><th>Typical Executed Commands</th><th>Explicit Operational Boundaries</th></tr></thead>
+          <tbody>
+            <tr><td><strong>@docs-agent</strong></td><td>Translates raw code blocks, comments, and signatures into standardized documentation formats<sup>22</sup>.</td><td><code>npm run docs:build</code>, <code>markdownlint docs/</code><sup>22</sup>.</td><td>Restricted strictly to writing and editing files within designated documentation folders; prohibited from modifying source code<sup>22</sup>.</td></tr>
+            <tr><td><strong>@test-agent</strong></td><td>Writes unit, integration, and regression testing suites, ensuring full edge-case coverage<sup>22</sup>.</td><td><code>npm test</code>, <code>pytest -v</code>, <code>cargo test</code><sup>22</sup>.</td><td>Writes strictly inside specified testing directories; never authorized to delete or modify source files without human intervention<sup>22</sup>.</td></tr>
+            <tr><td><strong>@lint-agent</strong></td><td>Enforces syntactic and formatting alignment, adjusting spacing, imports, and naming patterns<sup>22</sup>.</td><td><code>npm run lint --fix</code>, <code>prettier --write</code><sup>22</sup>.</td><td>Restructured to adjust stylistic elements only; strictly barred from altering logical execution pathways<sup>22</sup>.</td></tr>
+            <tr><td><strong>@api-agent</strong></td><td>Designs RESTful endpoints, GraphQL structures, schema interactions, and error handlers<sup>22</sup>.</td><td><code>npm run dev</code>, <code>curl localhost:3000/api</code><sup>22</sup>.</td><td>Permitted to modify endpoints and route configurations; strictly requires manual authorization before changing database schemas<sup>22</sup>.</td></tr>
+            <tr><td><strong>@dev-deploy-agent</strong></td><td>Oversees containerized dev environments and local, non-production test deployments<sup>22</sup>.</td><td><code>npm run build</code>, <code>docker-compose up</code><sup>22</sup>.</td><td>Restricted strictly to non-production environments; requires manual verification and gate approvals for deployment changes<sup>22</sup>.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>SKILL.md (Agent Skills Open Specification)</h3>
+      <p>Released by Anthropic on December 18, 2025, and adopted by over 26 major platforms (including Claude, OpenAI Codex, and Gemini CLI), SKILL.md is the open standard for packaging modular, task-specific capabilities<sup>13</sup>. Unlike AGENTS.md or CLAUDE.md, which onboard an agent to a specific codebase<sup>12</sup>, a SKILL.md defines a portable workflow (e.g., PR writing, security auditing, or database schema migration) that can be shared and reused across multiple repositories<sup>12</sup>.</p>
+      <p>A skill is structured as a dedicated directory containing a SKILL.md file at its root, with optional subdirectories including <code>scripts/</code> (for executable code), <code>references/</code> (for static lookup documentation), and <code>assets/</code> (for templates)<sup>13</sup>. The core architecture of the Agent Skills framework is built upon "progressive disclosure," a three-level loading system designed to optimize token consumption<sup>13</sup>:</p>
+      <ul class="pillars">
+        <li><strong>Level 1: Metadata (~100 tokens)</strong><p>Loaded at agent startup; includes the name and description from the YAML frontmatter<sup>13</sup>. The agent uses these descriptions as triggers, matching user inputs against specified keywords to decide when to activate the skill<sup>13</sup>.</p></li>
+        <li><strong>Level 2: Instructions (&lt;5,000 tokens)</strong><p>The full SKILL.md body is loaded into the active context only after the skill has been explicitly triggered<sup>13</sup>.</p></li>
+        <li><strong>Level 3: Resources (On-Demand)</strong><p>Supporting references and execution scripts are pulled from <code>scripts/</code> or <code>references/</code> only when the active workflow directives demand their use<sup>13</sup>.</p></li>
+      </ul>
+      <p>Quantitative engineering analysis demonstrates that this three-tier progressive disclosure model reduces conversational context window token consumption by approximately 40% compared to monolithic prompt structures<sup>13</sup>.</p>
+      <p>The YAML Frontmatter configuration of the SKILL.md file is structured according to the open standard specification as detailed below:</p>
+      <div class="table-wrap" style="margin-top:1rem">
+        <table class="order-table">
+          <thead><tr><th>Frontmatter Parameter</th><th>Requirement Status</th><th>Allowed Data Types &amp; Constraints</th><th>Core Operational Mechanism</th></tr></thead>
+          <tbody>
+            <tr><td><strong>name</strong></td><td>Required<sup>13</sup>.</td><td>String; 1–64 characters, lowercase kebab-case only; must match the skill parent directory<sup>29</sup>.</td><td>Serves as the unique identifier for the skill inside the agent configuration directory<sup>29</sup>.</td></tr>
+            <tr><td><strong>description</strong></td><td>Required<sup>13</sup>.</td><td>String; 1–1024 characters; must detail functionality and trigger phrases<sup>29</sup>.</td><td>Used by the agent at startup to evaluate relevance against the user's intent<sup>13</sup>.</td></tr>
+            <tr><td><strong>when_to_use</strong></td><td>Optional<sup>33</sup>.</td><td>Multiline String; detailed activation scenarios<sup>33</sup>.</td><td>Supplements the description with robust trigger guidelines and exclusion criteria<sup>33</sup>.</td></tr>
+            <tr><td><strong>allowed-tools</strong></td><td>Optional<sup>31</sup>.</td><td>Space-separated list of tool identifiers<sup>31</sup>.</td><td>Acts as a security sandbox limiting the tools the agent is permitted to run under the active skill<sup>31</sup>.</td></tr>
+            <tr><td><strong>context</strong></td><td>Optional<sup>33</sup>.</td><td>Enum: <code>fork</code> or <code>inline</code><sup>33</sup>.</td><td>If set to <code>fork</code>, forces the client (e.g., Claude Code) to run the skill as an isolated sub-agent, preventing token pollution of the main chat context<sup>33</sup>.</td></tr>
+            <tr><td><strong>model</strong></td><td>Optional<sup>33</sup>.</td><td>String (valid LLM model string)<sup>33</sup>.</td><td>Specifies the specific model used by the sub-agent when <code>context: fork</code> is configured<sup>33</sup>.</td></tr>
+            <tr><td><strong>effort</strong></td><td>Optional<sup>33</sup>.</td><td>Enum: <code>low</code>, <code>medium</code>, <code>high</code><sup>33</sup>.</td><td>Adjusts model computational depth (e.g., setting <code>low</code> for routine scripts to save compute, or <code>high</code> for critical audits)<sup>33</sup>.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>The 3-Tier Prompting Hierarchy and Autonomous Vibe Coding</h2>
+    <div class="card">
+      <p>To achieve deterministic outputs, agentic systems must be governed by a structured context-injection architecture<sup>11</sup>. The industry standard has converged around the "3-Tier Hierarchy of Prompting," which aligns the agent's execution environment across three distinct operational layers<sup>9</sup>:</p>
+
+      <h3>1. Application-Level Prompts</h3>
+      <p>These are global system templates embedded into the client application, developer IDE, or enterprise infrastructure<sup>9</sup>. They dictate the agent's primary operational paradigm, default formatting preferences, and baseline safety limits<sup>10</sup>. Application-level prompts establish the foundation of how the agent behaves across all codebases<sup>10</sup>, independent of the specific project structure.</p>
+
+      <h3>2. Project-Level Prompts</h3>
+      <p>These are folder-level context files — such as AGENTS.md, CLAUDE.md, and .cursorrules — that live inside the repository<sup>8</sup>. This layer is responsible for onboarding the agent to the codebase's unique environment<sup>12</sup>. It maps out the local directory layout, details the exact dependency versions, provides code examples to match style expectations, and specifies precise build and test commands<sup>8</sup>. Project-level prompts establish the boundaries that prevent the model from deviating from team-wide standards<sup>22</sup>.</p>
+
+      <h3>3. Execution-Level Prompts</h3>
+      <p>These are task-specific, ephemeral prompts passed during active development sessions<sup>8</sup>. This layer includes direct CLI prompts, targeted chat inputs, custom slash commands (e.g., <code>.claude/commands/review.md</code> mapping to <code>/review</code>)<sup>8</sup>, and specialized SKILL.md routines triggered by explicit user requests<sup>12</sup>. Execution-level prompts specify <em>what</em> immediate change needs to occur, relying on the project-level and application-level prompts to dictate <em>how</em> to safely implement and format that change<sup>8</sup>.</p>
+
+      <h3>The Evolution of "Autonomous Vibe Coding" to "Agentic Engineering"</h3>
+      <p>In early 2025, the initial wave of AI-assisted programming popularized "vibe coding"<sup>1</sup>. Under this pattern, developers operated with minimal traditional technical friction, feeding natural language descriptions into highly capable LLMs and accepting generated code with little review<sup>1</sup>. While this conversational strategy excelled at rapid prototyping, simple web-page construction, and single-file CRUD utilities<sup>2</sup>, it quickly degraded when applied to complex, multi-module enterprise architectures<sup>4</sup>.</p>
+      <p>The limitations of pure vibe coding manifested in the "Vibe Coding Doom Loop"<sup>3</sup>. In this state, an agent's lack of persistent codebase knowledge causes it to make speculative architectural decisions, introduce hidden dependencies, and generate repetitive, non-compiling code changes<sup>3</sup>. When confronted with compiler errors, the agent enters an unguided loop, repeatedly generating ineffective fixes that consume token budgets and destabilize the codebase's structural integrity<sup>3</sup>.</p>
+      <p>By 2026, the software industry adapted, shifting toward "agentic engineering"<sup>5</sup>. This methodology maintains the rapid generative speed of AI coding agents but wraps them in structured verification networks<sup>5</sup>. Rather than passively accepting generated files, agentic engineering establishes strict loops of execution: <strong>Intent &rarr; Plan &rarr; Review &rarr; Implement &rarr; Automated Verification (Test &amp; Lint) &rarr; Deploy</strong><sup>3</sup>.</p>
+
+      <h3>Spec-Driven Development (SDD)</h3>
+      <p>To coordinate complex system implementations across multiple AI agents, agentic engineering relies on Spec-Driven Development (SDD)<sup>15</sup>. Instead of allowing developers to input loose, conversational parameters that lead to divergent implementations, SDD mandates that business rules, schema migrations, and API expectations be written first as deterministic, version-controlled markdown specifications<sup>15</sup>. These specifications act as the system's "source of truth" and persistent operational memory<sup>15</sup>.</p>
+      <p>When a task is initiated, the orchestrating agent is bound to this spec<sup>15</sup>. It cannot speculate; it must execute strictly against the defined schema contracts and automated test parameters<sup>15</sup>. If the code fails the testing validation, the agent uses the error outputs to systematically iterate on the implementation, ensuring the codebase remains clean and stable<sup>14</sup>.</p>
+
+      <h3>Karpathy's Advanced Architectural Concepts</h3>
+      <p>As part of the shift toward agentic engineering, Andrej Karpathy and other prominent research developers introduced advanced architectural paradigms to govern long-running, autonomous agents:</p>
+
+      <h3 style="color:var(--text);font-size:.92rem;margin-top:1.1rem">LLM Council</h3>
+      <p>To mitigate the cognitive biases and single-model failure rates of individual LLMs, Karpathy developed the <strong>LLM Council</strong> architecture — a local, multi-stage collaborative deliberation system<sup>35</sup>. The council operates across three distinct stages<sup>35</sup>:</p>
+      <ul class="dashed">
+        <li><strong>Stage 1 (First Opinions):</strong> A user's query is distributed to multiple competing models (e.g., GPT, Gemini, Claude, Grok) in parallel<sup>35</sup>. Each model generates an independent candidate solution<sup>36</sup>.</li>
+        <li><strong>Stage 2 (Anonymized Peer Review):</strong> The candidate responses are collected and anonymized (e.g., "Response A", "Response B") to prevent models from playing favorites or prioritizing their own brand<sup>35</sup>. Each participating model is then prompted to critically evaluate and rank the anonymized options based on accuracy, security, and architectural insight<sup>35</sup>.</li>
+        <li><strong>Stage 3 (Chairman Synthesis):</strong> A designated "Chairman" model receives the raw responses, the anonymized peer evaluations, and the aggregate rankings<sup>36</sup>. The Chairman compiles this data into a single, optimized final response<sup>36</sup>. This architecture uses competitive cross-evaluation to reduce hallucinations and ensure highly robust solutions<sup>35</sup>.</li>
+      </ul>
+      <pre class="codeblock">           [ User Query ]
+                  |
+        +---------+---------+
+        v         v         v
+    Model A    Model B   Model C     (Stage 1: First Opinions)
+        |         |         |
+        +---------+---------+
+                  v
+        Anonymized Evaluation       (Stage 2: Peer Review)
+        +---------+---------+
+        v         v         v
+    Model A    Model B   Model C
+        |         |         |
+        +---------+---------+
+                  v
+          [ Chairman LLM ]          (Stage 3: Synthesis)
+                  |
+                  v
+           [ Final Output ]</pre>
+
+      <h3 style="color:var(--text);font-size:.92rem">The LLM-Wiki Pattern (Obsidian Graph Integration)</h3>
+      <p>Standard Retrieval-Augmented Generation (RAG) is fundamentally stateless; on every query, it slices raw text files into semantic vectors, retrieves matching chunks, and discards the synthesized insight once the turn is complete<sup>37</sup>. To address this "retrieval amnesia," Karpathy pioneered the <strong>LLM-Wiki</strong> pattern<sup>37</sup>.</p>
+      <p>Instead of treating external knowledge as a static directory of PDF uploads, an agent is given write-authority over a local, structured markdown wiki (typically visualized using Obsidian)<sup>37</sup>. When new data or raw papers are introduced, the agent reads the content and actively integrates it into the existing wiki — updating core entity pages, creating cross-linked references (<code>[[wikilinks]]</code>), noting contradictions with older documentation, and consolidating overlapping concepts<sup>37</sup>.</p>
+      <p>The developer browses this wiki in real-time<sup>37</sup>. This structural synthesis ensures that the agent's memory compounds over time, building a highly organized knowledge base that acts as a structured context surface for future engineering sprints<sup>37</sup>.</p>
+
+      <h3 style="color:var(--text);font-size:.92rem">NeuroVerse Research Worlds</h3>
+      <p>For complex, long-running research loops that execute for hours or days, agents often suffer from goal drift, constraint erosion, and compute resource depletion<sup>34</sup>. To resolve this, Karpathy introduced <strong>NeuroVerse Research Worlds</strong>, which enforce a governance engine via structured configuration files (e.g., <code>.world.json</code> and <code>.nv-world.md</code> files)<sup>34</sup>.</p>
+      <p>A "Research World" file acts as a programmable environment that defines the constraints of the agent's research loop<sup>34</sup>. It outlines:</p>
+      <ul class="dashed">
+        <li><strong>Research Invariants:</strong> Strict constraints on datasets, validated metrics, and reproducibility baselines<sup>34</sup>.</li>
+        <li><strong>Operational Invariants:</strong> Compute budgets, maximum context-drift thresholds, and stagnation-detection rules<sup>34</sup>.</li>
+        <li><strong>Governance Gates:</strong> Explicit rules indicating when the agent must pause for human review (e.g., when a metric stagnates, or when a research breakthrough occurs)<sup>34</sup>.</li>
+      </ul>
+      <p>By running autonomous loops inside a tightly defined "World" configuration, the environment itself becomes programmable, ensuring the agent remains focused on its scientific goals without wasting valuable compute resources<sup>34</sup>.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Takeaway</h2>
+    <div class="takeaway">
+      <p>The throughline of this research is structural: stateless models perform best when persistent, repo-native context (CLAUDE.md, AGENTS.md, SKILL.md) replaces ad-hoc conversational instruction, and when that context is organized across the application / project / execution tiers rather than crammed into a single prompt. <strong>Structure beats volume</strong> — both for prompt engineering and for the file architecture that surrounds it.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Annotated Bibliography</h2>
+    <div class="card">
+      <div class="bib-entry">
+        <p class="citation">Anthropic Engineering Team. "Effective Context Engineering for AI Agents." <em>Anthropic Technical Publications</em>, 2025.</p>
+        <a class="url" href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents">https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents<sup>11</sup></a>
+        <p class="justification"><strong>Authority Justification:</strong> Written by Anthropic's core engineering staff, this paper defines the industry-standard concepts of prompt altitude and establishes the progression from manual prompt engineering to automated context engineering.</p>
+      </div>
+      <div class="bib-entry">
+        <p class="citation">Bsharat, Shadi, et al. "Principled Instructions for Prompting: 26 Principles for Designing Effective Prompts." <em>arXiv Repository</em>, 2023.</p>
+        <a class="url" href="https://edtechbooks.org/jaid_14_3/yqdqercqzk">https://edtechbooks.org/jaid_14_3/yqdqercqzk<sup>20</sup></a>
+        <p class="justification"><strong>Authority Justification:</strong> A highly cited, peer-reviewed academic publication that validates the mathematical and behavioral benefits of structured instructions across frontier models.</p>
+      </div>
+      <div class="bib-entry">
+        <p class="citation">Karpathy, Andrej. "LLM Council: Collaborative Multi-Model Deliberation Systems." <em>GitHub Repository</em>, 2025.</p>
+        <a class="url" href="https://github.com/karpathy/llm-council">https://github.com/karpathy/llm-council<sup>36</sup></a>
+        <p class="justification"><strong>Authority Justification:</strong> Created by a co-founder of OpenAI, this repository defines the multi-agent consensus workflow that serves as a cornerstone of agentic engineering.</p>
+      </div>
+      <div class="bib-entry">
+        <p class="citation">Karpathy, Andrej. "LLM-Wiki: Compounding Persistent External Memory Graphs." <em>GitHub Gist Repository</em>, 2025.</p>
+        <a class="url" href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f">https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f<sup>37</sup></a>
+        <p class="justification"><strong>Authority Justification:</strong> Outlines the core design principles for compounding model context using structured markdown graphs, resolving the statelessness of transformer API endpoints.</p>
+      </div>
+      <div class="bib-entry">
+        <p class="citation">Microsoft Research. "Agent Skills Open Specification and Implementation Blueprint." <em>Microsoft Learn</em>, 2026.</p>
+        <a class="url" href="https://learn.microsoft.com/en-us/agent-framework/agents/skills">https://learn.microsoft.com/en-us/agent-framework/agents/skills<sup>30</sup></a>
+        <p class="justification"><strong>Authority Justification:</strong> Provides official developer guidelines and implementation patterns for executing portable, file-based skills within enterprise system environments.</p>
+      </div>
+      <div class="bib-entry">
+        <p class="citation">Morph LLM. "The 2026 AGENTS.md Universal Specification Guide." <em>Morph Technical Publications</em>, 2026.</p>
+        <a class="url" href="https://www.morphllm.com/agents-md-guide">https://www.morphllm.com/agents-md-guide<sup>22</sup></a>
+        <p class="justification"><strong>Authority Justification:</strong> A technical resource mapping out the directory-scoped override model and execution schemas of the cross-agent standardized context format.</p>
+      </div>
+      <div class="bib-entry">
+        <p class="citation">Nigh, Matt. "How to Write a Great AGENTS.md: Lessons from Over 2,500 Repositories." <em>GitHub Engineering Blog</em>, 2025.</p>
+        <a class="url" href="https://www.morphllm.com/agents-md-guide">https://www.morphllm.com/agents-md-guide<sup>22</sup></a>
+        <p class="justification"><strong>Authority Justification:</strong> Published by the Director of GitHub's AI program, this empirical analysis catalogs the precise configurations, persona choices, and boundaries of real-world repositories.</p>
+      </div>
+      <div class="bib-entry">
+        <p class="citation">OpenAI Developer Relations. "Strategies and Tactics for Prompt Engineering." <em>OpenAI Documentation</em>, 2024.</p>
+        <a class="url" href="https://developers.openai.com/api/docs/guides/prompt-engineering">https://developers.openai.com/api/docs/guides/prompt-engineering<sup>19</sup></a>
+        <p class="justification"><strong>Authority Justification:</strong> The official developer documentation from the creators of GPT-4 and GPT-5, detailing baseline optimization rules for structured prompt designs.</p>
+      </div>
+      <div class="bib-entry">
+        <p class="citation">Serenities AI. "The Empirical Performance of Passive Context Files vs. Dynamic Skill Retrieval." <em>Serenities Technical Reports</em>, 2026.</p>
+        <a class="url" href="https://serenitiesai.com/articles/cursorrules-vs-agents-md-vs-claude-md-comparison">https://serenitiesai.com/articles/cursorrules-vs-agents-md-vs-claude-md-comparison<sup>10</sup></a>
+        <p class="justification"><strong>Authority Justification:</strong> Provides quantitative verification data comparing repo-native rules files with dynamic retrieval networks, confirming a 100% execution pass rate for grounded prompts.</p>
+      </div>
+      <div class="bib-entry">
+        <p class="citation">SwirlAI Research. "Token Performance Optimization and Progressive Disclosure Mechanics." <em>Swirl Technical Publications</em>, 2026.</p>
+        <a class="url" href="https://agentman.ai/blog/build-your-first-agent-skill-skillmd-anatomy">https://agentman.ai/blog/build-your-first-agent-skill-skillmd-anatomy<sup>13</sup></a>
+        <p class="justification"><strong>Authority Justification:</strong> Analyzes the physical context token efficiency and performance optimization under the three-tier progressive disclosure model of SKILL.md configurations.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Works Cited</h2>
+    <div class="card">
+      <ol class="works-cited">
+        <li>Vibe coding - Wikipedia, <a href="https://en.wikipedia.org/wiki/Vibe_coding">https://en.wikipedia.org/wiki/Vibe_coding</a></li>
+        <li>Vibe Coding Explained: Tools and Guides - Google Cloud, <a href="https://cloud.google.com/discover/what-is-vibe-coding">https://cloud.google.com/discover/what-is-vibe-coding</a></li>
+        <li>Vibe Coding Best Practices: Avoid the Doom Loop with Planning and Code Reviews, <a href="https://www.producttalk.org/vibe-coding-best-practices/">https://www.producttalk.org/vibe-coding-best-practices/</a></li>
+        <li>We are NOT at the vibe coding stage. Please stop with misinformation : r/ClaudeAI, <a href="https://www.reddit.com/r/ClaudeAI/comments/1j44s07/we_are_not_at_the_vibe_coding_stage_please_stop/">https://www.reddit.com/r/ClaudeAI/comments/1j44s07/we_are_not_at_the_vibe_coding_stage_please_stop/</a></li>
+        <li>Tesla's Former AI Director Andrej Karpathy on one-year anniversary of coding trend that changed tech industry forever: In 2026, we are likely to see... - The Times of India, <a href="https://timesofindia.indiatimes.com/technology/tech-news/teslas-former-ai-director-andrej-karpathy-on-one-year-anniversary-of-coding-trend-that-changed-tech-industry-forever-in-2026-we-are-likely-to-see-/articleshow/127929291.cms">https://timesofindia.indiatimes.com/...articleshow/127929291.cms</a></li>
+        <li>Vibe coding is passé. Karpathy has a new name for the future of software. - The New Stack, <a href="https://thenewstack.io/vibe-coding-is-passe/">https://thenewstack.io/vibe-coding-is-passe/</a></li>
+        <li>Agentic engineering: vibe coding was phase one only? - Abto Software, <a href="https://www.abtosoftware.com/blog/agentic-engineering">https://www.abtosoftware.com/blog/agentic-engineering</a></li>
+        <li>CLAUDE.md, .cursorrules, AGENTS.md — How to Give Context to AI Coding Agents, <a href="https://sotaaz.com/post/ai-coding-rules-guide-en">https://sotaaz.com/post/ai-coding-rules-guide-en</a></li>
+        <li>CLAUDE.md, AGENTS.md, and Every AI Config File Explained - DEV Community, <a href="https://dev.to/deployhq/claudemd-agentsmd-and-every-ai-config-file-explained-4pde">https://dev.to/deployhq/claudemd-agentsmd-and-every-ai-config-file-explained-4pde</a></li>
+        <li>.cursorrules vs agents.md: Which Format Wins in 2026? | Serenities AI, <a href="https://serenitiesai.com/articles/cursorrules-vs-agents-md-vs-claude-md-comparison">https://serenitiesai.com/articles/cursorrules-vs-agents-md-vs-claude-md-comparison</a></li>
+        <li>Effective context engineering for AI agents - Anthropic, <a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents">https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents</a></li>
+        <li>SKILL.md vs CLAUDE.md vs .cursorrules: Which One Should You Use? - Agensi, <a href="https://www.agensi.io/learn/skill-md-vs-claude-md-vs-cursorrules">https://www.agensi.io/learn/skill-md-vs-claude-md-vs-cursorrules</a></li>
+        <li>How Do You Build Your First Agent Skill? A Complete SKILL.md Anatomy Guide - Agentman, <a href="https://agentman.ai/blog/build-your-first-agent-skill-skillmd-anatomy">https://agentman.ai/blog/build-your-first-agent-skill-skillmd-anatomy</a></li>
+        <li>What is Vibe Coding? | IBM, <a href="https://www.ibm.com/think/topics/vibe-coding">https://www.ibm.com/think/topics/vibe-coding</a></li>
+        <li>Vibe coding can build your pipeline. It can't explain it six months later, <a href="https://venturebeat.com/orchestration/vibe-coding-can-build-your-pipeline-it-cant-explain-it-six-months-later">https://venturebeat.com/orchestration/vibe-coding-can-build-your-pipeline-it-cant-explain-it-six-months-later</a></li>
+        <li>CLAUDE.md solves context. But what solves the ticket that goes in? : r/ClaudeCode - Reddit, <a href="https://www.reddit.com/r/ClaudeCode/comments/1rw3n8m/claudemd_solves_context_but_what_solves_the/">https://www.reddit.com/r/ClaudeCode/comments/1rw3n8m/claudemd_solves_context_but_what_solves_the/</a></li>
+        <li>The Complete Prompt Engineering Guide — Anthropic | aiwithgrant, <a href="https://www.aiwithgrant.com/guides/anthropic-prompt-engineering-overview">https://www.aiwithgrant.com/guides/anthropic-prompt-engineering-overview</a></li>
+        <li>Prompt engineering overview - Claude API Docs, <a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview">https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview</a></li>
+        <li>Prompt engineering | OpenAI API, <a href="https://developers.openai.com/api/docs/guides/prompt-engineering">https://developers.openai.com/api/docs/guides/prompt-engineering</a></li>
+        <li>A Co-Creative Approach for AI-Enhanced Instructional Design - EdTech Books, <a href="https://edtechbooks.org/jaid_14_3/yqdqercqzk">https://edtechbooks.org/jaid_14_3/yqdqercqzk</a></li>
+        <li>A co-creative approach for AI-enhanced instructional design - MADOC, <a href="https://madoc.bib.uni-mannheim.de/70703/1/22719.pdf">https://madoc.bib.uni-mannheim.de/70703/1/22719.pdf</a></li>
+        <li>AGENTS.md Spec (2026): Recommended Sections + AGENTS.md vs CLAUDE.md vs .cursorrules - Morph LLM, <a href="https://www.morphllm.com/agents-md-guide">https://www.morphllm.com/agents-md-guide</a></li>
+        <li>Prompt engineering techniques and best practices: Learn by doing with Anthropic's Claude 3 on Amazon Bedrock | Artificial Intelligence, <a href="https://aws.amazon.com/blogs/machine-learning/prompt-engineering-techniques-and-best-practices-learn-by-doing-with-anthropics-claude-3-on-amazon-bedrock/">https://aws.amazon.com/blogs/...amazon-bedrock/</a></li>
+        <li>Mastering Prompt Engineering for Claude - Walturn, <a href="https://www.walturn.com/insights/mastering-prompt-engineering-for-claude">https://www.walturn.com/insights/mastering-prompt-engineering-for-claude</a></li>
+        <li>[Anthropic Recommended] Prompt Engineering for Stable LLM Outputs - Zenn, <a href="https://zenn.dev/tsuboi/articles/da19549dbdc6de?locale=en">https://zenn.dev/tsuboi/articles/da19549dbdc6de?locale=en</a></li>
+        <li>Prompting best practices - Claude API Docs, <a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices">https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices</a></li>
+        <li>OpenAI &amp; Andrew Ng's ChatGPT Prompt Engineering Course - Medium, <a href="https://medium.com/@hizacharylee/openai-and-andrew-ngs-chatgpt-prompt-engineering-course-guidelines-and-summary-f2fef07b226f">https://medium.com/@hizacharylee/...summary-f2fef07b226f</a></li>
+        <li>SKILL.md: The Agent Skills Format - mdskills.ai, <a href="https://www.mdskills.ai/specs/skill-md">https://www.mdskills.ai/specs/skill-md</a></li>
+        <li>Agent Skills: A Portable Format for Teaching AI Agents How to Work | Ylang Labs, <a href="https://ylanglabs.com/blogs/agent-skills">https://ylanglabs.com/blogs/agent-skills</a></li>
+        <li>Agent Skills | Microsoft Learn, <a href="https://learn.microsoft.com/en-us/agent-framework/agents/skills">https://learn.microsoft.com/en-us/agent-framework/agents/skills</a></li>
+        <li>Specification - Agent Skills, <a href="https://agentskills.io/specification">https://agentskills.io/specification</a></li>
+        <li>agent-skills/AGENTS.md at main - GitHub, <a href="https://github.com/neondatabase/agent-skills/blob/main/AGENTS.md">https://github.com/neondatabase/agent-skills/blob/main/AGENTS.md</a></li>
+        <li>SKILL.md Format Specification: Complete YAML Frontmatter Reference - Agensi, <a href="https://www.agensi.io/learn/skill-md-format-reference">https://www.agensi.io/learn/skill-md-format-reference</a></li>
+        <li>Research Worlds: governing long-running autoresearch agents #275 - GitHub, <a href="https://github.com/karpathy/autoresearch/discussions/275">https://github.com/karpathy/autoresearch/discussions/275</a></li>
+        <li>CLAUDE.md - karpathy/llm-council - GitHub, <a href="https://github.com/karpathy/llm-council/blob/master/CLAUDE.md">https://github.com/karpathy/llm-council/blob/master/CLAUDE.md</a></li>
+        <li>GitHub - karpathy/llm-council: LLM Council works together to answer your hardest questions, <a href="https://github.com/karpathy/llm-council">https://github.com/karpathy/llm-council</a></li>
+        <li>LLM Wiki - Gist - GitHub, <a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f">https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f</a></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="footer">Part of the <a href="../README.html">Vibe Coding &amp; Prompt Engineering Masterclass</a></div>
+</div>
+</body>
+</html>

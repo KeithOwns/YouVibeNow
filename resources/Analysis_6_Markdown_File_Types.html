@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Analysis: The Types of Markdown Files in Your Workspace — YouVibeNow</title>
+<style>
+  :root{
+    --bg:#0f1117; --surface:#1e293b; --border:#334155; --muted:#475569;
+    --text:#e2e8f0; --subtle:#94a3b8; --accent:#fbbf24; --accent-bg:#422006;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding:3rem 1.5rem;line-height:1.65}
+  .page{max-width:840px;margin:0 auto}
+  .breadcrumb{font-size:.78rem;color:var(--muted);margin-bottom:1.75rem}
+  .breadcrumb a{color:var(--subtle);text-decoration:none}
+  .breadcrumb a:hover{text-decoration:underline}
+  .header{margin-bottom:2rem}
+  .tag{display:inline-block;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);background:var(--accent-bg);border:1px solid var(--accent);border-radius:999px;padding:.25rem .85rem;margin-bottom:1rem}
+  h1{font-size:1.85rem;font-weight:700;margin-bottom:.5rem;line-height:1.3}
+  .subtitle{color:var(--subtle);font-size:.95rem;max-width:640px}
+  .provenance{background:#1c1606;border:1px solid #4d3a06;border-left:4px solid var(--accent);border-radius:8px;padding:1rem 1.25rem;margin-bottom:2rem;font-size:.84rem;color:#e2c97a}
+  .provenance strong{color:#fde68a}
+  .freshness{background:#0a2a1f;border:1px solid #166e4d;border-left:4px solid #4ade80;border-radius:8px;padding:1rem 1.25rem;margin-bottom:2rem;font-size:.86rem;color:#9fe8c4}
+  .freshness strong{color:#bbf7d0}
+  .section{margin-bottom:2.25rem}
+  h2{font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:.3rem}
+  .section-tagline{font-size:.82rem;color:var(--muted);font-style:italic;margin-bottom:1rem}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.25rem 1.5rem}
+  ol.numbered{list-style:none;counter-reset:n}
+  ol.numbered li{counter-increment:n;position:relative;padding-left:1.8rem;margin-bottom:.7rem;color:var(--subtle);font-size:.9rem}
+  ol.numbered li::before{content:counter(n);position:absolute;left:0;top:0;width:1.3rem;height:1.3rem;border-radius:50%;background:var(--accent-bg);color:var(--accent);font-size:.72rem;font-weight:700;display:flex;align-items:center;justify-content:center}
+  ol.numbered strong{color:var(--text);font-family:'Consolas','Cascadia Code',monospace}
+  .new-badge{display:inline-block;font-size:.62rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#4ade80;background:#052e16;border:1px solid #4ade80;border-radius:999px;padding:.1rem .5rem;margin-left:.5rem;vertical-align:middle}
+  code{color:var(--accent);background:#0f172a;padding:.05rem .35rem;border-radius:4px;font-size:.85em;font-family:'Consolas','Cascadia Code',monospace}
+  .reconcile p{color:var(--subtle);font-size:.9rem;margin-bottom:.85rem}
+  .reconcile p:last-child{margin-bottom:0}
+  .reconcile strong{color:var(--text)}
+  .axis-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1rem 0}
+  .axis{background:#0f172a;border:1px solid var(--border);border-radius:8px;padding:1rem 1.25rem}
+  .axis-title{font-weight:700;font-size:.85rem;color:var(--accent);margin-bottom:.4rem}
+  .axis p{font-size:.84rem;color:var(--subtle);margin-bottom:0}
+  .footer{text-align:center;font-size:.78rem;color:var(--muted);padding-top:2rem;margin-top:2rem;border-top:1px solid var(--border)}
+  .footer a{color:var(--subtle);text-decoration:none}
+  .footer a:hover{text-decoration:underline}
+  @media (max-width:600px){.axis-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="breadcrumb"><a href="../README.html">YouVibeNow</a> / Resources / Markdown File Types</div>
+  <div class="header">
+    <div class="tag">Analysis</div>
+    <h1>The Types of Markdown Files in Your Workspace</h1>
+    <p class="subtitle">An audit of how the same idea — "categorize your project's markdown files" — shows up in two genuinely different, non-contradictory framings across this codebase.</p>
+  </div>
+
+  <div class="provenance">
+    <strong>Provenance:</strong> Transcribed 2026-06-29 directly from the original PDF (1 page) via visual reading — the file has no extractable text layer, but renders as a legible image. This supersedes an earlier version reconstructed only from chat-log narrative; the original content below, including its file citations, is preserved verbatim.
+  </div>
+
+  <div class="freshness">
+    <strong>Updated for accuracy:</strong> the original brief below described 6 dashboard categories. The live <code>ai_context_tree.html</code> dashboard has since grown a 7th — <code>gemini-mem_</code>, Gemini CLI's own per-project memory file — and dropped the Cursor/Windsurf/Cline/Copilot filename conventions entirely (they matched 0 files on this machine). The list below reflects the dashboard's current state, not the original PDF's count.
+  </div>
+
+  <div class="section">
+    <h2>1. The Dashboard Categories <span style="font-weight:400;color:var(--subtle)">(By Agent Utility)</span></h2>
+    <div class="section-tagline">As recorded in project memory and rendered dynamically by the ai_context_tree.html dashboard — your files are aggregated by how LLMs actually ingest them.</div>
+    <div class="card">
+      <ol class="numbered">
+        <li><strong>CLAUDE.md</strong> — instructions auto-loaded by Claude Code (and Claude Cowork's folder instructions).</li>
+        <li><strong>GEMINI.md</strong> — rules auto-loaded by Gemini CLI and Antigravity.</li>
+        <li><strong>AGENTS.md</strong> — universal multi-agent boundary system; Codex CLI and Antigravity read it by default, Gemini CLI only if opted in via <code>context.fileName</code>.</li>
+        <li><strong>SKILL.md</strong> — packaged, reusable workflows loaded on-demand via progressive disclosure (Claude Code and Gemini CLI both support the open Agent Skills standard).</li>
+        <li><strong>auto-mem_</strong> — Claude Code's per-directory memory, written by Claude across sessions.</li>
+        <li><strong>gemini-mem_</strong> <span class="new-badge">new</span> — Gemini CLI's per-project memory file, written via its <code>save_memory</code> tool.</li>
+        <li><strong>other_</strong> — static documentation (READMEs, logs, manuals) that is never auto-loaded, only read on demand.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>2. The Standard Project-Level Files <span style="font-weight:400;color:var(--subtle)">(Vibe Coding Starter Kit)</span></h2>
+    <div class="section-tagline">As documented in the YouVibeNow course curriculum — the standard set of files every codebase or workspace folder should contain to maximize stateful prompting performance.</div>
+    <div class="card">
+      <ol class="numbered">
+        <li><strong>AGENTS.md</strong> — anchors the agent's identity, role, and absolute safety constraints (e.g., backup requirements).</li>
+        <li><strong>CONTEXT.md</strong> — outlines the project background, tech stack, directory layouts, and "what good looks like" definitions.</li>
+        <li><strong>TASKS.md</strong> — keeps track of the active sprint with structured Markdown checklists.</li>
+        <li><strong>MEMORY.md</strong> — acts as the dynamic brain, logging learned preferences, self-corrections, and design pivots.</li>
+        <li><strong>SKILL.md</strong> (inside <code>skills/</code>) — packages repetitive, complex multi-step execution tasks into single-command automation macros.</li>
+        <li><strong>README.md</strong> — serves as the human-facing front-door introducing the repository.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Reconciling the Two Framings</h2>
+    <div class="section-tagline">Added during review — these are genuinely two different axes, not a contradiction.</div>
+    <div class="axis-grid">
+      <div class="axis">
+        <div class="axis-title">Framing 1</div>
+        <p>What a tool auto-loads, <em>by filename</em> — the dashboard's actual type/scope taxonomy.</p>
+      </div>
+      <div class="axis">
+        <div class="axis-title">Framing 2</div>
+        <p>What a new project should scaffold — a content-authoring checklist for this curriculum's "starter kit," largely orthogonal to auto-load behavior.</p>
+      </div>
+    </div>
+    <div class="reconcile">
+      <p><code>CONTEXT.md</code>/<code>TASKS.md</code>/<code>README.md</code> are never auto-loaded by any tool — they're read only because an <code>AGENTS.md</code>/<code>CLAUDE.md</code> instruction or the user points the agent at them.</p>
+      <p>Only Framing 1's filenames are confirmed auto-loaded by real tools: <code>CLAUDE.md</code>, <code>GEMINI.md</code>, <code>AGENTS.md</code> (opt-in for Gemini CLI), <code>SKILL.md</code>. <code>README.md</code> is never auto-loaded by any AI tool — though GitHub itself auto-renders it as a folder's landing page, a separate platform convention.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>See also</h2>
+    <div class="card">
+      <p style="color:var(--subtle);font-size:.9rem;margin-bottom:.5rem">— <a href="Stateful_Prompting_Structure.html" style="color:var(--accent)">Stateful Prompting Root File Structure</a> — the folder/file system these types plug into</p>
+      <p style="color:var(--subtle);font-size:.9rem;margin:0">— <a href="Cheat_Sheet.html" style="color:var(--accent)">Cheat Sheet</a>, <a href="Prompt%20Engineering%20Frameworks%20Research.html" style="color:var(--accent)">Prompt Engineering Frameworks Research</a></p>
+    </div>
+  </div>
+
+  <div class="footer">Part of the <a href="../README.html">Vibe Coding &amp; Prompt Engineering Masterclass</a></div>
+</div>
+</body>
+</html>

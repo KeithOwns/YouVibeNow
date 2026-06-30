@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Python Password Generator: Technical Plan — YouVibeNow</title>
+<style>
+  :root{
+    --bg:#0f1117; --surface:#1e293b; --border:#334155; --muted:#475569;
+    --text:#e2e8f0; --subtle:#94a3b8; --accent:#c084fc; --accent-bg:#2e1065;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding:3rem 1.5rem;line-height:1.65}
+  .page{max-width:780px;margin:0 auto}
+  .breadcrumb{font-size:.78rem;color:var(--muted);margin-bottom:1.75rem}
+  .breadcrumb a{color:var(--subtle);text-decoration:none}
+  .breadcrumb a:hover{text-decoration:underline}
+  .header{margin-bottom:2.5rem}
+  .tag{display:inline-block;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);background:var(--accent-bg);border:1px solid var(--accent);border-radius:999px;padding:.25rem .85rem;margin-bottom:1rem}
+  h1{font-size:1.85rem;font-weight:700;margin-bottom:.5rem;line-height:1.3}
+  .subtitle{color:var(--subtle);font-size:.95rem;max-width:620px}
+  .section{margin-bottom:2.25rem}
+  h2{font-size:1rem;font-weight:600;color:var(--subtle);letter-spacing:.04em;text-transform:uppercase;margin-bottom:.9rem;padding-bottom:.45rem;border-bottom:1px solid var(--border)}
+  .step-num{display:inline-flex;align-items:center;justify-content:center;width:1.6rem;height:1.6rem;border-radius:50%;background:var(--accent-bg);color:var(--accent);font-size:.8rem;font-weight:700;margin-right:.6rem}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.25rem 1.5rem}
+  p{color:var(--subtle);font-size:.92rem;margin-bottom:.75rem}
+  p:last-child{margin-bottom:0}
+  code{color:var(--accent);background:#0f172a;padding:.05rem .35rem;border-radius:4px;font-size:.85em;font-family:'Consolas','Cascadia Code',monospace}
+  ul.plain{list-style:none}
+  ul.plain li{position:relative;padding-left:1.1rem;margin-bottom:.6rem;color:var(--subtle);font-size:.92rem}
+  ul.plain li::before{content:'—';position:absolute;left:0;color:var(--muted)}
+  ul.plain li:last-child{margin-bottom:0}
+  ul.plain ul{list-style:none;margin-top:.5rem}
+  ul.plain ul li{padding-left:1.1rem}
+  ol.steps{list-style:none;counter-reset:step;margin-top:.5rem}
+  ol.steps li{counter-increment:step;position:relative;padding-left:1.6rem;margin-bottom:.6rem;color:var(--subtle);font-size:.92rem}
+  ol.steps li::before{content:counter(step);position:absolute;left:0;color:var(--accent);font-weight:700;font-size:.85em}
+  .footer{text-align:center;font-size:.78rem;color:var(--muted);padding-top:2rem;margin-top:2rem;border-top:1px solid var(--border)}
+  .footer a{color:var(--subtle);text-decoration:none}
+  .footer a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="breadcrumb"><a href="../../README.html">YouVibeNow</a> / examples / Factory Project / Plan</div>
+  <div class="header">
+    <div class="tag">Technical Plan</div>
+    <h1>Python Password Generator: Technical Plan</h1>
+  </div>
+
+  <div class="section">
+    <h2><span class="step-num">1</span>Requirements Definition</h2>
+    <div class="card">
+      <ul class="plain">
+        <li><strong>Core Functionality:</strong> Generate a secure, random password based on user specifications.</li>
+        <li><strong>Configurable Parameters:</strong>
+          <ul>
+            <li><strong>Length:</strong> Customizable password length (default: 16 characters, minimum: 8, maximum: 128).</li>
+            <li><strong>Character Sets:</strong>
+              <ul>
+                <li>Uppercase letters (A-Z)</li>
+                <li>Lowercase letters (a-z)</li>
+                <li>Digits (0-9)</li>
+                <li>Special characters (!@#$%^&amp;*(), etc.)</li>
+              </ul>
+            </li>
+            <li>Option to enable or disable specific character sets via flags.</li>
+          </ul>
+        </li>
+        <li><strong>Security:</strong> Must use a cryptographically secure random number generator (e.g., Python's <code>secrets</code> module instead of the standard <code>random</code> module) to ensure password strength against predictability.</li>
+        <li><strong>Interface:</strong> Command-Line Interface (CLI) for ease of use, scripting, and automation.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="step-num">2</span>Architecture &amp; Design</h2>
+    <div class="card">
+      <ul class="plain">
+        <li><strong>File Structure:</strong>
+          <ul>
+            <li><code>generator.py</code>: Core logic containing the password generation algorithm.</li>
+            <li><code>main.py</code>: Entry point handling user inputs via the terminal.</li>
+          </ul>
+        </li>
+        <li><strong>Key Functions:</strong>
+          <ul>
+            <li><code>build_character_pool(upper, lower, digits, special)</code>: Constructs the string of valid characters based on user preferences.</li>
+            <li><code>generate_password(length, pool)</code>: Randomly selects characters from the pool using <code>secrets.choice()</code> and returns the password string.</li>
+          </ul>
+        </li>
+        <li><strong>Dependencies:</strong>
+          <ul>
+            <li>Standard Python libraries only: <code>secrets</code> (for cryptography), <code>string</code> (for character constants), and <code>argparse</code> (for CLI handling).</li>
+            <li>No external packages (like those from PyPI) are required, keeping the project lightweight.</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="step-num">3</span>Implementation Details</h2>
+    <div class="card">
+      <p><strong>Environment:</strong> Python 3.6+ (required for the <code>secrets</code> module).</p>
+      <p><strong>Execution Flow:</strong></p>
+      <ol class="steps">
+        <li><strong>Input Parsing:</strong> The script is executed from the terminal. <code>argparse</code> reads optional flags (e.g., <code>--length 20</code>, <code>--no-special</code>, <code>--no-digits</code>).</li>
+        <li><strong>Validation:</strong> The script validates inputs (e.g., ensuring length is &ge; 8 and at least one character set is selected).</li>
+        <li><strong>Pool Creation:</strong> The <code>build_character_pool</code> function concatenates <code>string.ascii_uppercase</code>, <code>string.ascii_lowercase</code>, <code>string.digits</code>, and <code>string.punctuation</code> based on the parsed flags.</li>
+        <li><strong>Generation:</strong> <code>generate_password</code> guarantees that at least one character from each selected set is included (to meet complexity rules), fills the rest of the required length from the pool, shuffles the result, and returns it.</li>
+        <li><strong>Output:</strong> The final password is printed securely to the standard output.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="footer">Part of the <a href="../../README.html">Vibe Coding &amp; Prompt Engineering Masterclass</a></div>
+</div>
+</body>
+</html>

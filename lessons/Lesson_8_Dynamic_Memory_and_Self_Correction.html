@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 8: Dynamic Memory and Self-Correction — YouVibeNow</title>
+<style>
+  :root{
+    --bg:#0f1117; --surface:#1e293b; --border:#334155; --muted:#475569;
+    --text:#e2e8f0; --subtle:#94a3b8; --accent:#a78bfa; --accent-bg:#2e1a4a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding:3rem 1.5rem;line-height:1.65}
+  .page{max-width:780px;margin:0 auto}
+  .breadcrumb{font-size:.78rem;color:var(--muted);margin-bottom:1.75rem}
+  .breadcrumb a{color:var(--subtle);text-decoration:none}
+  .breadcrumb a:hover{text-decoration:underline}
+  .header{margin-bottom:2.5rem}
+  .tag{display:inline-block;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);background:var(--accent-bg);border:1px solid var(--accent);border-radius:999px;padding:.25rem .85rem;margin-bottom:1rem}
+  h1{font-size:1.85rem;font-weight:700;margin-bottom:.5rem;line-height:1.3}
+  .subtitle{color:var(--subtle);font-size:.95rem;max-width:620px}
+  .section{margin-bottom:2.25rem}
+  h2{font-size:1rem;font-weight:600;color:var(--subtle);letter-spacing:.04em;text-transform:uppercase;margin-bottom:.9rem;padding-bottom:.45rem;border-bottom:1px solid var(--border)}
+  .step-num{display:inline-flex;align-items:center;justify-content:center;width:1.6rem;height:1.6rem;border-radius:50%;background:var(--accent-bg);color:var(--accent);font-size:.8rem;font-weight:700;margin-right:.6rem}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.25rem 1.5rem;margin-bottom:1rem}
+  .card:last-child{margin-bottom:0}
+  p{color:var(--subtle);font-size:.92rem;margin-bottom:.75rem}
+  p:last-child{margin-bottom:0}
+  code{color:var(--accent);background:#0f172a;padding:.05rem .35rem;border-radius:4px;font-size:.85em;font-family:'Consolas','Cascadia Code',monospace}
+  ul.plain{list-style:none}
+  ul.plain li{position:relative;padding-left:1.1rem;margin-bottom:.6rem;color:var(--subtle);font-size:.92rem}
+  ul.plain li::before{content:'—';position:absolute;left:0;color:var(--muted)}
+  ul.plain li:last-child{margin-bottom:0}
+  details{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.25rem}
+  summary{cursor:pointer;color:var(--accent);font-size:.9rem;font-weight:600;outline:none}
+  details[open] summary{margin-bottom:.9rem}
+  .exercise-prompt{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:6px;padding:.9rem 1.1rem;margin-bottom:1rem;color:var(--subtle);font-size:.9rem;font-style:italic}
+  blockquote{border-left:3px solid var(--accent);padding-left:1rem;color:var(--subtle);font-size:.9rem;margin:.5rem 0}
+  .footer{text-align:center;font-size:.78rem;color:var(--muted);padding-top:2rem;margin-top:2rem;border-top:1px solid var(--border)}
+  .footer a{color:var(--subtle);text-decoration:none}
+  .footer a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="breadcrumb"><a href="../README.html">YouVibeNow</a> / <a href="../Table_of_Contents.html">Lessons</a> / Lesson 8: Dynamic Memory and Self-Correction</div>
+  <div class="header">
+    <div class="tag">Module 3 · Lesson 8</div>
+    <h1>Dynamic Memory &amp; Self-Correction</h1>
+    <p class="subtitle">How to program an AI to autonomously document its failures and learn from them.</p>
+  </div>
+
+  <div class="section">
+    <h2>Introduction</h2>
+    <div class="card">
+      <p>One of the most frustrating experiences in Prompt Engineering is correcting an AI, only for it to make the exact same mistake the next day. If an AI doesn't have a system to learn from its failures, you are essentially training a goldfish.</p>
+      <p>In Lesson 4, we introduced the <code>MEMORY.md</code> file as part of the Folder Architecture. Now, we will explore <strong>Dynamic Memory</strong> — the practice of instructing the AI to actively manage and update its own constraints based on what works and what doesn't.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="step-num">1</span>The Decision Log (<code>MEMORY.md</code>)</h2>
+    <div class="card">
+      <p>Your <code>MEMORY.md</code> is not just a passive reference document; it is an active decision log. Every time you encounter a persistent bug, a framework limitation, or a stylistic preference change, it should be recorded here. A good memory entry should include:</p>
+      <ul class="plain">
+        <li>The context (What were we trying to do?)</li>
+        <li>The failure (What went wrong?)</li>
+        <li>The resolution (How do we avoid this in the future?)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="step-num">2</span>Auto-Documentation Prompts</h2>
+    <div class="card">
+      <p>Instead of updating <code>MEMORY.md</code> manually, you can instruct the AI to do it. When you finally solve a complex problem after multiple chat turns, you can issue a Thin Prompt to lock in the learning:</p>
+      <blockquote>"We finally got the deployment script working. Please analyze why the previous three versions failed, extract the core rule we learned, and append it to our <code>MEMORY.md</code> file."</blockquote>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="step-num">3</span>The Self-Correction Loop</h2>
+    <div class="card">
+      <p>Advanced agentic systems don't wait for you to ask. By combining a global Tier 1 setting with your <code>MEMORY.md</code>, you can create a self-correction loop. For example, if your <code>AGENTS.md</code> contains the rule:</p>
+      <blockquote>"If a Python script you wrote throws a syntax error, immediately document the cause of the error in <code>MEMORY.md</code> before attempting a fix."</blockquote>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Exercise: The Memory Update</h2>
+    <div class="exercise-prompt">Imagine you are building a React application. For the past hour, the AI kept trying to use standard CSS, but your project strictly requires TailwindCSS. You finally got it working. Write a Thin Prompt instructing the AI to update its own memory so this never happens again.</div>
+    <details>
+      <summary>Click to see an Example Solution</summary>
+      <blockquote>"Please update our <code>MEMORY.md</code> file. Add a new rule under 'Styling Constraints' stating that we strictly use TailwindCSS for all styling, and standard CSS or inline styles should never be generated."</blockquote>
+    </details>
+  </div>
+
+  <div class="footer">Part of the <a href="../README.html">Vibe Coding &amp; Prompt Engineering Masterclass</a> — see <a href="../Table_of_Contents.html">Table of Contents</a> for the full curriculum</div>
+</div>
+</body>
+</html>

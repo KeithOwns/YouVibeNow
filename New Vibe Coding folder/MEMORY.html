@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dynamic Constraints &amp; Memory — New Vibe Coding folder — YouVibeNow</title>
+<style>
+  :root{
+    --bg:#0f1117; --surface:#1e293b; --border:#334155; --muted:#475569;
+    --text:#e2e8f0; --subtle:#94a3b8; --accent:#fb923c; --accent-bg:#431407;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding:3rem 1.5rem;line-height:1.65}
+  .page{max-width:760px;margin:0 auto}
+  .breadcrumb{font-size:.78rem;color:var(--muted);margin-bottom:1.75rem}
+  .breadcrumb a{color:var(--subtle);text-decoration:none}
+  .breadcrumb a:hover{text-decoration:underline}
+  .header{margin-bottom:2.5rem}
+  .tag{display:inline-block;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);background:var(--accent-bg);border:1px solid var(--accent);border-radius:999px;padding:.25rem .85rem;margin-bottom:1rem}
+  h1{font-size:1.85rem;font-weight:700;margin-bottom:.5rem}
+  .subtitle{color:var(--subtle);font-size:.95rem;max-width:600px}
+  .section{margin-bottom:2.25rem}
+  h2{font-size:1rem;font-weight:600;color:var(--subtle);letter-spacing:.04em;text-transform:uppercase;margin-bottom:.9rem;padding-bottom:.45rem;border-bottom:1px solid var(--border)}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.25rem 1.5rem}
+  ul.plain{list-style:none}
+  ul.plain li{position:relative;padding-left:1.1rem;margin-bottom:.6rem;color:var(--subtle);font-size:.92rem}
+  ul.plain li::before{content:'—';position:absolute;left:0;color:var(--muted)}
+  ul.plain li:last-child{margin-bottom:0}
+  ul.plain code, p code{color:var(--accent);background:#0f172a;padding:.05rem .35rem;border-radius:4px;font-size:.85em;font-family:'Consolas','Cascadia Code',monospace}
+  .example{font-style:italic;color:var(--muted)}
+  p{color:var(--subtle);font-size:.93rem}
+  .log-entry{display:flex;gap:1rem;padding:.85rem 0;border-bottom:1px solid var(--border)}
+  .log-entry:last-child{border-bottom:none}
+  .log-date{flex-shrink:0;width:6.5rem;font-size:.78rem;color:var(--accent);font-weight:600}
+  .log-text{color:var(--subtle);font-size:.9rem}
+  .footer{text-align:center;font-size:.78rem;color:var(--muted);padding-top:2rem;margin-top:2rem;border-top:1px solid var(--border)}
+  .footer a{color:var(--subtle);text-decoration:none}
+  .footer a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="breadcrumb"><a href="../README.html">YouVibeNow</a> / New Vibe Coding folder / Memory</div>
+  <div class="header">
+    <div class="tag">Dynamic Memory</div>
+    <h1>Dynamic Constraints &amp; Memory</h1>
+    <p class="subtitle example">[Use this file as the long-term brain for the project across different chat sessions. Log newly learned user preferences and major architectural decisions here.]</p>
+  </div>
+
+  <div class="section">
+    <h2>Learned Preferences</h2>
+    <div class="card">
+      <ul class="plain">
+        <li class="example">[Example] Keep all markdown tables to a maximum of 4 columns.</li>
+        <li class="example">[Example] Always use GitHub-style alerts for important notes.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Decision Log</h2>
+    <div class="card">
+      <div class="log-entry">
+        <div class="log-date example">[Date]</div>
+        <div class="log-text example">[Describe a major decision or pivot made during development.]</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">Part of the <a href="../README.html">Vibe Coding &amp; Prompt Engineering Masterclass</a></div>
+</div>
+</body>
+</html>
