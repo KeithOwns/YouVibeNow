@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tutorial: Configuring ChatGPT Free Version (Desktop Browser) — YouVibeNow</title>
+<style>
+  :root{
+    --bg:#0f1117; --surface:#1e293b; --border:#334155; --muted:#475569;
+    --text:#e2e8f0; --subtle:#94a3b8; --accent:#f472b6; --accent-bg:#3b0a2e;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding:3rem 1.5rem;line-height:1.65}
+  .page{max-width:780px;margin:0 auto}
+  .breadcrumb{font-size:.78rem;color:var(--muted);margin-bottom:1.75rem}
+  .breadcrumb a{color:var(--subtle);text-decoration:none}
+  .breadcrumb a:hover{text-decoration:underline}
+  .header{margin-bottom:2.5rem}
+  .tag{display:inline-block;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);background:var(--accent-bg);border:1px solid var(--accent);border-radius:999px;padding:.25rem .85rem;margin-bottom:1rem}
+  h1{font-size:1.85rem;font-weight:700;margin-bottom:.5rem;line-height:1.3}
+  .subtitle{color:var(--subtle);font-size:.95rem;max-width:620px}
+  .section{margin-bottom:2.25rem}
+  h2{font-size:1rem;font-weight:600;color:var(--subtle);letter-spacing:.04em;text-transform:uppercase;margin-bottom:.9rem;padding-bottom:.45rem;border-bottom:1px solid var(--border)}
+  .step-num{display:inline-flex;align-items:center;justify-content:center;width:1.6rem;height:1.6rem;border-radius:50%;background:var(--accent-bg);color:var(--accent);font-size:.8rem;font-weight:700;margin-right:.6rem}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.25rem 1.5rem}
+  p{color:var(--subtle);font-size:.92rem;margin-bottom:.75rem}
+  p:last-child{margin-bottom:0}
+  code{color:var(--accent);background:#0f172a;padding:.05rem .35rem;border-radius:4px;font-size:.85em;font-family:'Consolas','Cascadia Code',monospace}
+  ul.plain{list-style:none}
+  ul.plain li{position:relative;padding-left:1.1rem;margin-bottom:.6rem;color:var(--subtle);font-size:.92rem}
+  ul.plain li::before{content:'—';position:absolute;left:0;color:var(--muted)}
+  ul.plain li:last-child{margin-bottom:0}
+  ol.steps{list-style:none;counter-reset:step}
+  ol.steps li{counter-increment:step;position:relative;padding-left:1.6rem;margin-bottom:.6rem;color:var(--subtle);font-size:.92rem}
+  ol.steps li::before{content:counter(step);position:absolute;left:0;color:var(--accent);font-weight:700;font-size:.85em}
+  pre{background:#0f172a;border:1px solid var(--border);border-radius:8px;padding:1rem 1.25rem;overflow-x:auto;font-family:'Consolas','Cascadia Code',monospace;font-size:.82rem;color:#e2c97a;line-height:1.6}
+  .footer{text-align:center;font-size:.78rem;color:var(--muted);padding-top:2rem;margin-top:2rem;border-top:1px solid var(--border)}
+  .footer a{color:var(--subtle);text-decoration:none}
+  .footer a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="breadcrumb"><a href="README.html">YouVibeNow</a> / Tutorial</div>
+  <div class="header">
+    <div class="tag">Tutorial</div>
+    <h1>Configuring ChatGPT (Free Version) on Desktop</h1>
+    <p class="subtitle">Moving laterally from Android to your desktop browser: How to establish your Tier 1 Baseline Identity and Memory constraints using the free version of ChatGPT.</p>
+  </div>
+
+  <div class="section">
+    <h2>Conceptual Framing</h2>
+    <div class="card">
+      <p>Whether you are on a mobile device or a desktop computer running Windows, Linux, or macOS, the principle of <strong>Application-Level Global Instructions</strong> remains the same. You must define a permanent safety net and baseline identity that ChatGPT uses before you send any actual chat messages.</p>
+      <p>This tutorial covers how to access and set up <strong>Custom Instructions</strong> and <strong>Memory</strong> on the desktop browser version of ChatGPT (Free Tier).</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="step-num">1</span>Access Settings in Your Browser</h2>
+    <div class="card">
+      <p>Open your preferred web browser and log in to ChatGPT:</p>
+      <ol class="steps">
+        <li>Navigate to <code>chatgpt.com</code>.</li>
+        <li>In the bottom-left corner of the sidebar, click on your profile icon (your name or avatar).</li>
+        <li>From the pop-up menu, select <strong>Customize ChatGPT</strong> (or <strong>Settings</strong> depending on the latest UI update).</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="step-num">2</span>Configure Custom Instructions</h2>
+    <div class="card">
+      <p>Custom Instructions act as your absolute Tier 1 stateful prompts. The interface provides two boxes:</p>
+      <ol class="steps">
+        <li><strong>"What would you like ChatGPT to know about you to provide better responses?"</strong><br>
+        <em>Use this to set your context. Example: "I am a web developer working mostly in JavaScript and Python. I prioritize security and clean architecture."</em></li>
+        <li><strong>"How would you like ChatGPT to respond?"</strong><br>
+        <em>Use this to set your Baseline Identity and Constraints. Example: "You are an expert, senior-level AI pair programmer. Always write in plain, direct English. Never use corporate buzzwords. Always provide complete code snippets without skipping lines for brevity."</em></li>
+      </ol>
+      <p style="margin-top:.75rem">Make sure the toggle for "Enable for new chats" is turned on.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="step-num">3</span>Manage Memory Settings</h2>
+    <div class="card">
+      <p>ChatGPT features a dynamic Memory system that remembers details across all your chats. This is a powerful feature for maintaining a cohesive agent persona.</p>
+      <ol class="steps">
+        <li>From your profile menu, go to <strong>Settings</strong> > <strong>Personalization</strong>.</li>
+        <li>Ensure the toggle for <strong>Memory</strong> is turned on.</li>
+        <li>To manage what the AI remembers, click <strong>Manage Memory</strong>. Here you can delete incorrect or outdated memories that might corrupt the AI's state over time.</li>
+      </ol>
+      <p style="margin-top:.75rem"><em>Pro Tip:</em> You can directly tell ChatGPT in the chat box to "Remember that I always use tailwindcss for styling," and it will add that to your global memory bank automatically.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="step-num">4</span>Cross-Platform Continuity</h2>
+    <div class="card">
+      <p>Because you are logging into the same OpenAI account, the Custom Instructions and Memory items you set here in the desktop browser will seamlessly sync with the Android app settings we configured in the previous step.</p>
+      <p>Your Tier 1 Application-Level Stateful Prompts are now unified across all devices!</p>
+    </div>
+  </div>
+
+  <div class="footer">Part of the <a href="README.html">Vibe Coding &amp; Prompt Engineering Masterclass</a> — see <a href="Table_of_Contents.html">Table of Contents</a> for the full curriculum</div>
+</div>
+</body>
+</html>
