@@ -1,0 +1,52 @@
+================================================================================
+TOOL COMPARISON & ECOSYSTEM RECOMMENDATION
+================================================================================
+
+1. GOOGLE ANTIGRAVITY 2.0 (STANDALONE APP & CLI) vs. ANTIGRAVITY IDE
+--------------------------------------------------------------------------------
+While both variants are powered by the same underlying Gemini engine, they 
+cater to completely different operational environments.
+
+Standalone App & CLI ('agy'):
+- Re-architected as a lean "Mission Control" surface.
+- Designed specifically for task orchestration, multi-agent process spawning, 
+  and headless environment execution.
+- Includes full support for BrowserMCP to interact directly with live 
+  Chromium instances via the command line.
+
+The IDE Variant:
+- A heavy, modified fork of Visual Studio Code.
+- Tailored for full-stack developers writing massive software repositories, 
+  managing deep dependencies, and debugging complex source syntax.
+
+
+2. THE OPTIMAL WORKSPACE SELECTION
+--------------------------------------------------------------------------------
+For an automated, headless dual-engine job application pipeline, the standalone 
+Antigravity App paired with the 'agy' CLI is significantly more effective than 
+the heavy IDE interface.
+
+Operational Efficiency:
+Because your specific pipeline uses Claude Code to handle the local, offline Markdown 
+generation loops, you do not need a full-scale code editor window eating up your 
+system's desktop space or memory footprint.
+
+Reduced Tool Clashing:
+The standard, agile Antigravity CLI can trigger background browser sandboxes and 
+map portal fields seamlessly without the unnecessary overhead of the full IDE. 
+
+
+3. SUMMARY WORKSPACE DIRECTIVE
+--------------------------------------------------------------------------------
+Keep your technical stack focused and lightweight:
+
+[Terminal Tab 1] -> Launch Claude Code ('claude') to execute your local, high-speed 
+                    file-writing scripts, structural formatting loops, and native 
+                    Git version-control deltas.
+
+[Terminal Tab 2] -> Run the Antigravity CLI ('agy') to handle live browser operations, 
+                    inspect intake forms, and cleanly extract page payloads.
+
+================================================================================
+STATUS: INFRASTRUCTURE ALIGNED FOR OPTIMAL THROUGHPUT
+================================================================================
