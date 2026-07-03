@@ -692,7 +692,8 @@ textarea:focus {
     font-family: monospace;
 }
 
-.copy-btn {
+.copy-btn,
+.export-btn {
     background: transparent;
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: var(--text-main);
@@ -703,11 +704,13 @@ textarea:focus {
     transition: 0.2s;
 }
 
-.copy-btn:hover {
+.copy-btn:hover,
+.export-btn:hover {
     background: rgba(255, 255, 255, 0.1);
 }
 
-.copy-btn.copied {
+.copy-btn.copied,
+.export-btn.copied {
     background: var(--success);
     border-color: var(--success);
     color: #000;

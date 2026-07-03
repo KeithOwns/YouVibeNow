@@ -4,6 +4,14 @@
 >
 > **Division of labor (added 2026-06-29):** entries here stay terse — *what* shipped, not why. Day-to-day specifics live in git commit history; decision rationale and rejected alternatives for anything with real tradeoffs live in [`docs/adr/`](docs/adr/) (empty so far — nothing here has met that bar yet).
 
+## [2026-07-02] - Export to Obsidian
+
+Added direct `.md` export capabilities to the templates page, reinforcing the playbook's goal of building a Digital Twin.
+
+### Added
+- "Export to Vault" buttons in `templates.html`.
+- Export logic in `app_templates.js` that automatically prepends YAML frontmatter and triggers a file download for `.md` files.
+
 ## [2026-07-02] - PWA Integration and Theme Engine
 
 Upgraded the web playbook to a Progressive Web App (PWA) with offline support and added a dynamic theme toggle.
