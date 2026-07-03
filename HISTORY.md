@@ -4,6 +4,19 @@
 >
 > **Division of labor (added 2026-06-29):** entries here stay terse — *what* shipped, not why. Day-to-day specifics live in git commit history; decision rationale and rejected alternatives for anything with real tradeoffs live in [`docs/adr/`](docs/adr/) (empty so far — nothing here has met that bar yet).
 
+## [2026-07-02] - PWA Integration and Theme Engine
+
+Upgraded the web playbook to a Progressive Web App (PWA) with offline support and added a dynamic theme toggle.
+
+### Added
+- `AI_Power_User_Playbook/Web_Version/manifest.json` and `icon.jpg` for PWA installation and branding.
+- `AI_Power_User_Playbook/Web_Version/sw.js` (Service Worker) for aggressive offline caching of all assets.
+- `AI_Power_User_Playbook/Web_Version/theme.js` for handling Light/Dark mode state via `localStorage`.
+
+### Changed
+- `AI_Power_User_Playbook/Web_Version/styles.css` (Added `.light-mode` overrides for a high-contrast daytime theme).
+- Injected PWA tags, Service Worker registration, and a theme toggle button (`🌓`) into the navigation bar of all HTML files.
+
 ## [2026-07-02] - Web Playbook Finalization (D3 Graph, Capstone, Gamification)
 
 Finalized the interactive web application version of the AI Power User Playbook.

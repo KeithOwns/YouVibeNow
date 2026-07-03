@@ -850,3 +850,59 @@ textarea:focus {
 .chat-input-area input:focus {
     border-color: var(--accent-primary);
 }
+
+/* --- Light Mode Overrides --- */
+:root.light-mode {
+    --bg-primary: #f8fafc;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(0, 0, 0, 0.1);
+    --accent-primary: #7c3aed;
+    --accent-secondary: #db2777;
+}
+
+:root.light-mode body {
+    background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+    color: var(--text-main);
+}
+
+:root.light-mode .nav-bar {
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+}
+
+:root.light-mode .nav-link, 
+:root.light-mode .nav-link.special {
+    color: #475569;
+}
+
+:root.light-mode .nav-link:hover, 
+:root.light-mode .nav-link.active {
+    color: var(--accent-primary);
+    background: rgba(124, 58, 237, 0.1);
+}
+
+:root.light-mode .glass-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+}
+
+:root.light-mode .draggable-item {
+    background: #ffffff;
+    color: #333;
+    border-color: #cbd5e1;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+:root.light-mode .dropzone {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: #cbd5e1;
+}
+
+:root.light-mode .chat-input-area input {
+    background: #ffffff;
+    border-color: #cbd5e1;
+    color: #333;
+}
