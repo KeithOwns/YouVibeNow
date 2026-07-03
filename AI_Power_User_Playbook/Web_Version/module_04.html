@@ -9,6 +9,10 @@
 
     <link rel="manifest" href="manifest.json">
     <script src="theme.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.js"></script>
+    <script src="search_index.js"></script>
+    <script src="search_settings.js"></script>
 </head>
 <body>
     <nav class="nav-bar">
@@ -19,6 +23,8 @@
         <a href="module_04.html" class="nav-link active">04: The Capstone</a>
         
         <div class="nav-right">
+            <button id="nav-search-btn" class="nav-link special" style="background:none;border:none;cursor:pointer;font-size:1.2rem;" title="Search">🔍</button>
+            <button id="nav-settings-btn" class="nav-link special" style="background:none;border:none;cursor:pointer;font-size:1.2rem;" title="Settings">⚙️</button>
             <button id="theme-toggle" class="nav-link special" style="background:none;border:none;cursor:pointer;font-size:1.2rem;">🌓</button>
             <a href="templates.html" class="nav-link special">Templates</a>
             <a href="whitepaper.html" class="nav-link special">White Paper</a>
@@ -59,9 +65,12 @@
 
             <!-- Right Pane: ChatGPT Interface -->
             <div class="glass-card chat-pane">
-                <div class="card-header">
-                    <div class="practicum-icon">🤖</div>
-                    <h2>Reasoning Engine</h2>
+                <div class="card-header" style="justify-content: space-between;">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <div class="practicum-icon">🤖</div>
+                        <h2>Reasoning Engine</h2>
+                    </div>
+                    <input type="password" id="openai-api-key" placeholder="OpenAI API Key (Optional for Live Mode)" style="background: rgba(0,0,0,0.2); border: 1px solid var(--glass-border); color: var(--text-main); border-radius: 4px; padding: 0.5rem; width: 250px; font-size: 0.8rem;">
                 </div>
                 
                 <div class="chat-header-bar">

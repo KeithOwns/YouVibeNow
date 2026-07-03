@@ -4,6 +4,16 @@
 >
 > **Division of labor (added 2026-06-29):** entries here stay terse — *what* shipped, not why. Day-to-day specifics live in git commit history; decision rationale and rejected alternatives for anything with real tradeoffs live in [`docs/adr/`](docs/adr/) (empty so far — nothing here has met that bar yet).
 
+## [2026-07-02] - Search, Data Sync, & Live AI
+
+Finalized the Web Playbook with search capabilities, save state syncing, and live API execution for the Capstone simulator.
+
+### Added
+- `AI_Power_User_Playbook/Web_Version/search_index.js` and `search_settings.js` for Fuse.js client-side search.
+- Added `localStorage` Import/Export functionality in a new Settings modal.
+- Added a "Bring Your Own Key" (BYOK) OpenAI API input to `module_04.html`.
+- Updated `app_04.js` to execute real `fetch()` calls to `api.openai.com` if an API key is provided, replacing the simulated success message with genuine LLM output.
+
 ## [2026-07-02] - Export to Obsidian
 
 Added direct `.md` export capabilities to the templates page, reinforcing the playbook's goal of building a Digital Twin.
