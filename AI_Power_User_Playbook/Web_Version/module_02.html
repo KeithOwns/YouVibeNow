@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 02: The Baseline</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="nav-bar">
+        <a href="index.html" class="nav-link">00: Primer</a>
+        <a href="module_01.html" class="nav-link">01: Context Engineering</a>
+        <a href="module_02.html" class="nav-link active">02: The Baseline</a>
+        <a href="module_03.html" class="nav-link">03: Digital Twin</a>
+        <a href="module_04.html" class="nav-link">04: The Capstone</a>
+        
+        <div class="nav-right">
+            <a href="templates.html" class="nav-link special">Templates</a>
+            <a href="whitepaper.html" class="nav-link special">White Paper</a>
+        </div>
+    </nav>
+
+    <div class="background-effects">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+    </div>
+
+    <main class="container">
+        <header class="hero">
+            <div class="badge">Module 02</div>
+            <h1 class="title">The <span class="gradient-text">Baseline</span></h1>
+            <p class="subtitle">Turning a generic reasoning engine into your personalized AI.</p>
+        </header>
+
+        <section class="glass-card main-concept">
+            <h2>Configuring Your Vibe</h2>
+            <p>To enable Thin Prompting, you must establish a baseline context in ChatGPT. This involves Custom Instructions (your identity), Memory (dynamic context), and Higher Intelligence (smart routing).</p>
+        </section>
+
+        <section class="content-grid">
+            <div class="glass-card danger-card">
+                <div class="card-header">
+                    <div class="red-dot"></div>
+                    <h2>Protecting The Context</h2>
+                </div>
+                <p>If you ask a highly engineered AI to "write a birthday poem for my dog," it will pollute your Memory and Custom Instructions.</p>
+                <div class="alert-box warning">
+                    <strong>Rule:</strong> Always use <em>Temporary Chat</em> for one-off tasks and random queries to protect your baseline context.
+                </div>
+            </div>
+            
+            <div class="glass-card practicum-card">
+                <div class="card-header">
+                    <div class="practicum-icon">⚙️</div>
+                    <h2>Practicum: Settings Simulator</h2>
+                </div>
+                <p><strong>Scenario:</strong> You are about to ask ChatGPT to write a Python script for your main software project. Configure your settings correctly below, then click "Start Chat".</p>
+                <div class="simulator-wrapper" style="position: relative; overflow: hidden; padding-bottom: 1rem;">
+                    
+                    <div class="mock-chat-header" style="display: flex; justify-content: center; align-items: center; margin-bottom: 1.5rem; gap: 1rem; flex-wrap: wrap;">
+                        <select id="project-selector" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; padding: 0.5rem 1rem; border-radius: 8px; font-weight: 500; cursor: pointer; outline: none; font-family: 'Inter', sans-serif;">
+                            <option value="none" style="background: #111;">Project: None</option>
+                            <option value="main_software" style="background: #111;">Project: Main Software</option>
+                            <option value="youtube" style="background: #111;">Project: AI YouTube Channel</option>
+                        </select>
+                        <div id="memory-pill" class="memory-pill" style="background: var(--danger-bg); border: 1px solid rgba(239, 68, 68, 0.3); color: #fca5a5; padding: 0.35rem 0.75rem; border-radius: 100px; font-size: 0.85rem; font-weight: 600; cursor: default; transition: 0.3s;">
+                            Memory off ℹ️
+                        </div>
+                    </div>
+
+                    <div class="settings-simulator">
+                        <div class="settings-row">
+                            <div class="settings-info">
+                                <h4>Custom Instructions</h4>
+                                <p>Sets persistent persona and formatting rules.</p>
+                            </div>
+                            <div class="toggle-btn" id="toggle-ci" data-state="off"></div>
+                        </div>
+                        <div class="settings-row">
+                            <div class="settings-info">
+                                <h4>Memory</h4>
+                                <p>Allows AI to remember details across chats.</p>
+                            </div>
+                            <div class="toggle-btn" id="toggle-memory" data-state="off"></div>
+                        </div>
+                        <div class="settings-row">
+                            <div class="settings-info">
+                                <h4>Higher Intelligence</h4>
+                                <p>Uses advanced reasoning models for complex tasks.</p>
+                            </div>
+                            <div class="toggle-btn" id="toggle-hi" data-state="off"></div>
+                        </div>
+                        <div class="settings-row">
+                            <div class="settings-info">
+                                <h4>Temporary Chat</h4>
+                                <p>Isolates the chat from memory and history.</p>
+                            </div>
+                            <div class="toggle-btn" id="toggle-temp" data-state="off"></div>
+                        </div>
+                    </div>
+
+                    <div class="chat-input-mock" style="display: flex; gap: 1rem; margin-top: 1.5rem; background: rgba(0,0,0,0.3); padding: 0.75rem 1rem; border-radius: 24px; border: 1px solid rgba(255,255,255,0.1); align-items: center;">
+                        <button id="attachment-btn" style="background: rgba(255,255,255,0.1); border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 1.2rem; color: white; cursor: pointer; transition: 0.2s; display: flex; justify-content: center; align-items: center;">+</button>
+                        <div style="flex: 1; color: var(--text-muted); font-size: 0.95rem;">Message ChatGPT...</div>
+                        <button id="startChatBtn" class="primary-btn" style="padding: 0.5rem 1.25rem; border-radius: 100px; font-size: 0.9rem;">Start Chat</button>
+                    </div>
+
+                    <!-- Bottom Sheet Mock -->
+                    <div id="attachment-sheet" style="display: none; position: absolute; bottom: -10px; left: -10px; right: -10px; background: rgba(20,20,25,0.95); backdrop-filter: blur(10px); border-top-left-radius: 24px; border-top-right-radius: 24px; padding: 2rem 1.5rem; border: 1px solid rgba(255,255,255,0.1); z-index: 10; animation: slideUp 0.3s ease-out forwards; box-shadow: 0 -10px 40px rgba(0,0,0,0.5);">
+                        <div style="display: flex; justify-content: space-around;">
+                            <div class="sheet-item" style="text-align: center; cursor: pointer; transition: 0.2s;"><div style="font-size: 2rem; margin-bottom: 0.5rem; background: rgba(255,255,255,0.05); width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 0 auto 0.5rem auto;">📷</div><div style="font-size: 0.85rem; color: var(--text-main);">Camera</div></div>
+                            <div class="sheet-item" style="text-align: center; cursor: pointer; transition: 0.2s;"><div style="font-size: 2rem; margin-bottom: 0.5rem; background: rgba(255,255,255,0.05); width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 0 auto 0.5rem auto;">🖼️</div><div style="font-size: 0.85rem; color: var(--text-main);">Photos</div></div>
+                            <div class="sheet-item" style="text-align: center; cursor: pointer; transition: 0.2s;"><div style="font-size: 2rem; margin-bottom: 0.5rem; background: rgba(255,255,255,0.05); width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 0 auto 0.5rem auto;">📁</div><div style="font-size: 0.85rem; color: var(--text-main);">Files</div></div>
+                            <div class="sheet-item" style="text-align: center; cursor: pointer; transition: 0.2s;"><div style="font-size: 2rem; margin-bottom: 0.5rem; background: rgba(255,255,255,0.05); width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 0 auto 0.5rem auto;">🔌</div><div style="font-size: 0.85rem; color: var(--text-main);">Plugins</div></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 1.5rem; text-align: center;">
+                    <div id="feedback-msg" style="margin-top: 1rem; font-weight: bold; min-height: 24px;"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="app_02.js"></script>
+<script src="progress.js"></script></body>
+</html>

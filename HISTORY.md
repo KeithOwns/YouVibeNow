@@ -4,6 +4,22 @@
 >
 > **Division of labor (added 2026-06-29):** entries here stay terse — *what* shipped, not why. Day-to-day specifics live in git commit history; decision rationale and rejected alternatives for anything with real tradeoffs live in [`docs/adr/`](docs/adr/) (empty so far — nothing here has met that bar yet).
 
+## [2026-07-02] - Web Playbook Finalization (D3 Graph, Capstone, Gamification)
+
+Finalized the interactive web application version of the AI Power User Playbook.
+
+### Added
+- `AI_Power_User_Playbook/Web_Version/progress.js` (Global progression tracking using `localStorage`).
+- `AI_Power_User_Playbook/Web_Version/module_04.html` and `app_04.js` (Capstone Simulator).
+- `.github/workflows/deploy-pages.yml` (GitHub Actions workflow for deploying the playbook).
+- `d3.js` integration in Module 03 for rendering the Obsidian Graph View physics simulation.
+- PDF Export capability in `whitepaper.html` using `html2pdf.js`.
+
+### Changed
+- `AI_Power_User_Playbook/Web_Version/styles.css` (Added styles for Module 04 dual-pane layout, mobile responsiveness, and new interactive states).
+- `AI_Power_User_Playbook/Web_Version/app_*.js` files (Hooked into `markCompleted()` for gamified progression badges in the nav).
+- Updated all HTML file navigation bars to dynamically show completion state and include a link to Module 04.
+
 ## [2026-06-29] - Prompt-Engineering Analyses Re-exported as Markdown
 
 Converted the four Gemini-generated analyses (originally vector-outline PDFs with no extractable text) into machine-readable, indexable Markdown so they become first-class nodes in the ai_context_tree dashboard.

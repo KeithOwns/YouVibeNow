@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 01: Context Engineering</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="nav-bar">
+        <a href="index.html" class="nav-link">00: Primer</a>
+        <a href="module_01.html" class="nav-link active">01: Context Engineering</a>
+        <a href="module_02.html" class="nav-link">02: The Baseline</a>
+        <a href="module_03.html" class="nav-link">03: Digital Twin</a>
+        <a href="module_04.html" class="nav-link">04: The Capstone</a>
+        
+        <div class="nav-right">
+            <a href="templates.html" class="nav-link special">Templates</a>
+            <a href="whitepaper.html" class="nav-link special">White Paper</a>
+        </div>
+    </nav>
+
+    <div class="background-effects">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+    </div>
+
+    <main class="container">
+        <header class="hero">
+            <div class="badge">Module 01</div>
+            <h1 class="title">Context <span class="gradient-text">Engineering</span></h1>
+            <p class="subtitle">"The hottest new programming language is English." – Andrej Karpathy</p>
+        </header>
+
+        <section class="glass-card main-concept">
+            <h2>The Paradigm Shift</h2>
+            <p>Prompt Engineering is about forcing a blank-slate AI to do something complex in a single chat box. Context Engineering is about building a background identity so your daily prompts can be thin and natural.</p>
+        </section>
+
+        <section class="content-grid">
+            <div class="glass-card success-card">
+                <div class="card-header">
+                    <div class="green-dot"></div>
+                    <h2>Thin Prompting</h2>
+                </div>
+                <p>When your context is engineered properly, you enable Thin Prompting. Instead of micromanaging the AI, you simply state your goal.</p>
+                <div class="takeaway-box">
+                    <h3>Adam's Law</h3>
+                    <p>Prompts crafted with simple, natural language yield smarter and more effective results from modern LLMs than overly complex, rigid prompts.</p>
+                </div>
+            </div>
+            
+            <div class="glass-card practicum-card">
+                <div class="card-header">
+                    <div class="practicum-icon">🧠</div>
+                    <h2>Practicum: The Context Sorter</h2>
+                </div>
+                <p>Drag the 4 core elements of a conventional prompt into their correct locations in the <strong>Context Engineering</strong> framework.</p>
+                
+                <div class="dnd-container">
+                    <div class="draggables" id="draggable-pool">
+                        <div class="draggable-item" draggable="true" id="item-persona">Persona (Who you are)</div>
+                        <div class="draggable-item" draggable="true" id="item-context">Context (Background Data)</div>
+                        <div class="draggable-item" draggable="true" id="item-format">Format (Output Style)</div>
+                        <div class="draggable-item" draggable="true" id="item-task">The Task (What to do)</div>
+                    </div>
+                    
+                    <div class="dropzones">
+                        <div class="dropzone" id="zone-custom-instructions" data-accept="item-persona,item-format">
+                            <span class="dropzone-label">Custom Instructions (Settings)</span>
+                        </div>
+                        <div class="dropzone" id="zone-memory" data-accept="item-context">
+                            <span class="dropzone-label">Memory / Obsidian Digital Twin</span>
+                        </div>
+                        <div class="dropzone" id="zone-chat" data-accept="item-task">
+                            <span class="dropzone-label">The Chat Box (Thin Prompt)</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="feedback-msg" style="margin-top: 1.5rem; text-align: center; font-weight: bold; min-height: 24px;"></div>
+            </div>
+        </section>
+    </main>
+
+    <script src="app_01.js"></script>
+<script src="progress.js"></script></body>
+</html>

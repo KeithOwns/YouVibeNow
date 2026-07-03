@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Templates: Custom Instructions</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="nav-bar">
+        <a href="index.html" class="nav-link">00: Primer</a>
+        <a href="module_01.html" class="nav-link">01: Context Engineering</a>
+        <a href="module_02.html" class="nav-link">02: The Baseline</a>
+        <a href="module_03.html" class="nav-link">03: Digital Twin</a>
+        <a href="module_04.html" class="nav-link">04: The Capstone</a>
+        
+        <div class="nav-right">
+            <a href="templates.html" class="nav-link special active">Templates</a>
+            <a href="whitepaper.html" class="nav-link special">White Paper</a>
+        </div>
+    </nav>
+
+    <div class="background-effects">
+        <div class="glow-orb orb-3"></div>
+        <div class="glow-orb orb-1"></div>
+    </div>
+
+    <main class="container">
+        <header class="hero">
+            <div class="badge">Resources</div>
+            <h1 class="title">Custom <span class="gradient-text">Templates</span></h1>
+            <p class="subtitle">Actionable configurations to establish your Baseline Context.</p>
+        </header>
+
+        <section class="glass-card main-concept">
+            <h2>Setting the Persona</h2>
+            <p>Paste this directly into the first box of your ChatGPT Custom Instructions: <em>"What would you like ChatGPT to know about you to provide better responses?"</em></p>
+            
+            <div class="template-block">
+                <div class="template-header">
+                    <span>Identity Configuration</span>
+                    <button class="copy-btn" data-target="identity-text">Copy</button>
+                </div>
+                <pre class="template-content" id="identity-text">
+I am an IT Consultant and AI Power User.
+I value extreme efficiency, clear reasoning, and pragmatic solutions.
+My work involves organizing complex structures, building Digital Twins in Obsidian, and leveraging Context Engineering principles over legacy Prompt Engineering.
+I do not need basic explanations unless I explicitly ask for them. Treat me as an advanced user who understands the underlying mechanics of LLMs.</pre>
+            </div>
+        </section>
+
+        <section class="glass-card main-concept" style="margin-top: 2rem;">
+            <h2>Setting the Format</h2>
+            <p>Paste this directly into the second box of your ChatGPT Custom Instructions: <em>"How would you like ChatGPT to respond?"</em></p>
+            
+            <div class="template-block">
+                <div class="template-header">
+                    <span>Output Configuration</span>
+                    <button class="copy-btn" data-target="format-text">Copy</button>
+                </div>
+                <pre class="template-content" id="format-text">
+1. Adhere to Adam's Law: Prioritize natural language understanding over rigid adherence to minor constraints.
+2. Be concise and direct. Do not apologize. Do not use corporate jargon or filler phrases like "Certainly!" or "As an AI...".
+3. When providing code or file structures, always output in clean, standard formats (like Markdown) ready for direct integration into an Obsidian vault.
+4. If a prompt is ambiguous, ask a clarifying question rather than guessing.
+5. If a request is too broad, suggest a structured approach (like breaking it down into a Concept and a Lesson).</pre>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="app_templates.js"></script>
+<script src="progress.js"></script></body>
+</html>
