@@ -14,14 +14,19 @@ The core philosophy: stop micromanaging the AI and start engineering the backgro
 *   [[01_Context_Engineering]]
 *   [[Lesson_01_Context_Engineering]]
 *   [[04_Core_Elements_of_a_Prompt]]
+*   [[06_Thin_Prompting_Examples]]
 *   [[00_Terminology_Glossary]]
 
 ## 3. The Execution (The Baseline)
 Configuring the reasoning engine (ChatGPT) to host your identity and context.
 *   [[02_The_Baseline_Settings]]
 *   [[Lesson_02_The_Baseline]]
+*   [[05_Custom_Instructions_Template]]
 
 ## 4. The Symbiosis (The Digital Twin)
 Separating the reasoning engine from the storage engine by building a local, structured vault.
 *   [[03_Digital_Twin_Theory]]
 *   [[Lesson_03_Digital_Twin]]
+
+## 5. Publications & Deliverables
+*   [[White_Paper_Draft]]

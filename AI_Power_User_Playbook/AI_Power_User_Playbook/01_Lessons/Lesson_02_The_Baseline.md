@@ -13,7 +13,7 @@ Under the **Personalization** tab, you will find the two most critical tools for
 
 > [!IMPORTANT]
 > **Memory** allows the AI to automatically remember details about you across different chats. Ensure the toggle is turned ON.
-> **Custom Instructions** allow you to explicitly define your identity and how the AI should respond. This is where you establish your "Vibe."
+> **Custom Instructions** allow you to explicitly define your identity and how the AI should respond. This is where you establish your "Vibe." (You can use the [[05_Custom_Instructions_Template]] to get started).
 
 ## 2. Higher Intelligence (The General Tab)
 Thin Prompting only works if the AI is smart enough to infer what you mean without you spelling it out. 

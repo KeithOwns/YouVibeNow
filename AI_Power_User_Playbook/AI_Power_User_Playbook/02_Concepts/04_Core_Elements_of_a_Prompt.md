@@ -4,6 +4,8 @@ To understand why our methodology works, we must deconstruct the conventional ap
 
 Our method of **Context Engineering** completely changes where these elements live, paving the way for **Thin Prompting**.
 
+![[prompt_structure_framework.png]]
+
 ## The Conventional 4 Elements
 In standard Prompt Engineering, a user is taught to include all of the following in every single prompt:
 1. **Persona:** Who the AI should act as (e.g., "Act as a senior software engineer...").

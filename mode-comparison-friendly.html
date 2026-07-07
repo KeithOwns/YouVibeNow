@@ -1,0 +1,1579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude for Windows — Mode Comparison</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&family=Fira+Code:wght@400;500&display=swap');
+
+  :root {
+    /* Fonts */
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-mono: 'Fira Code', "SFMono-Regular", Consolas, Menlo, monospace;
+
+    /* Light Theme (Clean warm editorial/modern hybrid) */
+    --bg: #fdfdfc;
+    --card-bg: #ffffff;
+    --ink: #1c1917;
+    --sub: #78716c;
+    --line: #e7e5e4;
+    --header-bg: #f5f4f0;
+    
+    /* Mode accents — Anthropic's brand orange (#D97757), stepped toward a
+       deeper rust for modes 02/03 so 01→03 reads as one warm gradient. */
+    --chat: #d97757;
+    --chat-bg: #f7ded4;
+    --chat-bg-soft: #fdf4f1;
+
+    --cowork: #c2410c;
+    --cowork-bg: #f5d9c7;
+    --cowork-bg-soft: #fcf0e7;
+
+    --code: #9a3412;
+    --code-bg: #f0d2c0;
+    --code-bg-soft: #faebe3;
+
+    --yes: #059669;
+    --yes-bg: #d1fae5;
+    --no: #dc2626;
+    --no-bg: #fee2e2;
+    --neutral-badge: #78716c;
+    --neutral-badge-bg: #f5f5f4;
+
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
+    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.06), 0 4px 6px -4px rgba(0, 0, 0, 0.06);
+    --card-border: var(--line);
+    --hover-bg: #f5f4f0;
+    --code-inline-bg: #f1f0ec;
+    --radius-lg: 16px;
+    --radius-md: 12px;
+    --radius-sm: 8px;
+
+    --focus-ring: #9a3412;
+  }
+
+  [data-theme="dark"] {
+    /* Dark Theme (Sleek tech charcoal/slate) */
+    --bg: #090d16;
+    --card-bg: #111827;
+    --ink: #f8fafc;
+    --sub: #94a3b8;
+    --line: #1f2937;
+    --header-bg: #0f172a;
+
+    /* Same brand-orange family, brightened for contrast against the dark bg. */
+    --chat: #f0985f;
+    --chat-bg: rgba(240, 152, 95, 0.15);
+    --chat-bg-soft: rgba(240, 152, 95, 0.05);
+
+    --cowork: #f0763b;
+    --cowork-bg: rgba(240, 118, 59, 0.15);
+    --cowork-bg-soft: rgba(240, 118, 59, 0.05);
+
+    --code: #e85d2c;
+    --code-bg: rgba(232, 93, 44, 0.15);
+    --code-bg-soft: rgba(232, 93, 44, 0.05);
+
+    --yes: #34d399;
+    --yes-bg: rgba(52, 211, 153, 0.15);
+    --no: #f87171;
+    --no-bg: rgba(248, 113, 113, 0.15);
+    --neutral-badge: #94a3b8;
+    --neutral-badge-bg: #1f2937;
+
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -4px rgba(0, 0, 0, 0.4);
+    --card-border: #1f2937;
+    --hover-bg: #1e293b;
+    --code-inline-bg: #1f2937;
+
+    --focus-ring: #f0985f;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    line-height: 1.5;
+    padding: 24px 24px 48px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  .wrap { max-width: 960px; margin: 0 auto; }
+  
+  /* Keyboard Accessibility Focus */
+  *:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  .card:focus-visible { border-radius: var(--radius-md); }
+
+  /* Header Section */
+  .app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+    margin-bottom: 32px;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 24px;
+  }
+  .header-content { flex-grow: 1; }
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--sub);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    display: block;
+  }
+  h1 {
+    font-family: var(--font-heading);
+    font-size: clamp(28px, 4vw, 36px);
+    margin: 0 0 12px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+  .intro {
+    font-size: 14.5px;
+    color: var(--sub);
+    max-width: 72ch;
+    margin: 0;
+  }
+  .header-actions { flex-shrink: 0; }
+
+  /* Theme Toggle Button */
+  .theme-toggle-btn {
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--ink);
+    box-shadow: var(--shadow);
+    transition: all 0.2s ease;
+  }
+  .theme-toggle-btn:hover {
+    background: var(--hover-bg);
+    transform: translateY(-2px);
+  }
+  .theme-toggle-btn svg {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  html:not([data-theme="dark"]) .moon-icon { display: none; }
+  html[data-theme="dark"] .sun-icon { display: none; }
+
+  /* Wizard Section */
+  .wizard-panel {
+    background: var(--card-bg);
+    border: 1px solid var(--code);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    margin-bottom: 24px;
+    box-shadow: 0 10px 25px -5px rgba(154, 52, 18, 0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    animation: fadeIn 0.3s ease;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .wizard-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .wizard-title {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--code);
+  }
+  .wizard-step {
+    display: none;
+    animation: fadeIn 0.3s ease;
+  }
+  .wizard-step.active { display: block; }
+  .wizard-question {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0 0 16px;
+  }
+  .wizard-options {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .wizard-btn {
+    background: var(--hover-bg);
+    border: 1px solid var(--line);
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-family: var(--font-sans);
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--ink);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .wizard-btn:hover {
+    background: var(--card-bg);
+    border-color: var(--ink);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow);
+  }
+  .wizard-btn.primary {
+    background: var(--code);
+    color: #fff;
+    border-color: var(--code);
+  }
+  .wizard-btn.primary:hover {
+    background: #7c2a0e;
+  }
+  .btn-close {
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    color: var(--sub);
+    padding: 4px;
+    border-radius: 4px;
+  }
+  .btn-close:hover { background: var(--hover-bg); color: var(--ink); }
+  
+  .wizard-toggle-wrapper {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin-bottom: 12px;
+  }
+
+  /* Cards Section */
+  .cards-label {
+    font-family: var(--font-heading);
+    font-size: 12px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--sub);
+    font-weight: 700;
+    margin: 0;
+  }
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin-bottom: 12px;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1.5px solid var(--card-border);
+    border-radius: var(--radius-md);
+    padding: 20px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 170px;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+  .card:active { transform: translateY(-1px); }
+
+  .card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  .card-icon {
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+  }
+  .card-badge-num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 6px;
+    letter-spacing: 0.05em;
+  }
+  .card h3 {
+    margin: 0 0 8px;
+    font-family: var(--font-heading);
+    font-size: 20px;
+    font-weight: 700;
+  }
+  .card-desc {
+    margin: 0 0 16px;
+    font-size: 13px;
+    color: var(--sub);
+    line-height: 1.4;
+    flex-grow: 1;
+  }
+
+  /* Code-tile-only disclosure listing the ways Claude Code runs on Windows. */
+  .ways-toggle {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: -8px 0 12px;
+    font-family: var(--font-sans);
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--code);
+    cursor: pointer;
+  }
+  .ways-toggle-icon {
+    display: inline-block;
+    font-size: 9px;
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .ways-toggle[aria-expanded="true"] .ways-toggle-icon { transform: rotate(90deg); }
+  .ways-list {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    list-style: none;
+    margin: -4px 0 12px;
+    padding: 10px 12px;
+    background: var(--code-bg-soft);
+    border-radius: var(--radius-sm);
+    font-size: 11.5px;
+    color: var(--sub);
+    line-height: 1.4;
+  }
+  .ways-list.open { display: flex; }
+  .ways-list li strong { color: var(--ink); }
+
+  .card-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .best-for {
+    font-size: 11.5px;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-grow: 1;
+  }
+  .check {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 700;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .card.chat {
+    --card-accent: var(--chat);
+    --card-accent-bg: var(--chat-bg);
+    --card-accent-soft: var(--chat-bg-soft);
+  }
+  .card.chat:hover, .card.chat:focus-visible {
+    border-color: var(--chat);
+    box-shadow: 0 10px 20px -10px rgba(217, 119, 87, 0.15), var(--shadow-md);
+  }
+  .card.chat.off { opacity: 0.45; }
+  .card.chat.off:hover { opacity: 0.7; }
+  .card.chat .card-icon { background: var(--chat-bg); color: var(--chat); }
+  .card.chat .card-badge-num { background: var(--chat-bg); color: var(--chat); }
+  .card.chat .best-for { background: var(--chat-bg-soft); color: var(--chat); }
+  .card.chat .check { background: var(--chat); }
+
+  .card.cowork {
+    --card-accent: var(--cowork);
+    --card-accent-bg: var(--cowork-bg);
+    --card-accent-soft: var(--cowork-bg-soft);
+  }
+  .card.cowork:hover, .card.cowork:focus-visible {
+    border-color: var(--cowork);
+    box-shadow: 0 10px 20px -10px rgba(194, 65, 12, 0.15), var(--shadow-md);
+  }
+  .card.cowork.off { opacity: 0.45; }
+  .card.cowork.off:hover { opacity: 0.7; }
+  .card.cowork .card-icon { background: var(--cowork-bg); color: var(--cowork); }
+  .card.cowork .card-badge-num { background: var(--cowork-bg); color: var(--cowork); }
+  .card.cowork .best-for { background: var(--cowork-bg-soft); color: var(--cowork); }
+  .card.cowork .check { background: var(--cowork); }
+
+  .card.code {
+    --card-accent: var(--code);
+    --card-accent-bg: var(--code-bg);
+    --card-accent-soft: var(--code-bg-soft);
+  }
+  .card.code:hover, .card.code:focus-visible {
+    border-color: var(--code);
+    box-shadow: 0 10px 20px -10px rgba(154, 52, 18, 0.15), var(--shadow-md);
+  }
+  .card.code.off { opacity: 0.45; }
+  .card.code.off:hover { opacity: 0.7; }
+  .card.code .card-icon { background: var(--code-bg); color: var(--code); }
+  .card.code .card-badge-num { background: var(--code-bg); color: var(--code); }
+  .card.code .best-for { background: var(--code-bg-soft); color: var(--code); }
+  .card.code .check { background: var(--code); }
+
+  .card.off .check { background: transparent; border-color: var(--line); color: transparent; }
+
+  .hint {
+    font-size: 11.5px;
+    font-style: italic;
+    color: var(--sub);
+    margin: 8px 0 28px;
+  }
+
+  /* Table Controls & Search */
+  .table-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+  .table-controls .note { font-size: 12px; color: var(--sub); }
+
+  .legend {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0 0 12px;
+    font-size: 12px;
+    color: var(--sub);
+  }
+  .legend-star { margin-left: 0; }
+
+
+  .search-container {
+    position: relative;
+    flex-grow: 1;
+    max-width: 320px;
+    min-width: 220px;
+  }
+  .search-input {
+    width: 100%;
+    padding: 8px 36px 8px 36px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background-color: var(--card-bg);
+    color: var(--ink);
+    font-size: 13px;
+    transition: all 0.2s ease;
+  }
+  .search-input:focus {
+    outline: none;
+    border-color: var(--ink);
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.03);
+  }
+  [data-theme="dark"] .search-input:focus {
+    border-color: var(--sub);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.03);
+  }
+  .search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 13px;
+    color: var(--sub);
+    pointer-events: none;
+  }
+  .search-clear {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--sub);
+    padding: 4px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+  .search-clear:hover { color: var(--ink); }
+
+  .expand-all {
+    font-family: var(--font-heading);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink);
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 8px 16px;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    transition: all 0.2s ease;
+  }
+  .expand-all:hover { background: var(--hover-bg); }
+
+  /* Table */
+  .table-scroll {
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    margin-bottom: 32px;
+  }
+
+  /* Section Tabs */
+  .group-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 12px;
+    background: var(--hover-bg);
+    border-bottom: 1px solid var(--line);
+  }
+  .group-tab {
+    font-family: var(--font-heading);
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--sub);
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 6px 12px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+    box-shadow: var(--shadow);
+  }
+  .group-tab:hover { border-color: var(--sub); }
+  .group-tab.active {
+    background: var(--ink);
+    color: var(--card-bg);
+    border-color: var(--ink);
+  }
+  .group-tab .tab-count {
+    font-weight: 500;
+    opacity: .7;
+    margin-left: 5px;
+    background: var(--line);
+    color: var(--ink);
+    padding: 1px 6px;
+    border-radius: 10px;
+    font-size: 10px;
+  }
+  .group-tab.active .tab-count {
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--card-bg);
+  }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  thead th {
+    text-align: left;
+    padding: 12px 16px;
+    position: sticky;
+    top: 0;
+    background: var(--card-bg);
+    font-family: var(--font-heading);
+    font-size: 14.5px;
+    font-weight: 700;
+    z-index: 2;
+    border-bottom: 2px solid var(--line);
+  }
+  thead th.cap {
+    color: var(--sub);
+    font-family: var(--font-sans);
+    font-size: 11px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+  thead th.chat { color: var(--chat); }
+  thead th.cowork { color: var(--cowork); }
+  thead th.code { color: var(--code); }
+
+  tbody td, tbody th {
+    padding: 14px 16px;
+    vertical-align: top;
+    border-top: 1px solid var(--line);
+    transition: background-color 0.2s ease;
+  }
+  tbody td { position: relative; }
+  tbody th {
+    text-align: left;
+    font-weight: 600;
+    color: var(--ink);
+    width: 25%;
+    min-width: 120px;
+  }
+  tbody tr:nth-child(even) { background: rgba(0, 0, 0, 0.01); }
+  [data-theme="dark"] tbody tr:nth-child(even) { background: rgba(255, 255, 255, 0.01); }
+
+  /* Row toggling states */
+  tbody tr[data-group] { display: none; }
+  tbody tr[data-group].row-open { display: table-row; }
+  @media (max-width:680px){
+    tbody tr[data-group].row-open { display: block; }
+  }
+
+  tr.expandable { cursor: pointer; }
+  tr.expandable th { position: relative; }
+  tr.expandable th::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: transparent;
+    transition: background 0.15s ease;
+  }
+  tr.expandable:hover th::before { background: var(--line); }
+  tr.expanded th::before { background: var(--ink); }
+
+  .chev {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 14px;
+    height: 14px;
+    margin-right: 8px;
+    color: var(--sub);
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s ease;
+    font-size: 11px;
+    line-height: 1;
+    font-style: normal;
+  }
+  tr.expanded .chev { transform: rotate(90deg); color: var(--ink); }
+
+  /* Pill Badges for Capability cells */
+  .val {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.2;
+    transition: all 0.2s ease;
+  }
+  
+  .val:has(.mark.yes) { background: var(--yes-bg); color: var(--yes); }
+  .val:has(.mark.no) { background: var(--no-bg); color: var(--no); }
+  .val:has(.mark.dot) { background: var(--neutral-badge-bg); color: var(--neutral-badge); }
+  
+  /* Fallback */
+  .val.yes-val { background: var(--yes-bg); color: var(--yes); }
+  .val.no-val { background: var(--no-bg); color: var(--no); }
+  .val.neutral-val { background: var(--neutral-badge-bg); color: var(--neutral-badge); }
+  .val.plain-val { background: var(--neutral-badge-bg); color: var(--ink); }
+
+  .mark { font-weight: 800; font-size: 12px; }
+  .strong { font-weight: 700; }
+  .val-text { display: inline; }
+
+  /* Unique Feature Highlights — a bare star; see the legend above the table
+     for what it means, so we don't repeat "Unique" as a text label per cell. */
+  .unique-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    font-size: 10px;
+    font-weight: 700;
+    margin-left: 6px;
+    cursor: default;
+    animation: pulseGlow 3s infinite ease-in-out;
+  }
+  .unique-badge.chat { background: var(--chat-bg); color: var(--chat); }
+  .unique-badge.cowork { background: var(--cowork-bg); color: var(--cowork); }
+  .unique-badge.code { background: var(--code-bg); color: var(--code); }
+  
+  @keyframes pulseGlow {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+  }
+
+  /* Sub-details show smoothly inline when row is expanded */
+  .detail {
+    display: block;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease, margin-top 0.3s ease;
+    font-size: 12px;
+    color: var(--sub);
+    line-height: 1.4;
+    margin-top: 0;
+  }
+  
+  tr.expanded .detail,
+  body.pin-details .detail {
+    max-height: 120px;
+    opacity: 1;
+    margin-top: 8px;
+  }
+
+  code.inline {
+    font-family: var(--font-mono);
+    background: var(--code-inline-bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    color: var(--ink);
+  }
+
+  td.dim, th.dim {
+    opacity: 0.25;
+    filter: grayscale(60%);
+    pointer-events: none;
+  }
+
+  .col-chat { background: rgba(217, 119, 87, 0.02); }
+  .col-cowork { background: rgba(194, 65, 12, 0.02); }
+  .col-code { background: rgba(154, 52, 18, 0.02); }
+
+  footer {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-size: 12px;
+    color: var(--sub);
+    text-align: center;
+    line-height: 1.6;
+  }
+  footer p { margin: 4px 0; }
+  footer a {
+    color: var(--ink);
+    text-decoration: underline;
+    transition: color 0.2s ease;
+  }
+  footer a:hover { color: var(--sub); }
+
+  /* Mobile Stacked Card View */
+  @media (max-width:680px){
+    .wrap { padding: 8px; }
+    thead { display: none; }
+    table, tbody, tr, td, th { display: block; width: 100%; }
+    .table-scroll { border: none; background: transparent; box-shadow: none; }
+    
+    .group-tabs {
+      background: var(--card-bg);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      margin-bottom: 16px;
+      padding: 8px;
+    }
+    
+    tbody tr[data-group] {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-md);
+      margin-bottom: 12px;
+      padding: 16px;
+      box-shadow: var(--shadow);
+      transition: all 0.2s ease;
+    }
+    tbody tr[data-group].row-open { border-top: none; }
+    
+    tbody th {
+      padding: 0 0 10px 0;
+      width: auto;
+      font-size: 15px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    tbody td {
+      padding: 6px 0;
+      border-top: none;
+    }
+    tbody td::before {
+      content: attr(data-label);
+      display: inline-block;
+      font-family: var(--font-heading);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      color: var(--sub);
+      margin-bottom: 2px;
+      width: 80px;
+    }
+    .col-chat, .col-cowork, .col-code { background: transparent !important; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- App Header -->
+  <header class="app-header">
+    <div class="header-content">
+      <span class="eyebrow">Claude Desktop · Windows</span>
+      <h1>Three Modes, Three Jobs</h1>
+      <p class="intro">
+        The Windows desktop app splits work across three modes. Each is its own execution environment with distinct capabilities, file permissions, and memory rules.
+      </p>
+    </div>
+    <div class="header-actions">
+      <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle dark mode">
+        <!-- Sun Icon -->
+        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+        </svg>
+        <!-- Moon Icon -->
+        <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Interactive Wizard -->
+  <div class="wizard-panel" id="wizardPanel" style="display: none;">
+    <div class="wizard-header">
+      <h2 class="wizard-title">✨ Find Your Mode</h2>
+      <button class="btn-close" id="closeWizard" aria-label="Close wizard">✕</button>
+    </div>
+    
+    <div class="wizard-step active" id="wizardStep1">
+      <p class="wizard-question">1. Do you need Claude to read/edit local files or run terminal commands?</p>
+      <div class="wizard-options">
+        <button class="wizard-btn" onclick="handleWizard(1, 'no')">No, just chat and reasoning</button>
+        <button class="wizard-btn primary" onclick="handleWizard(1, 'yes')">Yes, files & terminal</button>
+      </div>
+    </div>
+    
+    <div class="wizard-step" id="wizardStep2">
+      <p class="wizard-question">2. Do you want Claude to work autonomously in the background, or collaborate interactively?</p>
+      <div class="wizard-options">
+        <button class="wizard-btn" onclick="handleWizard(2, 'auto')">Autonomously (Background tasks)</button>
+        <button class="wizard-btn primary" onclick="handleWizard(2, 'interactive')">Collaboratively (Interactive session)</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Selection Cards -->
+  <div class="wizard-toggle-wrapper">
+    <p class="cards-label">In a hurry? Pick by what you're doing</p>
+    <button class="wizard-btn" id="openWizardBtn" style="padding: 4px 10px; font-size: 11.5px; margin: 0;">✨ Help me choose</button>
+  </div>
+  
+  <div class="cards" id="cards">
+    <div class="card chat" data-mode="chat" tabindex="0" role="button" aria-pressed="true">
+      <div class="card-top">
+        <div class="card-icon">💬</div>
+        <span class="card-badge-num">01</span>
+      </div>
+      <h3>Chat</h3>
+      <p class="card-desc">Conversation, Projects, memory, and Artifacts — no local file access.</p>
+      <div class="card-bottom">
+        <span class="best-for">Best for: thinking through a problem</span>
+        <div class="check">✓</div>
+      </div>
+    </div>
+    <div class="card cowork" data-mode="cowork" tabindex="0" role="button" aria-pressed="true">
+      <div class="card-top">
+        <div class="card-icon">🤖</div>
+        <span class="card-badge-num">02</span>
+      </div>
+      <h3>Cowork</h3>
+      <p class="card-desc">A local sandboxed VM handing off multi-step tasks while you stay nearby.</p>
+      <div class="card-bottom">
+        <span class="best-for">Best for: hands-off multi-step work</span>
+        <div class="check">✓</div>
+      </div>
+    </div>
+    <div class="card code" data-mode="code" tabindex="0" role="button" aria-pressed="true">
+      <div class="card-top">
+        <div class="card-icon">📂</div>
+        <span class="card-badge-num">03</span>
+      </div>
+      <h3>Code</h3>
+      <p class="card-desc">Direct local file access, terminal, and GitHub PR monitoring.</p>
+      <button type="button" class="ways-toggle" id="waysToggle" aria-expanded="false" aria-controls="waysList">
+        <span class="ways-toggle-icon">▸</span> 4 ways to run on Windows
+      </button>
+      <ul class="ways-list" id="waysList">
+        <li><strong>Native install</strong> — self-updating binary straight on Windows, no WSL needed.</li>
+        <li><strong>Git Bash</strong> — used as the shell tool when Git for Windows is installed (recommended).</li>
+        <li><strong>PowerShell</strong> — fallback shell tool if Git for Windows isn't installed.</li>
+        <li><strong>WSL</strong> — installed and run from inside a Linux WSL terminal instead.</li>
+      </ul>
+      <div class="card-bottom">
+        <span class="best-for">Best for: building &amp; shipping code</span>
+        <div class="check">✓</div>
+      </div>
+    </div>
+  </div>
+  <p class="hint">Tap a mode to focus on it, or select more than one to compare side by side.</p>
+
+  <!-- Controls Panel -->
+  <div class="table-controls">
+    <div class="search-container">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="searchInput" class="search-input" placeholder="Search capabilities..." autocomplete="off">
+      <button id="searchClear" class="search-clear" aria-label="Clear search">✕</button>
+    </div>
+    <button class="expand-all" id="expandAllBtn" type="button">Expand everything</button>
+  </div>
+  <p class="legend"><span class="unique-badge code legend-star">★</span> Unique — no other mode does this</p>
+
+  <!-- Comparison Table -->
+  <div class="table-scroll">
+    <div class="group-tabs" id="groupTabs" role="tablist">
+      <button class="group-tab active" data-group="touch" type="button" role="tab" aria-selected="true">What it can touch<span class="tab-count">5</span></button>
+      <button class="group-tab" data-group="time" type="button" role="tab" aria-selected="false">How it works over time<span class="tab-count">3</span></button>
+      <button class="group-tab" data-group="sticks" type="button" role="tab" aria-selected="false">What sticks around<span class="tab-count">3</span></button>
+      <button class="group-tab" data-group="sharing" type="button" role="tab" aria-selected="false">Sharing files &amp; artifacts<span class="tab-count">3</span></button>
+      <button class="group-tab" data-group="bottom" type="button" role="tab" aria-selected="false">Bottom line<span class="tab-count">2</span></button>
+    </div>
+    <table id="compare-table">
+      <thead>
+        <tr>
+          <th class="cap">Capability</th>
+          <th class="chat" data-col="chat">Chat</th>
+          <th class="cowork" data-col="cowork">Cowork</th>
+          <th class="code" data-col="code">Code</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- WHAT IT CAN TOUCH -->
+        <tr class="expandable" data-group="touch" tabindex="0" role="button" aria-expanded="false">
+          <th><span class="chev">▸</span>Local file access</th>
+          <td class="col-chat" data-col="chat" data-label="Chat">
+            <span class="val no-val"><span class="mark no">✕</span><span class="val-text"> No access</span></span>
+            <span class="detail">Chat runs in Anthropic's cloud with no access to files on your computer.</span>
+          </td>
+          <td class="col-cowork" data-col="cowork" data-label="Cowork">
+            <span class="val yes-val"><span class="mark yes">✓</span><span class="val-text"> <span class="strong">Direct, scoped</span></span></span>
+            <span class="detail">Cowork runs a local VM on your own machine and reads/writes real files directly — but only inside the folders you share, not your whole computer.</span>
+          </td>
+          <td class="col-code" data-col="code" data-label="Code">
+            <span class="val yes-val"><span class="mark yes">✓</span><span class="val-text"> <span class="strong">Direct</span></span></span>
+            <span class="detail">Code reads and writes files directly on your machine (or wherever it's connected) — the same as opening them yourself.</span>
+          </td>
+        </tr>
+
+        <tr class="expandable" data-group="touch" tabindex="0" role="button" aria-expanded="false">
+          <th><span class="chev">▸</span>Terminal access</th>
+          <td class="col-chat" data-col="chat" data-label="Chat">
+            <span class="val no-val"><span class="mark no">✕</span><span class="val-text"> None</span></span>
+            <span class="detail">No command-line access in Chat.</span>
+          </td>
+          <td class="col-cowork" data-col="cowork" data-label="Cowork">
+            <span class="val neutral-val"><span class="mark dot">•</span><span class="val-text"> Sandboxed</span></span>
+            <span class="detail">Cowork has a terminal, but it's internal to its sandboxed VM — it can't touch your real machine's shell.</span>
+          </td>
+          <td class="col-code" data-col="code" data-label="Code">
+            <span class="val yes-val"><span class="mark yes">✓</span><span class="val-text"> <span class="strong">Integrated</span></span></span>
+            <span class="unique-badge code" title="Unique to this mode">★</span>
+            <span class="detail">A real terminal is built in, running commands directly in your project environment.</span>
+          </td>
+        </tr>
+
+        <tr class="expandable" data-group="touch" tabindex="0" role="button" aria-expanded="false">
+          <th><span class="chev">▸</span>GitHub / PRs</th>
+          <td class="col-chat" data-col="chat" data-label="Chat">
+            <span class="val no-val"><span class="mark no">✕</span><span class="val-text"> None</span></span>
+            <span class="detail">No GitHub integration in Chat.</span>
+          </td>
+          <td class="col-cowork" data-col="cowork" data-label="Cowork">
+            <span class="val neutral-val"><span class="mark dot">•</span><span class="val-text"> Sometimes</span></span>
+            <span class="detail">Whether Cowork touches GitHub depends on the task you give it.</span>
+          </td>
+          <td class="col-code" data-col="code" data-label="Code">
+            <span class="val yes-val"><span class="mark yes">✓</span><span class="val-text"> <span class="strong">Full</span></span></span>
+            <span class="unique-badge code" title="Unique to this mode">★</span>
+            <span class="detail">Code integrates with GitHub — local or remote sessions, PR review, visual diffs, and built-in git tooling.</span>
+          </td>
+        </tr>
+
+        <tr class="expandable" data-group="touch" tabindex="0" role="button" aria-expanded="false">
+          <th><span class="chev">▸</span>Runs where</th>
+          <td class="col-chat" data-col="chat" data-label="Chat">
+            <span class="val plain-val">Cloud only</span>
+            <span class="detail">Always runs on Anthropic's servers.</span>
+          </td>
+          <td class="col-cowork" data-col="cowork" data-label="Cowork">
+            <span class="val plain-val">Local VM</span>
+            <span class="detail">Runs in an isolated sandboxed virtual machine on your own computer, not in the cloud.</span>
+          </td>
+          <td class="col-code" data-col="code" data-label="Code">
+            <span class="val plain-val">Anywhere</span>
+            <span class="detail">Can run locally on your machine, in the cloud, or on a remote machine you SSH into.</span>
+          </td>
+        </tr>
+
+        <tr class="expandable" data-group="touch" tabindex="0" role="button" aria-expanded="false">
+          <th><span class="chev">▸</span>Parallel sessions</th>
+          <td class="col-chat" data-col="chat" data-label="Chat">
+            <span class="val no-val"><span class="mark no">✕</span><span class="val-text"> No</span></span>
+            <span class="detail">One conversation at a time.</span>
+          </td>
+          <td class="col-cowork" data-col="cowork" data-label="Cowork">
+            <span class="val yes-val"><span class="mark yes">✓</span><span class="val-text"> Yes</span></span>
+            <span class="detail">Multiple tasks can run at once, each in its own conversation in the sidebar, and a task can spin up sub-agents for parallel workstreams.</span>
+          </td>
+          <td class="col-code" data-col="code" data-label="Code">
+            <span class="val yes-val"><span class="mark yes">✓</span><span class="val-text"> Yes</span></span>
+            <span class="detail">Multiple sessions can run side by side using separate Git worktrees — isolated working folders checked out from the same repo, so tasks don't collide.</span>
+          </td>
+        </tr>
+
+        <!-- HOW IT WORKS OVER TIME -->
+        <tr class="expandable" data-group="time" tabindex="0" role="button" aria-expanded="false">
+          <th><span class="chev">▸</span>Execution model</th>
+          <td class="col-chat" data-col="chat" data-label="Chat">
+            <span class="val plain-val">You drive</span>
+            <span class="detail">Synchronous — Claude responds turn by turn as you chat.</span>
+          </td>
+          <td class="col-cowork" data-col="cowork" data-label="Cowork">
+            <span class="val plain-val">Runs itself</span>
+            <span class="unique-badge cowork" title="Unique to this mode">★</span>
+            <span class="detail">Once started, it runs unattended in the background without you steering each step.</span>
+          </td>
+          <td class="col-code" data-col="code" data-label="Code">
+            <span class="val plain-val">Interactive</span>
+            <span class="detail">Session-based — you and Claude work back and forth within a coding session.</span>
+          </td>
+        </tr>
+
+        <tr class="expandable" data-group="time" tabindex="0" role="button" aria-expanded="false">
+          <th><span class="chev">▸</span>Survives closing app</th>
+          <td class="col-chat" data-col="chat" data-label="Chat">
+            <span class="val neutral-val"><span class="mark dot">•</span><span class="val-text"> No</span></span>
+            <span class="detail">Your conversation history is saved, but nothing keeps running after you close the app — it's not a live process.</span>
+          </td>
+          <td class="col-cowork" data-col="cowork" data-label="Cowork">
+            <span class="val no-val"><span class="mark no">✕</span><span class="val-text"> No</span></span>
+            <span class="detail">The desktop app must stay open — closing it (or sleeping the computer) ends the session. Scheduled tasks just catch up when you're back.</span>
+          </td>
+          <td class="col-code" data-col="code" data-label="Code">
+            <span class="val neutral-val"><span class="mark dot">•</span><span class="val-text"> With setup</span></span>
+            <span class="detail">Survives if it's running in cloud or SSH mode via Routines — scheduled or triggered automations that keep a session going without you at the keyboard.</span>
+          </td>
+        </tr>
+
+        <tr class="expandable" data-group="time" tabindex="0" role="button" aria-expanded="false">
+          <th><span class="chev">▸</span>Cross-device</th>
+          <td class="col-chat" data-col="chat" data-label="Chat">
+            <span class="val yes-val"><span class="mark yes">✓</span><span class="val-text"> Yes</span></span>
+            <span class="detail">Pick up the exact same conversation from your phone or another computer.</span>
+          </td>
+          <td class="col-cowork" data-col="cowork" data-label="Cowork">
+            <span class="val neutral-val"><span class="mark dot">•</span><span class="val-text"> Message in</span></span>
+            <span class="detail">Pro/Max users can message a running session from their phone and get results back — but the desktop app still has to stay open on your computer.</span>
+          </td>
+          <td class="col-code" data-col="code" data-label="Code">
+            <span class="val neutral-val"><span class="mark dot">•</span><span class="val-text"> Remote view</span></span>
+            <span class="unique-badge code" title="Unique to this mode">★</span>
+            <span class="detail">Remote Control lets you view and steer a running Code session from your phone or browser.</span>
+          </td>
+        </tr>
+
+        <!-- WHAT STICKS AROUND -->
+        <tr class="expandable" data-group="sticks" tabindex="0" role="button" aria-expanded="false">
+          <th><span class="chev">▸</span>Projects</th>
+          <td class="col-chat" data-col="chat" data-label="Chat">
+            <span class="val yes-val"><span class="mark yes">✓</span><span class="val-text"> Yes</span></span>
+            <span class="detail">Standard Projects, same as today.</span>
+          </td>
+          <td class="col-cowork" data-col="cowork" data-label="Cowork">
+            <span class="val yes-val"><span class="mark yes">✓</span><span class="val-text"> <span class="strong">Persistent</span></span></span>
+            <span class="detail">Cowork workspaces persist between runs, keeping context and files in place.</span>
+          </td>
+          <td class="col-code" data-col="code" data-label="Code">
+            <span class="val neutral-val"><span class="mark dot">•</span><span class="val-text"> Via worktrees</span></span>
+            <span class="detail">Project continuity comes from Git worktrees rather than a built-in Projects feature.</span>
+          </td>
+        </tr>
+
+        <tr class="expandable" data-group="sticks" tabindex="0" role="button" aria-expanded="false">
+          <th><span class="chev">▸</span>Memory</th>
+          <td class="col-chat" data-col="chat" data-label="Chat">
+            <span class="val yes-val"><span class="mark yes">✓</span><span class="val-text"> Yes</span></span>
+            <span class="detail">Standard account memory.</span>
+          </td>
+          <td class="col-cowork" data-col="cowork" data-label="Cowork">
+            <span class="val neutral-val"><span class="mark dot">•</span><span class="val-text"> Within projects only</span></span>
+            <span class="detail">Memory works inside Cowork Projects, but isn't retained across standalone sessions.</span>
+          </td>
+          <td class="col-code" data-col="code" data-label="Code">
+            <span class="val neutral-val"><span class="mark dot">•</span><span class="val-text"> Project file</span></span>
+            <span class="detail">Memory is scoped to a <code class="inline">CLAUDE.md</code> file in your project rather than account-wide memory.</span>
+          </td>
+        </tr>
+
+        <tr class="expandable" data-group="sticks" tabindex="0" role="button" aria-expanded="false">
+          <th><span class="chev">▸</span>Artifacts</th>
+          <td class="col-chat" data-col="chat" data-label="Chat">
+            <span class="val yes-val"><span class="mark yes">✓</span><span class="val-text"> Yes</span></span>
+            <span class="detail">Standard in-chat Artifacts.</span>
+          </td>
+          <td class="col-cowork" data-col="cowork" data-label="Cowork">
+            <span class="val neutral-val"><span class="mark dot">•</span><span class="val-text"> Output files</span></span>
+            <span class="detail">Instead of in-chat Artifacts, Cowork produces output files you can open directly.</span>
+          </td>
+          <td class="col-code" data-col="code" data-label="Code">
+            <span class="val neutral-val"><span class="mark dot">•</span><span class="val-text"> Live preview</span></span>
+            <span class="detail">See a live preview of the running app instead of a static Artifact.</span>
+          </td>
+        </tr>
+
+        <!-- SHARING FILES & ARTIFACTS -->
+        <tr class="expandable" data-group="sharing" tabindex="0" role="button" aria-expanded="false">
+          <th><span class="chev">▸</span>Across own modes</th>
+          <td class="col-chat" data-col="chat" data-label="Chat">
+            <span class="val plain-val">Export to move it</span>
+            <span class="detail">Artifacts stay in Chat; download or copy the content to bring it into Cowork or Code.</span>
+          </td>
+          <td class="col-cowork" data-col="cowork" data-label="Cowork">
+            <span class="val plain-val">Lands in your files</span>
+            <span class="detail">Output files save to your connected folder, so Code or Chat can pick them up directly.</span>
+          </td>
+          <td class="col-code" data-col="code" data-label="Code">
+            <span class="val plain-val">Shared workspace</span>
+            <span class="detail">Files live in your project folder — visible whether you're in Code, or referencing them from Chat or Cowork.</span>
+          </td>
+        </tr>
+
+        <tr class="expandable" data-group="sharing" tabindex="0" role="button" aria-expanded="false">
+          <th><span class="chev">▸</span>With other Claude users</th>
+          <td class="col-chat" data-col="chat" data-label="Chat">
+            <span class="val plain-val">Share a link</span>
+            <span class="detail">Send a link to the conversation or Artifact — others with Claude can view it, and duplicate it into their own account to edit.</span>
+          </td>
+          <td class="col-cowork" data-col="cowork" data-label="Cowork">
+            <span class="val plain-val">Share the workspace</span>
+            <span class="detail">Grant access to the workspace, or send a link to a run's output, so a teammate can see or continue it.</span>
+          </td>
+          <td class="col-code" data-col="code" data-label="Code">
+            <span class="val plain-val">Share via Git</span>
+            <span class="detail">Share a pull request link or an active Remote Control session so another Claude user can follow along.</span>
+          </td>
+        </tr>
+
+        <tr class="expandable" data-group="sharing" tabindex="0" role="button" aria-expanded="false">
+          <th><span class="chev">▸</span>With non-Claude users</th>
+          <td class="col-chat" data-col="chat" data-label="Chat">
+            <span class="val plain-val">Export the file</span>
+            <span class="detail">Download the Artifact as a standalone file (HTML, image, PDF, etc.) — anyone can open it, no Claude account needed.</span>
+          </td>
+          <td class="col-cowork" data-col="cowork" data-label="Cowork">
+            <span class="val plain-val">Send the files</span>
+            <span class="detail">Output files are regular files — email or share them like any other document.</span>
+          </td>
+          <td class="col-code" data-col="code" data-label="Code">
+            <span class="val plain-val">Publish or export</span>
+            <span class="detail">Push to a shared Git host or export the finished build — recipients don't need Claude to use it.</span>
+          </td>
+        </tr>
+
+        <!-- BOTTOM LINE -->
+        <tr data-group="bottom">
+          <th>Primary job</th>
+          <td class="col-chat" data-col="chat" data-label="Chat">Conversation &amp; reasoning</td>
+          <td class="col-cowork" data-col="cowork" data-label="Cowork">Autonomous multi-step tasks</td>
+          <td class="col-code" data-col="code" data-label="Code">Software development</td>
+        </tr>
+        <tr data-group="bottom">
+          <th style="font-weight:700;">Best for</th>
+          <td class="col-chat" data-col="chat" data-label="Chat" style="font-weight:700; color:var(--chat);">Thinking through a problem</td>
+          <td class="col-cowork" data-col="cowork" data-label="Cowork" style="font-weight:700; color:var(--cowork);">Multi-step work, hands mostly off</td>
+          <td class="col-code" data-col="code" data-label="Code" style="font-weight:700; color:var(--code);">Building &amp; shipping code</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>Reflects the Windows desktop app as of July 2026. Feature set may change with future releases.</p>
+    <p>Source: <a href="https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork" target="_blank">Claude Help Center — Get started with Cowork</a></p>
+  </footer>
+</div>
+
+<script>
+  let isUpdatingHash = false;
+  const selected = new Set(['chat','cowork','code']);
+
+  // URL Hash state persistence
+  function updateHash() {
+    if (isUpdatingHash) return;
+    
+    const activeTab = document.querySelector('.group-tab.active');
+    const tabKey = activeTab ? activeTab.dataset.group : '';
+    const searchVal = document.getElementById('searchInput').value.trim();
+    const modesArr = Array.from(selected).join(',');
+    
+    const params = new URLSearchParams();
+    if (modesArr && modesArr !== 'chat,cowork,code') params.set('modes', modesArr);
+    if (tabKey) params.set('tab', tabKey);
+    if (searchVal) params.set('search', searchVal);
+    
+    const newHash = params.toString();
+    history.replaceState(null, '', newHash ? '#' + newHash : window.location.pathname);
+  }
+  
+  function restoreFromHash() {
+    if (!window.location.hash) return false;
+    
+    const params = new URLSearchParams(window.location.hash.substring(1));
+    let hasRestored = false;
+    
+    if (params.has('modes')) {
+      selected.clear();
+      params.get('modes').split(',').forEach(m => {
+        if(['chat', 'cowork', 'code'].includes(m)) selected.add(m);
+      });
+      hasRestored = true;
+    }
+    
+    if (params.has('search')) {
+      document.getElementById('searchInput').value = decodeURIComponent(params.get('search'));
+      hasRestored = true;
+    }
+    
+    let targetTab = null;
+    if (params.has('tab')) {
+      targetTab = document.querySelector(`.group-tab[data-group="${params.get('tab')}"]`);
+      hasRestored = true;
+    }
+    
+    return { hasRestored, targetTab };
+  }
+
+  // Keyboard accessibility
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      const activeEl = document.activeElement;
+      if (activeEl && (
+          activeEl.classList.contains('card') || 
+          activeEl.classList.contains('expandable') ||
+          activeEl.classList.contains('group-tab')
+      )) {
+        e.preventDefault(); // prevent scroll on space
+        activeEl.click();
+      }
+    }
+  });
+
+  // Wizard Logic
+  const wizardPanel = document.getElementById('wizardPanel');
+  const openWizardBtn = document.getElementById('openWizardBtn');
+  const closeWizard = document.getElementById('closeWizard');
+  const step1 = document.getElementById('wizardStep1');
+  const step2 = document.getElementById('wizardStep2');
+
+  openWizardBtn.addEventListener('click', () => {
+    wizardPanel.style.display = 'flex';
+    openWizardBtn.style.display = 'none';
+    step1.classList.add('active');
+    step2.classList.remove('active');
+  });
+
+  closeWizard.addEventListener('click', () => {
+    wizardPanel.style.display = 'none';
+    openWizardBtn.style.display = 'block';
+  });
+
+  window.handleWizard = function(step, answer) {
+    if (step === 1) {
+      if (answer === 'no') {
+        applyRecommendation('chat');
+      } else {
+        step1.classList.remove('active');
+        step2.classList.add('active');
+      }
+    } else if (step === 2) {
+      if (answer === 'auto') {
+        applyRecommendation('cowork');
+      } else {
+        applyRecommendation('code');
+      }
+    }
+  };
+
+  function applyRecommendation(mode) {
+    selected.clear();
+    selected.add(mode);
+    applyState();
+    wizardPanel.style.display = 'none';
+    openWizardBtn.style.display = 'block';
+    
+    // Smooth highlight
+    const card = document.querySelector(`.card[data-mode="${mode}"]`);
+    if(card) {
+      card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      const origShadow = card.style.boxShadow;
+      card.style.boxShadow = `0 0 0 4px var(--${mode})`;
+      setTimeout(() => { card.style.boxShadow = origShadow; }, 1500);
+    }
+  }
+
+  // Code tile: "ways to run on Windows" disclosure
+  const waysToggle = document.getElementById('waysToggle');
+  const waysList = document.getElementById('waysList');
+  if (waysToggle && waysList) {
+    waysToggle.addEventListener('click', (e) => {
+      e.stopPropagation(); // don't trigger the card's own select/deselect click
+      const isOpen = waysList.classList.toggle('open');
+      waysToggle.setAttribute('aria-expanded', isOpen.toString());
+    });
+    waysList.addEventListener('click', (e) => e.stopPropagation());
+  }
+
+  // UI Selection Cards
+  const cards = document.querySelectorAll('.card');
+
+  function applyState(){
+    cards.forEach(c=>{
+      const mode = c.dataset.mode;
+      const isSelected = selected.has(mode);
+      c.classList.toggle('off', !isSelected);
+      c.setAttribute('aria-pressed', isSelected.toString());
+    });
+    document.querySelectorAll('[data-col]').forEach(el=>{
+      const mode = el.dataset.col;
+      el.classList.toggle('dim', !selected.has(mode));
+    });
+    updateHash();
+  }
+
+  cards.forEach(card=>{
+    card.addEventListener('click', ()=>{
+      const mode = card.dataset.mode;
+      if(selected.has(mode)){
+        if(selected.size > 1) selected.delete(mode);
+      } else {
+        selected.add(mode);
+      }
+      applyState();
+    });
+  });
+
+  // Table rows toggle expand
+  const rows = document.querySelectorAll('tr.expandable');
+  const allDataRows = document.querySelectorAll('tbody tr[data-group]');
+  const expandAllBtn = document.getElementById('expandAllBtn');
+  let everythingOpen = false;
+
+  rows.forEach(row=>{
+    row.addEventListener('click', ()=>{
+      const isExpanded = row.classList.toggle('expanded');
+      row.setAttribute('aria-expanded', isExpanded.toString());
+    });
+  });
+
+  // Section Tabs Navigation
+  const tabs = document.querySelectorAll('.group-tab');
+  
+  function setActiveTab(tab, skipHashUpdate = false){
+    everythingOpen = false;
+    expandAllBtn.textContent = 'Expand everything';
+    document.body.classList.remove('pin-details');
+    
+    const key = tab ? tab.dataset.group : null;
+    tabs.forEach(t => {
+      const isActive = t === tab;
+      t.classList.toggle('active', isActive);
+      t.setAttribute('aria-selected', isActive.toString());
+    });
+    
+    // Only clear search if we are manually clicking a tab (not during restore)
+    if (!skipHashUpdate) {
+      document.getElementById('searchInput').value = '';
+      document.getElementById('searchClear').style.display = 'none';
+    }
+
+    allDataRows.forEach(r=>{
+      r.classList.toggle('row-open', !!key && r.dataset.group === key);
+      r.classList.remove('expanded'); 
+      r.setAttribute('aria-expanded', 'false');
+      r.style.display = ''; 
+    });
+    
+    if (!skipHashUpdate) {
+      updateHash();
+    }
+  }
+  
+  tabs.forEach(tab=>{
+    tab.addEventListener('click', ()=>{
+      if (!tab.classList.contains('active')) {
+        setActiveTab(tab);
+      }
+    });
+  });
+
+  // Expand / Collapse Everything
+  expandAllBtn.addEventListener('click', ()=>{
+    everythingOpen = !everythingOpen;
+    
+    if (everythingOpen) {
+      tabs.forEach(t => {
+        t.classList.add('active');
+        t.setAttribute('aria-selected', 'true');
+      });
+      allDataRows.forEach(r => {
+        r.classList.add('row-open');
+        r.classList.add('expanded');
+        r.setAttribute('aria-expanded', 'true');
+        r.style.display = '';
+      });
+      document.body.classList.add('pin-details');
+      expandAllBtn.textContent = 'Collapse everything';
+    } else {
+      setActiveTab(tabs[0]);
+    }
+  });
+
+  // Search Filter
+  const searchInput = document.getElementById('searchInput');
+  const searchClear = document.getElementById('searchClear');
+
+  function runSearch(skipHashUpdate = false) {
+    const query = searchInput.value.toLowerCase().trim();
+    
+    if (query !== '') {
+      searchClear.style.display = 'flex';
+      tabs.forEach(t => {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      expandAllBtn.textContent = 'Expand everything';
+      everythingOpen = false;
+      document.body.classList.remove('pin-details');
+
+      allDataRows.forEach(r => {
+        const title = r.querySelector('th').textContent.toLowerCase();
+        let cellText = '';
+        r.querySelectorAll('td').forEach(td => {
+          cellText += ' ' + td.textContent.toLowerCase();
+        });
+        
+        if (title.includes(query) || cellText.includes(query)) {
+          r.classList.add('row-open');
+          r.classList.add('expanded'); 
+          r.setAttribute('aria-expanded', 'true');
+          r.style.display = '';
+        } else {
+          r.classList.remove('row-open');
+          r.classList.remove('expanded');
+          r.setAttribute('aria-expanded', 'false');
+          r.style.display = 'none';
+        }
+      });
+    } else {
+      searchClear.style.display = 'none';
+      const activeTab = document.querySelector('.group-tab.active');
+      if (!activeTab) setActiveTab(tabs[0], skipHashUpdate);
+    }
+    
+    if (!skipHashUpdate) {
+      updateHash();
+    }
+  }
+
+  searchInput.addEventListener('input', () => runSearch(false));
+
+  searchClear.addEventListener('click', () => {
+    searchInput.value = '';
+    runSearch(false);
+  });
+
+  // Theme Toggle Button Logic
+  const themeToggleBtn = document.getElementById('theme-toggle');
+  
+  function getPreferredTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) return savedTheme;
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+  
+  function setTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+    // Force body's own background/text color to recompute — some engines don't
+    // retrigger a transitioned property when only the var() it references changes.
+    const rootStyle = getComputedStyle(document.documentElement);
+    document.body.style.backgroundColor = rootStyle.getPropertyValue('--bg').trim();
+    document.body.style.color = rootStyle.getPropertyValue('--ink').trim();
+  }
+  
+  setTheme(getPreferredTheme());
+  
+  themeToggleBtn.addEventListener('click', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+  });
+
+  // Initialize page state
+  isUpdatingHash = true; // Prevent initial hash overriding during setup
+  const restoreData = restoreFromHash();
+  
+  if (restoreData.hasRestored) {
+    applyState();
+    if (searchInput.value) {
+      runSearch(true);
+    } else if (restoreData.targetTab) {
+      setActiveTab(restoreData.targetTab, true);
+    } else {
+      setActiveTab(tabs[0], true);
+    }
+  } else {
+    // Default load
+    applyState();
+    setActiveTab(tabs[0], true);
+  }
+  isUpdatingHash = false;
+</script>
+</body>
+</html>

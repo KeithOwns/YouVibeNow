@@ -16,7 +16,7 @@ Karpathy defines Context Engineering as: *"The delicate art and science of filli
 ## Thin Prompting
 When your context is engineered properly (which we will do in [[Lesson_02_The_Baseline]] and [[Lesson_03_Digital_Twin]]), you enable **Thin Prompting**. 
 
-Thin prompting is the practice of giving the AI brief, high-level, goal-oriented instructions. Because the AI already has all the context it needs running in the background, you just say "Draft the project plan" and it knows exactly how you want it formatted and what tone to use.
+Thin prompting is the practice of giving the AI brief, high-level, goal-oriented instructions. Because the AI already has all the context it needs running in the background, you just say "Draft the project plan" and it knows exactly how you want it formatted and what tone to use. (See [[06_Thin_Prompting_Examples]] for concrete examples).
 
 ## Adam's Law
 Why is Thin Prompting better? This is explained by **Adam's Law**: 
