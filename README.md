@@ -1,5 +1,8 @@
 # The Vibe Coding & Stateful Prompting Masterclass
 
+> [!NOTE]
+> **Squarespace Site Management**: The live website is managed here: [Squarespace Config](https://groundhog-keyboard-94wc.squarespace.com/config/)
+
 Welcome to the **Vibe Coding Masterclass**, the ultimate repository for learning how to transition from casually "chatting" with AI to engineering robust, autonomous, and secure multi-agent systems.
 
 ## 🚀 The Course

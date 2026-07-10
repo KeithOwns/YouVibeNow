@@ -4,6 +4,11 @@
 >
 > **Division of labor (added 2026-06-29):** entries here stay terse — *what* shipped, not why. Day-to-day specifics live in git commit history; decision rationale and rejected alternatives for anything with real tradeoffs live in [`docs/adr/`](docs/adr/) (empty so far — nothing here has met that bar yet).
 
+## [2026-07-10] - Squarespace Reference Update
+
+### Added
+- Added Squarespace site manager reference to `README.md` (moved from placeholder home folder).
+
 ## [2026-07-02] - Search, Data Sync, & Live AI
 
 Finalized the Web Playbook with search capabilities, save state syncing, and live API execution for the Capstone simulator.
