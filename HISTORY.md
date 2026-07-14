@@ -4,6 +4,11 @@
 >
 > **Division of labor (added 2026-06-29):** entries here stay terse — *what* shipped, not why. Day-to-day specifics live in git commit history; decision rationale and rejected alternatives for anything with real tradeoffs live in [`docs/adr/`](docs/adr/) (empty so far — nothing here has met that bar yet).
 
+## [2026-07-13] - Clief Notes Import
+
+### Added
+- Imported `Clief Notes Navigating The Course.txt` and `Vanclief_original.txt` into the `lessons/` directory from Downloads.
+
 ## [2026-07-10] - Squarespace Reference Update
 
 ### Added
